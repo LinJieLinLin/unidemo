@@ -1,0 +1,601 @@
+@mixin oTextLine($num: 3) {
+  @for $n from 1 through $num {
+    .text-line-#{$n} {
+      word-break: break-all;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      /*! autoprefixer: off */
+      -webkit-line-clamp: $n;
+    }
+  }
+}
+/**
+* 旋转角度
+**/
+@mixin oRotate($rate: 15) {
+  @for $r from 0 through 360 / $rate {
+    .rot-#{$rate*$r} {
+      transform: rotate($rate * $r + deg);
+    }
+  }
+}
+
+/**
+* [oFsSet 设置12到40px 的字体大小相隔2pxeg:fs-12]
+* @param  {[type]} $l:14    [长度]
+* @param  {[type]} $mul:2   [间隔]
+* @param  {[type]} $unit:px [单位]
+* @param  {[type]} $d:12    [最小字体大小]
+* @return {[type]}          [description]
+*/
+
+@mixin oFsSet($l: 14, $mul: 2, $unit: px, $d: 12) {
+  @for $fs from 0 through $l {
+    .fs-#{$d + $fs*$mul} {
+      font-size: $d + $fs * $mul + $unit;
+    }
+  }
+}
+
+/**
+* [oPdMgSet 默认设置5到60的各个padding margin]
+* @param  {[type]} $max:12   [基数]
+* @param  {[type]} $mul:5  [倍数]
+* @param  {[type]} $unit:px [单位]
+* @return {[type]}          [description]
+*/
+
+@mixin oPdMgSet($max: 12, $mul: 5, $unit: px) {
+  @for $padding-size from 1 through $max {
+    .pd-x#{$padding-size*$mul} {
+      padding: 0 $padding-size * $mul + $unit;
+    }
+    .pd-y#{$padding-size*$mul} {
+      padding: $padding-size * $mul + $unit 0;
+    }
+    .pd-f#{$padding-size*$mul} {
+      padding: $padding-size * $mul + $unit;
+    }
+    .pd-t#{$padding-size*$mul} {
+      padding-top: $padding-size * $mul + $unit;
+    }
+    .pd-r#{$padding-size*$mul} {
+      padding-right: $padding-size * $mul + $unit;
+    }
+    .pd-b#{$padding-size*$mul} {
+      padding-bottom: $padding-size * $mul + $unit;
+    }
+    .pd-l#{$padding-size*$mul} {
+      padding-left: $padding-size * $mul + $unit;
+    }
+    .pd-tb#{$padding-size*$mul} {
+      padding-top: $padding-size * $mul + $unit;
+      padding-bottom: $padding-size * $mul + $unit;
+    }
+    .pd-lr#{$padding-size*$mul} {
+      padding-right: $padding-size * $mul + $unit;
+      padding-left: $padding-size * $mul + $unit;
+    }
+    .mg-x#{$padding-size*$mul} {
+      margin: 0 $padding-size * $mul + $unit;
+    }
+    .mg-y#{$padding-size*$mul} {
+      margin: $padding-size * $mul + $unit 0;
+    }
+    .mg-f#{$padding-size*$mul} {
+      margin: $padding-size * $mul + $unit;
+    }
+    .mg-t#{$padding-size*$mul} {
+      margin-top: $padding-size * $mul + $unit;
+    }
+    .mg-r#{$padding-size*$mul} {
+      margin-right: $padding-size * $mul + $unit;
+    }
+    .mg-l#{$padding-size*$mul} {
+      margin-left: $padding-size * $mul + $unit;
+    }
+    .mg-b#{$padding-size*$mul} {
+      margin-bottom: $padding-size * $mul + $unit;
+    }
+    .mg-lr#{$padding-size*$mul} {
+      margin-left: $padding-size * $mul + $unit;
+      margin-right: $padding-size * $mul + $unit;
+    }
+    .mg-tb#{$padding-size*$mul} {
+      margin-top: $padding-size * $mul + $unit;
+      margin-bottom: $padding-size * $mul + $unit;
+    }
+  }
+}
+
+/**
+* [默认btn样式]
+*/
+@mixin oBtn {
+  .btn {
+    position: relative;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 14px;
+    padding-right: 14px;
+    box-sizing: border-box;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 2.5;
+    border-radius: 5px;
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden;
+    color: #000000;
+    background-color: #f8f8f8;
+    @include iBtnBgColor(#f8f8f8);
+  }
+}
+
+/**
+* [iCB clear both清除浮动]
+* @param  {[type]} $old:false [true为生成兼容低版本的浏览器]
+* @return {[type]}            [description]
+*/
+
+@mixin iCB($old: false) {
+  @if $old {
+    &:before,
+    &:after {
+      content: '';
+      display: table;
+      font: 0/0;
+    }
+  } @else {
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  }
+}
+
+/**
+* [iBtnBgColor 设置btn背景加hover,active时变亮变暗]
+* @param  {[type]} $color:gray     [初始颜色]
+* @param  {[type]} $type:1         [=0使用传入的颜色，>1变亮，<1变暗]
+* @param  {[type]} $hover:2        [hover颜色或百分比]
+* @param  {[type]} $active:10      [active颜色或百分比]
+* @param  {[type]} $time:1         [动画时间 eg:0.3s]
+* @param  {[type]} $animation:1    [动画属性 eg: ease]
+* @return {[type]}             [description]
+*/
+
+@mixin iBtnBgColor(
+  $color: gray,
+  $type: -1,
+  $hover: 2,
+  $active: 8,
+  $time: 0.3s,
+  $animation: ease
+) {
+  background-color: $color;
+  &:hover {
+    @if $type==0 {
+      background-color: $color;
+    }
+    @if $type>0 {
+      background-color: lighten($color, $hover);
+    }
+    @if $type<0 {
+      background-color: darken($color, $hover);
+    }
+    transition: all $time $animation;
+  }
+  &:active {
+    @if $type==0 {
+      background-color: $color;
+    }
+    @if $type>0 {
+      background-color: lighten($color, $active);
+    }
+    @if $type<0 {
+      background-color: darken($color, $active);
+    }
+  }
+}
+/* <flex> */
+@mixin oFlex() {
+  /* http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
+ flex-direction属性决定主轴的方向（即项目的排列方向）。
+ flex-wrap 属性定义，如果一条轴线排不下，如何换行
+ flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。
+ justify-content属性定义了项目在主轴(x轴)上的对齐方式。
+ align-items属性定义项目在交叉轴(y轴)上如何对齐。
+ align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
+ order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。
+ flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。
+ flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
+ flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。
+ flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。
+ align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。 */
+  .flex0 {
+    flex: none;
+  }
+  @for $num from 1 through 12 {
+    .flex#{$num} {
+      flex: $num;
+    }
+  }
+  .flex {
+    display: flex;
+  }
+  .flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+  }
+  .flex-column-between {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .flex-column-around {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .flex-row-between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .flex-row-around {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .flex-space-between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+  }
+  .flex-space-around {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+  }
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+  .flex-middle {
+    display: flex;
+    align-items: center;
+  }
+  .flex-y-center {
+    align-items: center;
+  }
+  .flex-y-stretch {
+    align-items: stretch;
+  }
+  .flex-y-end {
+    align-items: flex-end;
+  }
+  .flex-y-start {
+    align-items: flex-start;
+  }
+  .flex-x-center {
+    justify-content: center;
+  }
+  .flex-x-end {
+    justify-content: flex-end;
+  }
+  .flex-x-start {
+    justify-content: flex-start;
+  }
+  .flex-ys-end {
+    align-self: end;
+  }
+  .flex-ys-start {
+    align-self: start;
+  }
+  .flex-ys-center {
+    align-self: center;
+  }
+  .flex-xs-end {
+    justify-self: end;
+  }
+  .flex-xs-start {
+    justify-self: start;
+  }
+  .flex-xs-center {
+    justify-self: center;
+  }
+  .flex-around {
+    justify-content: space-around;
+  }
+  .flex-between {
+    justify-content: space-between;
+  }
+}
+@mixin oReset() {
+  /* http://meyerweb.com/eric/tools/css/reset/ */
+  /* v1.0 | 20080212 */
+  html,
+  body,
+  div,
+  span,
+  applet,
+  object,
+  iframe,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  blockquote,
+  pre,
+  a,
+  abbr,
+  acronym,
+  address,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  font,
+  img,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  small,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var,
+  b,
+  u,
+  i,
+  center,
+  dl,
+  dt,
+  dd,
+  ol,
+  ul,
+  li,
+  fieldset,
+  form,
+  label,
+  legend,
+  table,
+  caption,
+  tbody,
+  tfoot,
+  thead,
+  tr,
+  th,
+  td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+  }
+  body {
+    line-height: 1;
+    font-size: 14px;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  input[type='button'] {
+    -webkit-appearance: none;
+    outline: none;
+  }
+  img {
+    max-width: 100%;
+  }
+  ol,
+  ul {
+    list-style: none;
+  }
+  blockquote,
+  q {
+    quotes: none;
+  }
+  blockquote:before,
+  blockquote:after,
+  q:before,
+  q:after {
+    content: '';
+    content: none;
+  }
+  /* remember to define focus styles! */
+  :focus {
+    outline: 0;
+  }
+  /* remember to highlight inserts somehow! */
+  ins {
+    text-decoration: none;
+  }
+  del {
+    text-decoration: line-through;
+  }
+  /* tables still need 'cellspacing="0"' in the markup */
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  // pre自动换行 for textarea
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  a {
+    text-decoration: unset;
+  }
+}
+/* *
+* 移动端1px处理
+* */
+@mixin oBorder1pxTmp($c: #c7c7c7) {
+  .f-1px {
+    border: 1px solid $c;
+  }
+  .t-1px {
+    position: relative;
+    &:before {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      height: 1px;
+      border-top: 1px solid $c;
+      color: $c;
+      transform-origin: 0 0;
+      transform: scaleY(0.5);
+    }
+  }
+  .b-1px {
+    position: relative;
+    &:after {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 1px;
+      border-bottom: 1px solid $c;
+      color: $c;
+      transform-origin: 0 100%;
+      transform: scaleY(0.5);
+    }
+  }
+  .l-1px {
+    position: relative;
+    &:before {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1px;
+      bottom: 0;
+      border-left: 1px solid $c;
+      color: $c;
+      transform-origin: 0 0;
+      transform: scaleX(0.5);
+    }
+  }
+  .r-1px {
+    position: relative;
+    &:after {
+      content: ' ';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 1px;
+      bottom: 0;
+      border-right: 1px solid $c;
+      color: $c;
+      transform-origin: 100% 0;
+      transform: scaleX(0.5);
+    }
+  }
+  .x-1px {
+    position: relative;
+    &:before {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1px;
+      bottom: 0;
+      border-left: 1px solid $c;
+      color: $c;
+      transform-origin: 0 0;
+      transform: scaleX(0.5);
+    }
+    &:after {
+      content: ' ';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 1px;
+      bottom: 0;
+      border-right: 1px solid $c;
+      color: $c;
+      transform-origin: 100% 0;
+      transform: scaleX(0.5);
+    }
+  }
+  .y-1px {
+    position: relative;
+    &:before {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      height: 1px;
+      border-top: 1px solid $c;
+      color: $c;
+      transform-origin: 0 0;
+      transform: scaleY(0.5);
+    }
+    &:after {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 1px;
+      border-bottom: 1px solid $c;
+      color: $c;
+      transform-origin: 0 100%;
+      transform: scaleY(0.5);
+    }
+  }
+}
+@mixin oBorder1px($c: #c7c7c7) {
+  .f-1px {
+    border: 1px solid $c;
+  }
+  .t-1px {
+    border-top: 1px solid $c;
+  }
+  .b-1px {
+    border-bottom: 1px solid $c;
+  }
+  .l-1px {
+    border-left: 1px solid $c;
+  }
+  .r-1px {
+    border-right: 1px solid $c;
+  }
+  .x-1px {
+    border-left: 1px solid $c;
+    border-right: 1px solid $c;
+  }
+  .y-1px {
+    border-top: 1px solid $c;
+    border-bottom: 1px solid $c;
+  }
+}

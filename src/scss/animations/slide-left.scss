@@ -1,0 +1,20 @@
+.slide-left {
+  &-enter-active {
+    animation: slide-left-enter 0.3s both ease;
+  }
+
+  &-leave-active {
+    animation: slide-left-leave 0.3s both ease;
+  }
+}
+@keyframes slide-left-enter {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes slide-left-leave {
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}

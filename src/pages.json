@@ -1,0 +1,88 @@
+{
+  //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+  "pages": [
+    {
+      "path": "pages/hello/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
+    },
+    {
+      "path": "pages/mine/index",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
+    },
+    {
+      "path": "pages/login/index",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom"
+      }
+    }
+  ],
+  // 分包
+  "subPackages": [
+    {
+      "root": "pages/p1",
+      "pages": [
+        {
+          "path": "demo/index",
+          "style": {}
+        }
+      ]
+    }
+  ],
+  // wifi下预加载
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "wifi",
+      "packages": ["pages/p1"]
+    }
+  },
+  // 底部栏
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#18905F",
+    "list": [
+      {
+        "iconPath": "static/img/index.png",
+        "selectedIconPath": "static/img/index-a.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "iconPath": "static/img/activity.png",
+        "selectedIconPath": "static/img/activity-a.png",
+        "pagePath": "pages/mine/index",
+        "text": "tab2"
+      }
+    ]
+  },
+  // 权限
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置展示"
+    }
+  },
+  "networkTimeout": {
+    "request": 15000,
+    "downloadFile": 15000
+  },
+  "debug": false,
+  // 允许跳小程序
+  "navigateToMiniProgramAppIdList": ["wxd1aa15dc25901662"],
+  // 全局样式
+  "globalStyle": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "文体通",
+    "navigationBarTextStyle": "black"
+  }
+}

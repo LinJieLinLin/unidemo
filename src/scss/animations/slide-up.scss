@@ -1,0 +1,22 @@
+.slide-up {
+  &-enter-active {
+    animation: slide-up-enter 0.3s both ease-in;
+  }
+
+  &-leave-active {
+    animation: slide-up-leave 0.3s both ease-out;
+  }
+}
+@keyframes slide-up-enter {
+  from {
+    transform: translate3d(0, 100%, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-up-leave {
+  to {
+    transform: translate3d(0, 100%, 0);
+    opacity: 0;
+  }
+}

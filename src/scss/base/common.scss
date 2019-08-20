@@ -1,0 +1,175 @@
+// 公共css放这里
+// mixin 详见 ../mixins/index.scss
+// reset样式
+// @include oReset();
+// fs 12 to 40px; eg: fs-12 fs-16
+@include oFsSet($l: 14, $mul: 4, $unit: px, $d: 24);
+@include oPdMgSet(12, 10);
+@include oPdMgSet(16, 4);
+// rate:15 rotate 0 to 360 eg: rot-90
+@include oRotate();
+// flex相关
+@include oFlex();
+// 超过n行后显示... eg:text-line-1 2 3
+@include oTextLine(3);
+@include oBorder1px(#ececec);
+body {
+  -webkit-tap-highlight-color: transparent;
+}
+.f-l {
+  float: left;
+}
+.f-r {
+  float: right;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+.hide-v {
+  visibility: hidden;
+}
+// display
+.d-i {
+  display: inline;
+}
+.d-i-b {
+  display: inline-block;
+}
+.d-b {
+  display: block;
+}
+// 清除浮动
+.c-b {
+  @include iCB();
+}
+.f-l {
+  float: left;
+}
+.f-r {
+  float: right;
+}
+// vertical-align
+.va-m {
+  vertical-align: middle;
+}
+.va-t {
+  vertical-align: top;
+}
+.va-b {
+  vertical-align: bottom;
+}
+// overflow
+%of-a,
+.of-a {
+  overflow: auto;
+  // 移动端
+  -webkit-overflow-scrolling: touch;
+}
+.of-s {
+  overflow: scroll;
+}
+.page {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.of-h {
+  overflow: hidden;
+}
+// 白色背景
+.bg-w {
+  background-color: #fff;
+}
+.bg-w-full {
+  min-height: 100vh;
+  position: relative;
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: #fff;
+    content: '';
+  }
+}
+.bg-grey {
+  background-color: $grey-lighter;
+}
+.bg-grey-full {
+  min-height: 100vh;
+  position: relative;
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: $grey-lighter;
+    content: '';
+  }
+}
+// 宽度100%
+.full-w {
+  width: 100%;
+}
+
+// 高度100%
+.full-h {
+  height: 100%;
+}
+
+// 对齐方式
+.ta-c {
+  text-align: center;
+}
+
+.ta-l {
+  text-align: left;
+}
+
+.ta-r {
+  text-align: right;
+}
+
+// 换行
+.w-b {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+// position
+.p-r {
+  position: relative;
+}
+
+.p-a {
+  position: absolute;
+}
+
+.p-f {
+  position: fixed;
+}
+
+// 加粗
+.b {
+  font-weight: bold;
+}
+
+// 点击效果
+.tap {
+  transition: 400ms;
+  &:active {
+    transition: 0;
+    background-color: #d9d9d9;
+  }
+}

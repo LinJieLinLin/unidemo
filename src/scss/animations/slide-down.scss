@@ -1,0 +1,20 @@
+.slide-down {
+  &-enter-active {
+    animation: slide-down-enter 0.3s both ease;
+  }
+
+  &-leave-active {
+    animation: slide-down-leave 0.3s both ease;
+  }
+}
+@keyframes slide-down-enter {
+  from {
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes slide-down-leave {
+  to {
+    transform: translate3d(0, -100%, 0);
+  }
+}
