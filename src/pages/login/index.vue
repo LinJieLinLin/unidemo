@@ -12,7 +12,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 import { getUserInfo, login } from '../../utils/wx.js'
-import { saveUserinfo } from '../../api/index.js'
+import { saveUserinfo } from '../../api/common.js'
 export default {
   components: {},
   data() {

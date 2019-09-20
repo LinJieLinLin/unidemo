@@ -10,18 +10,39 @@
 </template>
 
 <script>
-import { toPage } from '../../utils/wx'
+import { getStorage, setStorage, toPage, login } from '../../utils/wx'
+import { wxLogin } from '../../api/common';
+const data = {
+  showTime: 2000,
+  showDone: false,
+  requestDone: false,
+  page: 'index'
+}
 export default {
+  computed: {
+  },
   data() {
     return {
-      title: 'Hello'
     }
   },
-  onLoad() {
-
+  async onLoad(argData) {
+    data.showDone = false
+    data.requestDone = false
+    console.log('页面数据:', getCurrentPages())
+    this.checkLogin()
+  },
+  onReady() {
+    setTimeout(async () => {
+      data.showDone = true
+      toPage('index')
+    }, data.showTime);
   },
   methods: {
-
+    async checkLogin() {
+      let res = await login(1)
+      res = await wxLogin({ code: res.code })
+      console.log(res)
+    }
   }
 }
 </script>

@@ -1,3 +1,39 @@
+/**
+ * 公共函数
+ * @module
+ * @author linj
+ * @description 公共函数
+ */
+
+/**
+ * @function
+ * @description 正则收集
+ * // 简易身份证号正则，isIdCard更为严格
+    idCard: ,
+    // 手机号
+    phone:,
+    // 邮箱
+    email: ,
+    // 网址
+    http: ,
+    // 分数
+    score: ,
+    // 保留1位小数的分数
+    score1: ,
+    // 保留1位小数的分数
+    score2: ,
+    // 整数
+    int: ,
+    // 正一位小数
+    float1: ,
+    // 正两位小数
+    float2: ,
+    // 帐号50个字内：大小写+数字+中文+'_'+'-'
+    account: ,
+    // 中英文姓名 50个字内
+    realName:
+ * @returns {object}
+*/
 export const getRegexp = () => {
   return {
     // 简易身份证号正则，isIdCard更为严格
@@ -27,6 +63,13 @@ export const getRegexp = () => {
   }
 }
 
+/**
+ * @description obj转url参数
+ * @function
+ * @param {object} argParams 参数对象
+ * @param {boolean} noMark 默认带?,true时,不带
+ * @returns {string}
+ */
 export const setUrlParams = (argParams, noMark) => {
   let re = ''
   if (!noMark) {
@@ -41,6 +84,13 @@ export const setUrlParams = (argParams, noMark) => {
   return re
 }
 
+/**
+ * @description 获取url参数
+ * @function
+ * @param {object} argName 要获取的key
+ * @param {boolean} noMark 是否添加'?'
+ * @returns {string}
+ */
 export const getUrlParam = (argName, argUrl = window.location.search) => {
   let result = argUrl.match(new RegExp('[?&]' + argName + '=([^&]+)', 'i'))
   if (!result) {
@@ -49,6 +99,13 @@ export const getUrlParam = (argName, argUrl = window.location.search) => {
   return decodeURIComponent(result[1])
 }
 
+/**
+ * @description 通过正则匹配修改当前页面的url中的参数
+ * @function
+ * @param  {} name key
+ * @param  {} value 要替换的value
+ * @param  {} url 要替换的网址,默认location.href
+ */
 export const replaceUrlParam = (name, value, url = window.location.href) => {
   let reg = new RegExp('([?]|&)(' + name + '=)([^&#]*)([&]?|$)', 'img')
   let r = url.match(reg)
@@ -90,6 +147,11 @@ export const replaceUrlParam = (name, value, url = window.location.href) => {
   return strValue
 }
 
+/**
+ * @function
+ * @description 转义html标签
+ * @param  {} argHtml 需要转义的文本
+ */
 export const encodeHtml = argHtml => {
   if (!argHtml || argHtml.length === 0) {
     return ''
@@ -104,6 +166,11 @@ export const encodeHtml = argHtml => {
   return argHtml
 }
 
+/**
+ * @function
+ * @description 反转义html标签
+ * @param  {} argHtml 需要反转义的文本
+ */
 export const decodeHtml = argHtml => {
   if (!argHtml || argHtml.length === 0) {
     return ''
@@ -112,12 +179,20 @@ export const decodeHtml = argHtml => {
   argHtml = argHtml.replace(/&lt;/g, '<')
   argHtml = argHtml.replace(/&gt;/g, '>')
   argHtml = argHtml.replace(/&nbsp;/g, ' ')
-  argHtml = argHtml.replace(/&#39;/g, '\'')
+  argHtml = argHtml.replace(/&#39;/g, "'")
   argHtml = argHtml.replace(/&quot;/g, '"')
   argHtml = argHtml.replace(/<br>/g, '\n')
   return argHtml
 }
 
+/**
+ * @function
+ * @description 数据安全访问
+ * @param  {object|Array} argData  [原始数据]
+ * @param  {string} argCheck [要返回的数据，用'.'连接，数组用'.+数字表示']
+ * @param  {*} argValue [如果数据有误，返回的值，选填]
+ * @returns {any}
+ */
 export const safeData = (argData, argCheck, argValue) => {
   var temKey = argCheck.toString().split('.')
   var temLen = temKey.length
@@ -138,10 +213,22 @@ export const safeData = (argData, argCheck, argValue) => {
   return argData[temKey[temLen - 1]] || argValue
 }
 
+/**
+ * @function
+ * @description 设置标题
+ * @param  {} argTitle 标题
+ */
 export const setTitle = argTitle => {
   document.getElementsByTagName('title')[0].innerText = argTitle
 }
 
+/**
+ * @function
+ * @description 显示人民币价格
+ * @param  {} argData 价格
+ * @param  {} argRate=1 倍数,默认1 价格/倍数
+ * @returns {string} eg: ￥100
+ */
 export const rmbPrice = (argData, argRate = 1) => {
   if (typeof argData !== 'number') {
     return argData || '--'
@@ -150,12 +237,20 @@ export const rmbPrice = (argData, argRate = 1) => {
   return '￥' + argData / argRate
 }
 
+/**
+ * @description 日期格式化显示
+ * @function
+ * @param  {number} date 时间对象\时间戳，默认当前时间
+ * @param  {string} fmt 格式化符串，默认'YYYY-MM-DD HH:mm:ss' E为星期数，EEE:星期一 q为季度，S为毫秒数
+ * @param  {string} emptyTip date为false时，默认''
+ * @returns {string}
+ */
 export const formatTime = (
   date = +new Date(),
   fmt = 'YYYY-MM-DD HH:mm:ss',
   emptyTip = ''
 ) => {
-  if (!date) {
+  if (!date && date !== 0) {
     return emptyTip
   }
   if (typeof date === 'number') {
@@ -211,6 +306,14 @@ export const formatTime = (
   return fmt
 }
 
+/**
+ * @description 日期格式化友好显示 刚刚 x分钟前 ...，超过一个月的按 fmt来格式化
+ * @function
+ * @param  {number} date 时间对象\时间戳，默认当前时间
+ * @param  {string} fmt 格式化符串，默认'YYYY-MM-DD HH:mm:ss'
+ * @param  {string} emptyTip date为false时，默认''
+ * @returns {string}
+ */
 export const friendlyTime = (
   date = +new Date(),
   fmt = 'YYYY-MM-DD HH:mm:ss',
@@ -250,6 +353,10 @@ export const friendlyTime = (
   )
 }
 
+/**
+ * @function
+ * @description 使用postcss-px2rem时使用
+ */
 export const remInit = () => {
   // 基准大小
   const baseSize = 200
@@ -272,6 +379,11 @@ export const remInit = () => {
   }
 }
 
+/**
+ * @function
+ * @description 是否为正确的身份证号码
+ * @param  {string} code 身份证号码
+ */
 export const isIdCard = code => {
   let city = {
     11: '北京',
@@ -347,10 +459,14 @@ export const isIdCard = code => {
       }
     }
   }
-  // console.log(tip)
+  console.log(tip)
   return pass
 }
-
+/**
+ * @function
+ * @description 获取cookie
+ * @param  {string} argName 要获取的值
+ */
 export const getCookie = argName => {
   let cookie = document.cookie.split('; ')
   for (let i = 0; i < cookie.length; i += 1) {
@@ -361,7 +477,14 @@ export const getCookie = argName => {
   }
   return ''
 }
-
+/**
+ * @function
+ * @description 设置cookie
+ * @param  {string} argName 要设置的值
+ * @param  {string} argName 要设置的key
+ * @param  {string} argValue 要设置的value
+ * @param  {string} argTime 过期时间/时 默认24小时
+ */
 export const setCookie = (argName, argValue, argTime = 24) => {
   let now = new Date()
   let offset = 8
@@ -380,15 +503,28 @@ export const setCookie = (argName, argValue, argTime = 24) => {
     domain +
     ';'
 }
-
+/**
+ * @function
+ * @description 清除cookie
+ * @param  {string} argName 要清除的值
+ */
 export const delCookie = argName => {
   setCookie(argName, '', -1)
 }
-
+/**
+ * @function
+ * @description setTimeout promise版
+ * @param  {number} ms 时间，毫秒
+ */
 export const sleep = ms => {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
-
+/**
+ * @function
+ * @description 获取随机数,含最大值，含最小值
+ * @param  {number} min 最小值
+ * @param  {number} max 最大值
+ */
 export const randomInt = (min = 0, max) => {
   min = Math.ceil(min)
   max = Math.floor(max)
@@ -396,6 +532,12 @@ export const randomInt = (min = 0, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+/**
+ * @function
+ * @description 判断是否是JSON
+ * @param  {any} argData 最小值
+ * @returns {boolean}
+ */
 export const isJson = argData => {
   try {
     if (typeof JSON.parse(argData || '') === 'object') {
@@ -404,6 +546,37 @@ export const isJson = argData => {
   } catch (e) {}
   return false
 }
+
+/**
+ * @function
+ * @description 获取简单uuid
+ * @returns {string} uuid
+ */
+export const uuid = () => {
+  function S4() {
+    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
+  }
+  return S4() + S4() + '-' + S4() + '-' + S4() + '-' + S4() + '-' + Date.now()
+}
+/**
+ * @function
+ * @description 检测浏览器状态，系统状态 *
+ * @returns {object} {
+ * ua: ua,
+ * platform: 平台,
+ * isMobile: 移动端,
+ * isWin: winPC端,
+ * isIphone: iphone,
+ * isIpad: ipad,
+ * isMac: mac,
+ * isAppleMobile: 苹果移动端webview
+ * isSafari: Safari浏览器,
+ * isIos: Ios平台,
+ * isAndroid: android平台,
+ * isIE: 显示8 9 10, true为11以上
+ * ...
+ * }
+ */
 export const getSystemInfo = () => {
   let info = {}
   if (typeof window === 'undefined') {

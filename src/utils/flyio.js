@@ -1,17 +1,32 @@
 import fly from 'flyio'
 import { Loading } from './jClass'
-import { Indicator, Toast } from 'mint-ui'
+import { Toast } from 'vant'
 const suCode = ',0,'
 fly.config.timeout = process.env.VUE_APP_TIMEOUT || 10000
 fly.config.baseURL = process.env.BASE_URL
-let L = new Loading(Indicator.open, Indicator.close)
+
+const showLoading = () => {
+  Toast.loading({
+    // 持续展示 toast
+    duration: 0,
+    // 禁用背景点击
+    forbidClick: true
+    // 背景
+    // mask: true,
+    // loadingType: 'spinner'
+  })
+}
+const hideLoading = () => {
+  Toast.clear('clearAll')
+}
+let L = new Loading(showLoading, hideLoading)
 // 添加请求拦截器
 fly.interceptors.request.use(request => {
   L.loading(1)
   // 给所有请求添加自定义header
   // request.headers['X-Tag'] = 'flyio'
   // 打印出请求体
-  // console.log('请求拦截', request)
+  console.log('请求拦截', request)
   // 终止请求
   // var err=new Error("xxx")
   // err.request=request
@@ -23,7 +38,7 @@ fly.interceptors.request.use(request => {
 fly.interceptors.response.use(
   res => {
     L.loading()
-    // console.log('响应拦截:', res)
+    console.log('响应拦截:', res)
     // const data = JSON.parse(res.data)
     const data = res.data
     if (suCode.match(',' + data.code + ',')) {
@@ -32,7 +47,7 @@ fly.interceptors.response.use(
     // 其它异常
     switch (data.code) {
       case 4:
-        // console.log('请授权登录', data.data.url)
+        console.log('请授权登录', data.data.url)
         window.location.href = data.data.url
         return Promise.reject(data.data)
       default:
@@ -43,10 +58,10 @@ fly.interceptors.response.use(
     L.loading()
 
     // 发生网络错误后会走到这里
-    // console.log('http err:', err)
+    console.log('http err:', err)
     // 超时处理
     if (err && err.message && err.message.match('timeout')) {
-      // console.log(err.message)
+      console.log(err.message)
       Toast('请求超时！')
       return Promise.reject(err)
     }
