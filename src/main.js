@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App'
 import store from './store/index'
-import { toPage } from './utils/wx'
-import { log } from './utils/yunFunc/log'
+import { toPage, log, setRequest, wxLog } from './utils/wx'
+import { request, response } from './utils/project'
 
 Vue.config.productionTip = false
 //  vuex
@@ -16,9 +16,18 @@ Vue.prototype.$f = {
   log: log
 }
 App.mpType = 'app'
-
+// 设置请求拦截
+setRequest(request, response)
 const app = new Vue({
   ...App
 })
-
+// 添加微信实时日志
+let wxLogFn = wxLog()
+if (wxLogFn) {
+  console.log = wxLog.log
+  console.error = wxLog.error
+  console.warn = wxLog.warn
+  console.debug = wxLog.debug
+  console.setFilterMsg = wxLog.setFilterMsg
+}
 app.$mount()

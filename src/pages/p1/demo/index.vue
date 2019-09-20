@@ -5,9 +5,6 @@
       <section>
         <div>
           <div class="usermotto">
-            <div class="user-motto">
-              <card :text="motto"></card>
-            </div>
           </div>
           <img :src="codeImg"
             style="width: 300rpx;height:300rpx;"
@@ -54,8 +51,6 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 // components
-import card from '@/components/card'
-import scanCode from '@/components/scan-code'
 export default {
   async onPullDownRefresh() {
     // to doing..
@@ -78,8 +73,6 @@ export default {
     }
   },
   components: {
-    card,
-    scanCode
   },
   onShareAppMessage(argData) {
     if (argData.from === 'button') {
