@@ -6,6 +6,7 @@ export default {
   },
   onLaunch(argData) {
     console.log('App Launch')
+    // #ifdef  MP-WEIXIN
     try {
       wx.cloud.init({
         traceUser: true
@@ -13,26 +14,27 @@ export default {
     } catch (err) {
       console.error(err)
     }
+    // #endif
     // 记录首次打开参数
-    wx.setStorage({
+    uni.setStorage({
       key: 'openPage',
       data: argData.path
     })
-    wx.setStorage({
+    uni.setStorage({
       key: 'openQuery',
       data: JSON.stringify(argData.query || {})
     })
   },
-  onShow: function () {
+  onShow: function() {
     console.log('App Show')
   },
-  onHide: function () {
+  onHide: function() {
     console.log('App Hide')
   }
 }
 </script>
 
 <style lang="scss">
-@import "./scss/settings";
-@import "./scss/base";
+@import './scss/settings';
+@import './scss/base';
 </style>
