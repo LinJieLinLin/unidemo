@@ -4,47 +4,61 @@
       <section>
         <div>
           <div class="usermotto"></div>
-          <img :src="codeImg" style="width: 300rpx;height:300rpx;" alt="" />
+          <img :src="codeImg"
+            style="width: 300rpx;height:300rpx;"
+            alt="" />
           <p>Vuex counter：{{ count }}</p>
-          <img
-            lazy-load
+          <img lazy-load
             class="userinfo-avatar"
             src="/static/img/1.png"
-            background-size="cover"
-          />
+            background-size="cover" />
           <form class="form-container">
-            <input
-              type="text"
+            <input type="text"
               class="form-control"
               v-model="motto"
-              placeholder="v-model"
-            />
-            <input
-              type="text"
+              placeholder="v-model" />
+            <input type="text"
               class="form-control"
               v-model.lazy="motto"
-              placeholder="v-model.lazy"
-            />
+              placeholder="v-model.lazy" />
           </form>
           <i class="image-i-ly"></i>
           <i class="image-i-gm"></i>
-          <a href="/pages/logs/main" class="counter">去往log示例页面</a>
-          <button
-            @click="$f.toPage('packageA/test')"
+          <a href="/pages/logs/main"
+            class="counter">去往log示例页面</a>
+          <button @click="$f.toPage('packageA/test')"
             class="mg-t20"
-            type="primary"
-          >
+            type="primary">
             分包test
           </button>
-          <button class="mg-t20" type="primary" open-type="openSetting">
+          <button class="mg-t20"
+            type="primary"
+            open-type="openSetting">
             授权设置
           </button>
-          <button class="mg-t20" type="primary" open-type="contact">
+          <button class="mg-t20"
+            type="primary"
+            open-type="contact">
             客服会话
           </button>
-          <button class="mg-t20" type="primary" @click="testHttp">
+          <button class="mg-t20"
+            type="primary"
+            @click="testHttp">
             测试超时
           </button>
+          <uni-badge text="1"></uni-badge>
+          <uni-badge text="2"
+            type="warning"
+            @click="bindClick"></uni-badge>
+          <uni-badge text="32"
+            type="primary"
+            :inverted="true"></uni-badge>
+          <div class="c">12312312</div>
+          <uni-list>
+            <uni-list-item title="标题文字"
+              :show-extra-icon="true"
+              :extra-icon="{color: '#4cd964',size: '22',type: 'spinner'}"></uni-list-item>
+          </uni-list>
         </div>
       </section>
     </div>
@@ -52,6 +66,7 @@
 </template>
 <script>
 import { mapState, mapActions } from 'vuex'
+import { uniBadge, uniList, uniListItem } from '@dcloudio/uni-ui'
 // components
 export default {
   async onPullDownRefresh() {
@@ -74,7 +89,7 @@ export default {
       }
     }
   },
-  components: {},
+  components: { uniBadge, uniList, uniListItem },
   onShareAppMessage(argData) {
     if (argData.from === 'button') {
       // 来自页面内转发按钮
@@ -127,9 +142,14 @@ export default {
   computed: {
     ...mapState(['page', 'count'])
   },
-  created() {},
-  async onShow() {}
+  created() {
+  },
+  async onShow() { }
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.c {
+  color: $uni-color-primary;
+}
+</style>

@@ -17,24 +17,24 @@ const data = {
   page: 'index'
 }
 export default {
-  computed: {},
-  data() {
+  data () {
     return {}
   },
-  async onLoad(argData) {
+  computed: {},
+  async onLoad (argData) {
     data.showDone = false
     data.requestDone = false
     console.log('页面数据:', getCurrentPages())
     this.checkLogin()
   },
-  onReady() {
+  onReady () {
     setTimeout(async () => {
       data.showDone = true
       toPage('index')
     }, data.showTime)
   },
   methods: {
-    async checkLogin() {
+    async checkLogin () {
       let res = await login(1)
       res = await wxLogin({ code: res.code })
       console.log(res)

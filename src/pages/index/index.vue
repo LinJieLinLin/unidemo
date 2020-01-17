@@ -7,24 +7,24 @@
 
 <script>
 export default {
-  props: {},
   components: {},
-  onLoad(argData) {},
-  onShow() {},
-  onReady() {},
-  onUnload() {},
-  onShareAppMessage(argData) {},
-  async onPullDownRefresh() {
+  props: {},
+  onLoad (argData) {},
+  onShow () {},
+  onReady () {},
+  onUnload () {},
+  onShareAppMessage (argData) {},
+  async onPullDownRefresh () {
     // console.log('下拉')
     uni.stopPullDownRefresh()
   },
-  async onReachBottom() {
+  async onReachBottom () {
     // console.log('上拉')
   },
-  computed: {},
-  data() {
+  data () {
     return {}
   },
+  computed: {},
   methods: {}
 }
 </script>

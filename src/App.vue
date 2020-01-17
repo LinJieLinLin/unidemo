@@ -1,10 +1,10 @@
 <script>
 export default {
-  onError(err) {
+  onError (err) {
     console.log('捕捉错误：', err)
     this.$f.log(err)
   },
-  onLaunch(argData) {
+  onLaunch (argData) {
     console.log('App Launch')
     // #ifdef  MP-WEIXIN
     try {
@@ -25,10 +25,10 @@ export default {
       data: JSON.stringify(argData.query || {})
     })
   },
-  onShow: function() {
+  onShow: function () {
     console.log('App Show')
   },
-  onHide: function() {
+  onHide: function () {
     console.log('App Hide')
   }
 }

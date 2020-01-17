@@ -12,7 +12,7 @@ import { getUserInfo, login } from '../../utils/wx.js'
 import { saveUserinfo } from '../../api/common.js'
 export default {
   components: {},
-  data() {
+  data () {
     return {
       logs: []
     }
@@ -20,7 +20,7 @@ export default {
   computed: {
     ...mapState(['UserInfo'])
   },
-  onShareAppMessage(argData) {
+  onShareAppMessage (argData) {
     if (argData.from === 'button') {
       // 来自页面内转发按钮
       // console.log(argData.target)
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     ...mapMutations(['SetUserInfo', 'SetNeedAuth']),
-    async checkUserInfo(rs) {
+    async checkUserInfo (rs) {
       // console.log(rs)
       const userInfo = await getUserInfo(rs).catch(err => {
         // console.log('出错啦')
@@ -93,10 +93,10 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     // 挂载
   },
-  onShow() {
+  onShow () {
     // 活动时
     login()
     this.$f.init = () => {}
