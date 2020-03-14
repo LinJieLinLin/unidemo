@@ -45,6 +45,7 @@ module.exports = {
     'no-unused-vars': 0
   },
   globals: {
+    uniCloud: true,
     App: true,
     Page: true,
     uni: true,

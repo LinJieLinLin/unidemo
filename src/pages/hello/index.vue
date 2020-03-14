@@ -1,6 +1,8 @@
 <template>
-  <view class="page ta-c" @click="$f.toPage('index')">
-    <image class="logo" src="/static/logo.png"></image>
+  <view class="page ta-c"
+    @click="$f.toPage('index')">
+    <image class="logo"
+      src="/static/logo.png"></image>
     <view>
       <text class="title">{{ title }}</text>
     </view>
@@ -17,27 +19,29 @@ const data = {
   page: 'index'
 }
 export default {
-  data () {
+  data() {
     return {}
   },
   computed: {},
-  async onLoad (argData) {
+  async onLoad(argData) {
     data.showDone = false
     data.requestDone = false
     console.log('页面数据:', getCurrentPages())
-    this.checkLogin()
+    // this.checkLogin()
   },
-  onReady () {
+  onReady() {
     setTimeout(async () => {
       data.showDone = true
       toPage('index')
     }, data.showTime)
   },
   methods: {
-    async checkLogin () {
-      let res = await login(1)
-      res = await wxLogin({ code: res.code })
-      console.log(res)
+    async checkLogin() {
+      // #ifndef  H5
+      // let res = await login(1)
+      // res = await wxLogin({ code: res.code })
+      // console.log(res)
+      // #endif
     }
   }
 }

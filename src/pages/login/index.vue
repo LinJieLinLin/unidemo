@@ -1,7 +1,9 @@
 <template>
   <div>
-    <button class="login" open-type="getUserInfo" @getuserinfo="checkUserInfo">
-      <img class="login-bg" src="/static/img/login-bg.jpg" alt="" />
+    <button class="login"
+      open-type="getUserInfo"
+      @getuserinfo="checkUserInfo">
+      登录
     </button>
   </div>
 </template>
@@ -12,7 +14,7 @@ import { getUserInfo, login } from '../../utils/wx.js'
 import { saveUserinfo } from '../../api/common.js'
 export default {
   components: {},
-  data () {
+  data() {
     return {
       logs: []
     }
@@ -20,7 +22,7 @@ export default {
   computed: {
     ...mapState(['UserInfo'])
   },
-  onShareAppMessage (argData) {
+  onShareAppMessage(argData) {
     if (argData.from === 'button') {
       // 来自页面内转发按钮
       // console.log(argData.target)
@@ -38,8 +40,8 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['SetUserInfo', 'SetNeedAuth']),
-    async checkUserInfo (rs) {
+    ...mapMutations(['SetUserInfo']),
+    async checkUserInfo(rs) {
       // console.log(rs)
       const userInfo = await getUserInfo(rs).catch(err => {
         // console.log('出错啦')
@@ -52,6 +54,7 @@ export default {
         rawData: userInfo.rawData,
         code: userInfo.code
       }
+      console.log(userInfo)
       if (userInfo.iv) {
         saveUserinfo(data)
           .then(res => {
@@ -61,7 +64,6 @@ export default {
             }
             this.SetUserInfo(userInfo.userInfo)
             this.SetUserInfo(res.wechatinfo)
-            this.SetNeedAuth(-1)
             let temPath = (wx.getStorageSync('openPage') || '')
               .replace('pages/', '')
               .replace('/main', '')
@@ -93,13 +95,13 @@ export default {
       }
     }
   },
-  mounted () {
+  mounted() {
     // 挂载
   },
-  onShow () {
+  onShow() {
     // 活动时
     login()
-    this.$f.init = () => {}
+    this.$f.init = () => { }
     console.log('当前是login页面')
   }
 }

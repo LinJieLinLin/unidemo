@@ -53,9 +53,22 @@
     /* SDK配置 */
     "quickapp" : {},
     /* 快应用特有相关 */
+    "h5": {
+        "publicPath": "/",
+        "router" : {
+            "mode":"hash",
+		    "base" : "/"
+		},
+        "optimization": {
+          "preload": true,
+          "treeShaking": {
+            "enable": false
+          }
+        }
+      },
     "mp-weixin" : {
         /* 微信小程序特有相关 */
-        "appid" : "wx9f30f1cea85e1e8c",
+        "appid" : "wx33995fbd9bce3af7",
         "setting" : {
             "urlCheck" : false
         },
