@@ -5,6 +5,7 @@ import getters from './getters'
 import actions from './actions'
 import mutations from './mutations'
 import createPersistedState from 'vuex-persistedstate'
+import { getStorageSyncForVuex, setStorage } from '../utils/wx'
 
 Vue.use(Vuex)
 
@@ -19,16 +20,21 @@ export default new Vuex.Store({
     createPersistedState({
       storage: {
         getItem: key => {
-          return wx.getStorageSync(key)
+          return getStorageSyncForVuex(key)
         },
-        setItem: (key, value) => {
-          // return wx.setStorageSync(, value)
-          return wx.setStorage({
-            key: key,
-            data: value
-          })
+        setItem: (argKey, argValue) => {
+          return setStorage(argKey, argValue)
         },
         removeItem: () => {}
+      },
+      // 只储存某些字段
+      reducer: argData => {
+        const key = state.localKey || []
+        let reData = {}
+        key.map(v => {
+          reData[v] = argData[v] || ''
+        })
+        return reData
       }
     })
   ]

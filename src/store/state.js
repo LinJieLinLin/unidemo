@@ -1,14 +1,16 @@
 // 变量定义
 const state = {
+  // 需要本地缓存字段
+  localKey: ['NeedAuth', 'UserInfo', 'CountNum'],
+  // 是否打开实名认证弹窗
+  NeedAuth: 0,
   // 用户信息
-  UserInfo: { a: 123 },
+  UserInfo: {},
+  // 全局倒计时
+  CountNum: '',
   // BaseUrl: 'http://sznswtt.gdtengnan.com',
   BaseUrl: 'https://sznswtt.gdtengnan.com',
   // 是否需要刷新页面（设置后记得取消）
-  Reload: false,
-  // 是否显示返回首页悬浮按钮
-  ShowBackIndex: false,
-  // 是否打开实名认证弹窗
-  NeedAuth: 0
+  Reload: false
 }
 export default state

@@ -58,13 +58,13 @@
         "router" : {
             "mode":"hash",
 		    "base" : "/"
-		},
-        "optimization": {
-          "preload": true,
-          "treeShaking": {
-            "enable": false
-          }
-        }
+		}
+        // "optimization": {
+        //   "preload": true,
+        //   "treeShaking": {
+        //     "enable": false
+        //   }
+        // }
       },
     "mp-weixin" : {
         /* 微信小程序特有相关 */

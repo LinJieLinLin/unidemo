@@ -69,12 +69,11 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        // 这里的选项会传递给 sass-loader
-        data: '@import "@/scss/settings.scss";'
-        // data: '@import "@/uni.scss";'
+        // 这里的选项会传递给 sass-loader 小程序不会加载，使用uni.scss
+        // prependData: '@import "@/scss/settings.scss";'
       }
-    }
+    },
     // 生产环境开启sourceMap
-    // sourceMap: process.env.NODE_ENV === 'production'
+    sourceMap: process.env.NODE_ENV === 'production'
   }
 }
