@@ -48,12 +48,12 @@ const app = new Vue({
   ...App
 })
 // 添加微信实时日志
-// let wxLogFn = wxLog()
-// if (wxLogFn) {
-//   console.log = wxLog.log
-//   console.error = wxLog.error
-//   console.warn = wxLog.warn
-//   console.debug = wxLog.debug
-//   console.setFilterMsg = wxLog.setFilterMsg
-// }
+let wxLogFn = wxLog()
+if (wxLogFn) {
+  console.error = wxLog.error
+  console.warn = wxLog.warn
+  console.debug = wxLog.debug
+  console.setFilterMsg = wxLog.setFilterMsg
+  console.addFilterMsg = wxLogFn.addFilterMsg
+}
 app.$mount()
