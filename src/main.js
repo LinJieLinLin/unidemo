@@ -15,6 +15,8 @@ import { request, response } from './utils/project'
 import { safeData, hideInfo, getRegexp, sleep } from './utils/j'
 import Throttle from './utils/class/Throttle'
 import Debounce from './utils/class/Debounce'
+import dialog from './components/uni/dialog'
+Vue.component('popup-dialog', dialog)
 const throttle = new Throttle()
 const debounce = new Debounce()
 Vue.config.productionTip = false
@@ -50,10 +52,10 @@ const app = new Vue({
 // 添加微信实时日志
 let wxLogFn = wxLog()
 if (wxLogFn) {
-  console.error = wxLog.error
-  console.warn = wxLog.warn
-  console.debug = wxLog.debug
-  console.setFilterMsg = wxLog.setFilterMsg
+  console.error = wxLogFn.error
+  console.warn = wxLogFn.warn
+  console.debug = wxLogFn.debug
+  console.setFilterMsg = wxLogFn.setFilterMsg
   console.addFilterMsg = wxLogFn.addFilterMsg
 }
 app.$mount()

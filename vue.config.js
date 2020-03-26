@@ -1,3 +1,4 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 module.exports = {
   // sass-loader配置
   devServer: {
@@ -36,15 +37,17 @@ module.exports = {
       }
     }
   },
-  // {
-  //   test: /\.(js|vue)$/,
-  //   loader: 'eslint-loader',
-  //   enforce: 'pre',
-  //   include: [resolve('src'), resolve('test')],
-  //   options: {
-  //     formatter: require('eslint-friendly-formatter')
-  //   }
-  // },
+  configureWebpack: {
+    plugins: [
+      // 复制文件到根目录
+      // new CopyWebpackPlugin([
+      //   {
+      //     from: './public/iconfont.js',
+      //     to: './iconfont.js'
+      //   }
+      // ])
+    ]
+  },
   chainWebpack: config => {
     // GraphQL Loader
     // config.module
@@ -69,7 +72,7 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        // 这里的选项会传递给 sass-loader 小程序不会加载，使用uni.scss
+        // 这里的选项会传递给 sass-loader 小程序不会加载，已在uni.scss引入
         // prependData: '@import "@/scss/settings.scss";'
       }
     },
