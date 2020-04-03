@@ -9,6 +9,7 @@ import {
   getStorageSync,
   setStorage,
   GlobalCounter,
+  getCurrentPage,
   toast
 } from './utils/wx'
 import { request, response } from './utils/project'
@@ -41,6 +42,7 @@ Vue.prototype.$f = {
   getRegexp,
   sleep,
   getStorageSync,
+  getCurrentPage,
   setStorage
 }
 App.mpType = 'app'

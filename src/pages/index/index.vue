@@ -1,8 +1,10 @@
 <template>
   <div>
     index
-    <div @click="$f.toPage('p1/demo')">分包</div>
+    <div @click="$f.toPage('p1/demo')">to分包</div>
     <button @click="login">登录</button>
+    <button @click="toWebview">webview</button>
+    <button @click="$f.toPage('my')">my</button>
     <popup-dialog :c="dialogC"
       @change="dialogChange"
       @cancel="dialogCancel"
@@ -40,6 +42,9 @@ export default {
   },
   computed: {},
   methods: {
+    toWebview() {
+      this.$f.toPage('webview', { url: 'http://localhost:8001/#/pages/p1/demo/index' })
+    },
     dialogChange(argData) {
       this.dialogC.show = argData
     },

@@ -31,7 +31,7 @@ export default {
       // 来自右上角转发按钮
       // console.log(argData.target)
     }
-    let params = this.$f.getPage().options
+    let params = this.$f.getCurrentPage().options
     return {
       title: '南山文体通，提升公共文体惠民服务，打造文体惠民活动盛宴',
       imageUrl:

@@ -33,6 +33,11 @@
           </button>
           <button class="mg-t20"
             type="primary"
+            @click="toMy">
+            to 我的
+          </button>
+          <button class="mg-t20"
+            type="primary"
             open-type="openSetting">
             授权设置
           </button>
@@ -67,6 +72,9 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import { uniBadge, uniList, uniListItem } from '@dcloudio/uni-ui'
+// #ifdef  H5
+import wxSdk from 'weixin-js-sdk'
+// #endif
 // components
 export default {
   async onPullDownRefresh() {
@@ -99,7 +107,7 @@ export default {
       // 来自右上角转发按钮
       // console.log(argData.target)
     }
-    let params = this.$f.getPage().options
+    let params = this.$f.getCurrentPage().options
     return {
       title: '南山文体通，提升公共文体惠民服务，打造文体惠民活动盛宴',
       imageUrl:
@@ -109,6 +117,17 @@ export default {
   },
   methods: {
     ...mapActions(['TestGet', 'TestPost']),
+    toMy() {
+      try {
+        wxSdk.miniProgram.switchTab({ url: '/pages/my/index' })
+        // wxSdk.miniProgram.navigateBack()
+        // wxSdk.miniProgram.navigateTo({ url: '/pages/p1/demo/index' })
+        console.error('su')
+        console.log(wxSdk)
+      } catch (e) {
+        console.error(e)
+      }
+    },
     testGet() {
       this.TestGet()
         .then(res => {
