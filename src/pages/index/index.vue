@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      dialogSu: getObj('dialogSu'),
+      dialogSu: getObj('dialog.su'),
       dialogC: {
         show: false,
       },

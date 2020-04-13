@@ -161,7 +161,13 @@ export const request = argData => {
   argData.params = argData.params || {}
   argData.params.token = getStorageSync('tk')
   console.log('req:', argData)
-  // console.log('req:', argData)
+  // 设置header
+  argData.config.header = Object.assign(
+    {
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    argData.config.header || {}
+  )
   return argData
 }
 /**

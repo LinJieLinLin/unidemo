@@ -40,6 +40,10 @@ export default {
     uniTransition
   },
   props: {
+    show: {
+      type: Boolean,
+      default: true
+    },
     // 开启动画
     animation: {
       type: Boolean,
@@ -68,7 +72,7 @@ export default {
         'top': 0,
         'left': 0,
         'right': 0,
-        'backgroundColor': 'rgba(0, 0, 0, 0.4)'
+        'backgroundColor': 'rgba(0, 0, 0, 0.7)'
       },
       transClass: {
         'position': 'fixed',
@@ -78,6 +82,16 @@ export default {
     }
   },
   watch: {
+    show: {
+      handler(n, o) {
+        if (n) {
+          this.open()
+        } else {
+          this.close()
+        }
+      },
+      immediate: true,
+    },
     type: {
       handler: function (newVal) {
         switch (this.type) {

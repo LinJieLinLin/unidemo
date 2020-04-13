@@ -14,32 +14,34 @@ confirmText: '确定文字', }, eg:
 <template>
   <uni-popup ref="popup"
     type="center"
+    :show="c.show"
     @change="change"
     :mask-click="c.maskClose||false"
     custom>
-    <view class="modal"
-      @click.stop="clickModal">
+    <view @click.stop="clickModal">
       <slot>
-        <view class="m-header"
-          v-if="!c.hideHeader">
-          {{ c.title }}
-        </view>
-        <view class="m-body"
-          v-if="!c.hideBody">
-          <div v-html="c.content"
-            class="w-b"></div>
-        </view>
-        <view class="m-footer"
-          v-if="!c.hideFooter">
-          <view class="m-btn"
-            v-if="!c.hideCancel"
-            @click.stop="cancel()">
-            {{ c.cancelText || '取消' }}
+        <view class="modal">
+          <view class="m-header"
+            v-if="!c.hideHeader">
+            {{ c.title }}
           </view>
-          <view class="m-btn"
-            v-if="!c.hideConfirm"
-            @click.stop="confirm()">
-            {{ c.confirmText || '确定' }}
+          <view class="m-body"
+            v-if="!c.hideBody">
+            <div v-html="c.content"
+              class="w-b"></div>
+          </view>
+          <view class="m-footer"
+            v-if="!c.hideFooter">
+            <view class="m-btn"
+              v-if="!c.hideCancel"
+              @click.stop="cancel()">
+              {{ c.cancelText || '取消' }}
+            </view>
+            <view class="m-btn"
+              v-if="!c.hideConfirm"
+              @click.stop="confirm()">
+              {{ c.confirmText || '确定' }}{{ c.show }}
+            </view>
           </view>
         </view>
       </slot>
@@ -64,13 +66,6 @@ export default {
   mounted() { },
   computed: {},
   watch: {
-    'c.show'(n, o) {
-      if (n) {
-        this.$refs.popup.open()
-      } else {
-        this.$refs.popup.close()
-      }
-    }
   },
   data() {
     return {}

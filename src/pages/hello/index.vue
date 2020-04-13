@@ -20,7 +20,9 @@ const data = {
 }
 export default {
   data() {
-    return {}
+    return {
+      title: 'hello!'
+    }
   },
   computed: {},
   async onLoad(argData) {
