@@ -25,3 +25,6 @@ yarn-error.log*
 /src/utils
 !/src/utils/project.js
 !/src/utils/struct.js
+/yarn.lock
+/yarn.lock
+/yarn.lock
