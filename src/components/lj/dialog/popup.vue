@@ -21,6 +21,7 @@
 
 <script>
 import { uniTransition } from '@dcloudio/uni-ui'
+// import uniTransition from '@dcloudio/uni-ui/lib/uni-transition/uni-transition.vue'
 /**
  * PopUp 弹出层
  * @description 弹出层组件，为了解决遮罩弹层的问题

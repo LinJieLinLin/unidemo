@@ -12,7 +12,7 @@ confirmText: '确定文字', }, eg:
 */
 
 <template>
-  <uni-popup ref="popup"
+  <popup ref="popup"
     type="center"
     :show="c.show"
     @change="change"
@@ -46,11 +46,11 @@ confirmText: '确定文字', }, eg:
         </view>
       </slot>
     </view>
-  </uni-popup>
+  </popup>
 </template>
 
 <script>
-import uniPopup from './popup'
+import popup from './popup'
 export default {
   props: {
     c: {
@@ -61,7 +61,7 @@ export default {
     }
   },
   components: {
-    uniPopup
+    popup
   },
   mounted() { },
   computed: {},

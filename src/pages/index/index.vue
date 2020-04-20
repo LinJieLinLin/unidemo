@@ -5,10 +5,10 @@
     <button @click="login">登录</button>
     <button @click="toWebview">webview</button>
     <button @click="$f.toPage('my')">my</button>
-    <popup-dialog :c="dialogC"
+    <lj-dialog :c="dialogC"
       @change="dialogChange"
       @cancel="dialogCancel"
-      @confirm="dialogConfirm"></popup-dialog>
+      @confirm="dialogConfirm"></lj-dialog>
   </div>
 </template>
 

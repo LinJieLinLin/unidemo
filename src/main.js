@@ -16,8 +16,6 @@ import { request, response } from './utils/project'
 import { safeData, hideInfo, getRegexp, sleep } from './utils/j'
 import Throttle from './utils/class/Throttle'
 import Debounce from './utils/class/Debounce'
-import dialog from './components/uni/dialog'
-Vue.component('popup-dialog', dialog)
 const throttle = new Throttle()
 const debounce = new Debounce()
 Vue.config.productionTip = false

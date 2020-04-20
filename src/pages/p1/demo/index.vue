@@ -97,7 +97,9 @@ export default {
       }
     }
   },
-  components: { uniBadge, uniList, uniListItem },
+  components: {
+    uniBadge, uniList, uniListItem
+  },
   onShareAppMessage(argData) {
     if (argData.from === 'button') {
       // 来自页面内转发按钮

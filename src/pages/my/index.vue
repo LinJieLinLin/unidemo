@@ -43,15 +43,15 @@
 <script>
 import { mapState } from 'vuex'
 import top from './c/top'
-import { uniList, uniListItem } from '@dcloudio/uni-ui'
+// import { uniList, uniListItem } from '@dcloudio/uni-ui'
 export default {
   props: {
 
   },
   components: {
     top,
-    uniList,
-    uniListItem
+    // uniList,
+    // uniListItem
   },
   onLoad(argData) {
 

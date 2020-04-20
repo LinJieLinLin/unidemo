@@ -14,6 +14,12 @@
       }
     },
     {
+      "path": "pages/componentsDemo/index",
+      "style": {
+        "navigationBarTitleText": "uni-demo"
+      }
+    },
+    {
       "path": "pages/my/index",
       "style": {
         "navigationBarTitleText": "我的"
@@ -66,8 +72,14 @@
       {
         "iconPath": "static/img/activity.png",
         "selectedIconPath": "static/img/activity-a.png",
+        "pagePath": "pages/componentsDemo/index",
+        "text": "组件"
+      },
+      {
+        "iconPath": "static/img/activity.png",
+        "selectedIconPath": "static/img/activity-a.png",
         "pagePath": "pages/my/index",
-        "text": "tab2"
+        "text": "我的"
       }
     ]
   },
@@ -90,5 +102,12 @@
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "文体通",
     "navigationBarTextStyle": "black"
+  },
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "lj-(.*)": "@/components/lj/$1/index.vue",
+      "uni-(.*)":"@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+    }
   }
 }

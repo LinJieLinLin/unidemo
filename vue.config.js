@@ -1,5 +1,11 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+// const CopyWebpackPlugin = require('copy-webpack-plugin')
+const path = require('path')
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
 module.exports = {
+  // index.html生成名称
+  // indexPath: 'test.html',
   // sass-loader配置
   devServer: {
     open: false,
@@ -49,25 +55,12 @@ module.exports = {
     ]
   },
   chainWebpack: config => {
-    // GraphQL Loader
-    // config.module
-    //   .rule('graphql')
-    //   .test(/\.graphql$/)
-    //   .use('graphql-tag/loader')
-    //   .loader('graphql-tag/loader')
-    //   .end()
-    // config.module
-    //   .rule('vue')
-    //   .use('eslint-loader')
-    //   .loader('eslint-loader')
-    //   .tap(options => {
-    //     // 修改它的选项...
-    //     if (!options) {
-    //       options = {}
-    //     }
-    //     options.formatter = require('eslint-friendly-formatter')
-    //     return options
-    //   })
+    config.resolve.alias
+      .set('assets', resolve('src/assets'))
+      .set('static', resolve('src/static'))
+      // .set('uniui', resolve('@dcloudio/uni-ui/lib'))
+      .set('utils', resolve('src/utils'))
+      .set('store', resolve('src/store'))
   },
   css: {
     loaderOptions: {
