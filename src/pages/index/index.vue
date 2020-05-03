@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { login } from '../../utils/wx'
+import { login } from '../../utils/microApi'
 import { wxLogin } from '../../api/common'
 import { getObj } from '../../utils/struct'
 export default {

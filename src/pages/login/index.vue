@@ -10,7 +10,7 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
-import { getUserInfo, login } from '../../utils/wx.js'
+import { getUserInfo, login } from '../../utils/microApi'
 import { saveUserinfo } from '../../api/common.js'
 export default {
   components: {},

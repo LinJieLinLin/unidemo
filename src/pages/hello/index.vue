@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { getStorage, setStorage, toPage, login } from '../../utils/wx'
+import { getStorage, setStorage, toPage, login } from '../../utils/microApi'
 import { wxLogin } from '../../api/common'
 const data = {
   showTime: 2000,

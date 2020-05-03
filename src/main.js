@@ -11,7 +11,7 @@ import {
   GlobalCounter,
   getCurrentPage,
   toast
-} from './utils/wx'
+} from './utils/microApi'
 import { request, response } from './utils/project'
 import { safeData, hideInfo, getRegexp, sleep } from './utils/j'
 import Throttle from './utils/class/Throttle'

@@ -1,5 +1,5 @@
-import { request } from '@/utils/wx'
-export function TestGet (params = {}, config = {}) {
+import { request } from '@/utils/microApi'
+export function TestGet(params = {}, config = {}) {
   return request({
     url: 'http://yapi.demo.qunar.com/mock/9343/api/test',
     method: 'get',
@@ -7,7 +7,7 @@ export function TestGet (params = {}, config = {}) {
     config
   })
 }
-export function TestPost (params = {}, config = {}) {
+export function TestPost(params = {}, config = {}) {
   return request({
     url: 'http://baidu.comapi/test',
     method: 'post',

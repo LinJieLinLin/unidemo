@@ -9,7 +9,7 @@ import {
   getUrlParam,
   toFixed
 } from './j'
-import { toast, getStorageSync, setStorage, toPage, getCurrentPage } from './wx'
+import { toast, getStorageSync, setStorage, toPage, getCurrentPage } from './microApi'
 import md5 from 'md5'
 var Base64 = require('js-base64').Base64
 export const clearParams = (argData = {}) => {
@@ -294,7 +294,7 @@ export const checkInput = (argItem, argData) => {
         if (
           argItem.value &&
           argItem.value ===
-            hideInfo(safeData(getStorageSync('UserInfo'), 'sjhm', ''))
+          hideInfo(safeData(getStorageSync('UserInfo'), 'sjhm', ''))
         ) {
           argItem.saveValue = safeData(getStorageSync('UserInfo'), 'sjhm', '')
         }

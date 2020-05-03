@@ -1,4 +1,4 @@
-import { setStorage } from '../utils/wx'
+import { setStorage } from '../utils/microApi'
 const matations = {
   /**
    * @description 获取用户信息

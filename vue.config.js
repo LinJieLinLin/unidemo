@@ -44,6 +44,14 @@ module.exports = {
     }
   },
   configureWebpack: {
+    resolve: {
+      alias: {
+        '@static': path.join(__dirname, 'static'),
+        '@assets': path.join(__dirname, 'assets'),
+        '@utils': path.join(__dirname, 'utils'),
+        '@store': path.join(__dirname, 'store'),
+      },
+    },
     plugins: [
       // 复制文件到根目录
       // new CopyWebpackPlugin([
@@ -55,12 +63,11 @@ module.exports = {
     ]
   },
   chainWebpack: config => {
-    config.resolve.alias
-      .set('assets', resolve('src/assets'))
-      .set('static', resolve('src/static'))
-      // .set('uniui', resolve('@dcloudio/uni-ui/lib'))
-      .set('utils', resolve('src/utils'))
-      .set('store', resolve('src/store'))
+    // config.resolve.alias
+    //   .set('assets', resolve('src/assets'))
+    //   .set('static', resolve('src/static'))
+    //   .set('utils', resolve('src/utils'))
+    //   .set('store', resolve('src/store'))
   },
   css: {
     loaderOptions: {

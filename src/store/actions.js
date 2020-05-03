@@ -1,19 +1,19 @@
 import { TestGet, TestPost } from '@/api/test'
-import { login } from '@/utils/wx.js'
+import { login } from '@/utils/microApi'
 const actions = {
-  async TestGet ({ commit }, param = {}) {
+  async TestGet({ commit }, param = {}) {
     const _result = await TestGet(param).catch(err => {
       return Promise.reject(err)
     })
     return _result
   },
-  async TestPost ({ commit }, param = {}) {
+  async TestPost({ commit }, param = {}) {
     const _result = await TestPost(param).catch(err => {
       console.log(err)
     })
     return _result
   },
-  async GetUserInfo ({ commit }, rs) {
+  async GetUserInfo({ commit }, rs) {
     const _result = await login().catch(err => {
       console.log(err)
     })
@@ -40,7 +40,7 @@ const actions = {
       return _res
     }
   },
-  GetUserInfo1 (state, rs) {
+  GetUserInfo1(state, rs) {
     if (!rs) {
       return wx.login({
         success: res => {

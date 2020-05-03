@@ -5,7 +5,7 @@ import getters from './getters'
 import actions from './actions'
 import mutations from './mutations'
 import createPersistedState from 'vuex-persistedstate'
-import { getStorageSyncForVuex, setStorage } from '../utils/wx'
+import { getStorageSyncForVuex, setStorage } from '../utils/microApi'
 
 Vue.use(Vuex)
 
@@ -25,7 +25,7 @@ export default new Vuex.Store({
         setItem: (argKey, argValue) => {
           return setStorage(argKey, argValue)
         },
-        removeItem: () => {}
+        removeItem: () => { }
       },
       // 只储存某些字段
       reducer: argData => {
