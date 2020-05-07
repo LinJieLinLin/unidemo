@@ -12,34 +12,28 @@ confirmText: '确定文字', }, eg:
 */
 
 <template>
-  <popup ref="popup"
+  <popup
+    ref="popup"
     type="center"
     :show="c.show"
     @change="change"
-    :mask-click="c.maskClose||false"
-    custom>
+    :mask-click="c.maskClose || false"
+    custom
+  >
     <view @click.stop="clickModal">
       <slot>
         <view class="modal">
-          <view class="m-header"
-            v-if="!c.hideHeader">
+          <view class="m-header" v-if="!c.hideHeader">
             {{ c.title }}
           </view>
-          <view class="m-body"
-            v-if="!c.hideBody">
-            <div v-html="c.content"
-              class="w-b"></div>
+          <view class="m-body" v-if="!c.hideBody">
+            <div v-html="c.content" class="w-b"></div>
           </view>
-          <view class="m-footer"
-            v-if="!c.hideFooter">
-            <view class="m-btn"
-              v-if="!c.hideCancel"
-              @click.stop="cancel()">
+          <view class="m-footer" v-if="!c.hideFooter">
+            <view class="m-btn" v-if="!c.hideCancel" @click.stop="cancel()">
               {{ c.cancelText || '取消' }}
             </view>
-            <view class="m-btn"
-              v-if="!c.hideConfirm"
-              @click.stop="confirm()">
+            <view class="m-btn" v-if="!c.hideConfirm" @click.stop="confirm()">
               {{ c.confirmText || '确定' }}{{ c.show }}
             </view>
           </view>
@@ -57,16 +51,15 @@ export default {
       type: Object,
       default: function () {
         return { show: false }
-      }
-    }
+      },
+    },
   },
   components: {
-    popup
+    popup,
   },
-  mounted() { },
+  mounted() {},
   computed: {},
-  watch: {
-  },
+  watch: {},
   data() {
     return {}
   },
@@ -77,6 +70,7 @@ export default {
       }
     },
     change(argData) {
+      this.c.show = argData.show
       this.$emit('change', argData.show)
     },
     cancel(argData) {
@@ -88,8 +82,8 @@ export default {
         this.change({ show: false })
       }
       this.$emit('confirm')
-    }
-  }
+    },
+  },
 }
 </script>
 
