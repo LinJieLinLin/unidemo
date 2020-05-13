@@ -1,40 +1,87 @@
-/** modalC: { show: false, maskClose: false, hideHeader: false, hideBody: false,
-hideFooter: false, hideCancel: false, hideConfirm: false, clickHide: false,
-confirmNoHide: false, title: '标题', content:
-'告知当前状态，信息和解决方法，文字换行状态', cancelText: '取消文字',
+<!--
+ * @Author: linj
+ * @Email: 993353454@qq.com
+ * @Date: 2020-05-13 09:51:19
+ * @Description:
+ -->
+/** modalC: {
+// 显示隐藏
+show: false,
+// 背景是否可点击
+maskClose: false,
+// 头部是否隐藏
+hideHeader: false,
+// 内容是否隐藏
+hideBody: false,
+// 功能按钮是否隐藏
+hideFooter: false,
+// 取消是否隐藏
+hideCancel: false,
+// 确认是否隐藏
+hideConfirm: false,
+// 是否点弹窗任意位置关闭
+clickHide: false,
+// 确认按钮点击是否保持弹窗
+confirmNoHide: false,
+// 取消按钮点击是否保持弹窗
+cancelNoHide: false,
+title: '标题',
+// 内容 （默认居中）
+content:
+'告知当前状态，信息和解决方法，文字换行状态',
+cancelText: '取消文字',
 confirmText: '确定文字', }, eg:
-<popup-dialog
-  :c="dialogC"
-  @change="dialogChange"
-  @cancel="dialogCancel"
-  @confirm="dialogConfirm"
-></popup-dialog>
+<lj-dialog :c="DialogC" @change="DialogChange" @cancel="DialogCancel" @confirm="DialogConfirm"></lj-dialog>
+// 控制弹窗显示隐藏
+DialogChange(argData) {
+this.dialogC.show = argData
+},
+// 点击取消回调
+async DialogCancel() {
+if (this.dialogC.cancelFn) {
+this[this.dialogC.cancelFn]()
+this.dialogC.cancelFn = ''
+}
+},
+// 点击确定回调
+async DialogConfirm() {
+if (this.dialogC.confirmFn) {
+this[this.dialogC.confirmFn]()
+this.dialogC.confirmFn = ''
+}
+},
 */
 
 <template>
-  <popup
-    ref="popup"
+  <popup ref="popup"
     type="center"
     :show="c.show"
     @change="change"
     :mask-click="c.maskClose || false"
-    custom
-  >
+    custom>
     <view @click.stop="clickModal">
       <slot>
         <view class="modal">
-          <view class="m-header" v-if="!c.hideHeader">
+          <view class="m-header"
+            v-if="!c.hideHeader">
             {{ c.title }}
           </view>
-          <view class="m-body" v-if="!c.hideBody">
-            <div v-html="c.content" class="w-b"></div>
+          <view class="m-body"
+            v-if="!c.hideBody">
+            <div v-html="c.content"
+              class="w-b"></div>
           </view>
-          <view class="m-footer" v-if="!c.hideFooter">
-            <view class="m-btn" v-if="!c.hideCancel" @click.stop="cancel()">
+          <view class="m-footer"
+            v-if="!c.hideFooter">
+            <view class="m-btn"
+              v-if="!c.hideCancel"
+              @click.stop="cancel()">
               {{ c.cancelText || '取消' }}
             </view>
-            <view class="m-btn" v-if="!c.hideConfirm" @click.stop="confirm()">
-              {{ c.confirmText || '确定' }}{{ c.show }}
+            <view class="m-btn"
+              v-if="!c.hideConfirm"
+              @click.stop="confirm()">
+              {{ c.confirmText || '确定' }}
             </view>
           </view>
         </view>
@@ -57,7 +104,7 @@ export default {
   components: {
     popup,
   },
-  mounted() {},
+  mounted() { },
   computed: {},
   watch: {},
   data() {
@@ -120,7 +167,7 @@ export default {
   justify-content: center;
   align-content: center;
   align-items: center;
-  color: $theme;
+  // color: $theme;
   @include iBtnBgColor(#f1f1f1);
   &:nth-child(2) {
     border-left: 1px solid #dad7d7;

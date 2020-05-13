@@ -14,8 +14,11 @@ import {
 } from './utils/microApi'
 import { request, response } from './utils/project'
 import { safeData, hideInfo, getRegexp, sleep } from './utils/j'
+import comMixin from './utils/mixins/common'
 import Throttle from './utils/class/Throttle'
 import Debounce from './utils/class/Debounce'
+import { getObj } from './utils/struct'
+import dialogMixin from './components/lj/dialog/mixin'
 const throttle = new Throttle()
 const debounce = new Debounce()
 Vue.config.productionTip = false
@@ -40,12 +43,17 @@ Vue.prototype.$f = {
   getRegexp,
   sleep,
   getStorageSync,
+  setStorage,
   getCurrentPage,
-  setStorage
+  getObj
 }
 App.mpType = 'app'
 // 设置请求拦截
 setRequest(request, response)
+// 加载mixins
+Vue.mixin(comMixin.mixin)
+Vue.mixin(dialogMixin)
+// 初始化
 const app = new Vue({
   ...App
 })

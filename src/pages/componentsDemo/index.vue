@@ -14,18 +14,21 @@
   </view>
 </template>
 <script>
-import { uniList, uniListItem } from '@dcloudio/uni-ui'
+import { mapState, mapMutations } from 'vuex'
 export default {
+  created: function () { console.log(1) },
   components: {
-    uniList,
-    uniListItem
   },
   data() {
     return {
       navigateFlag: false,
       lists: [{
-        name: 'Badge 数字角标',
-        url: 'badge'
+        name: '弹窗',
+        url: 'com/dialog'
+      },
+      {
+        name: '---以下未做---',
+        url: 'test'
       },
       {
         name: 'Calendar 日历',
@@ -142,14 +145,16 @@ export default {
       ]
     }
   },
-  onLoad() { },
-  onReady() { },
-  onShareAppMessage() {
-    return {
-      title: '欢迎体验uni-app',
-      path: '/pages/tabBar/extUI/extUI'
-    }
+  computed: {
+    ...mapState(['BaseUrl'])
   },
+  onShow() {
+    // 检测是否要重载
+    this.CheckReload()
+  },
+  onLoad(argData) {
+  },
+  onReady() { },
   onNavigationBarButtonTap(e) {
     uni.navigateTo({
       url: '/pages/about/about'
@@ -159,6 +164,9 @@ export default {
     toComponents(argData) {
       this.$f.toPage(argData.url)
     },
+    init() {
+      console.log('当前页面init')
+    }
   }
 }
 </script>
