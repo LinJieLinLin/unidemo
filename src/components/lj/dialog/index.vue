@@ -62,28 +62,34 @@ this.dialogC.confirmFn = ''
     <view @click.stop="clickModal">
       <slot>
         <view class="modal">
-          <view class="m-header"
-            v-if="!c.hideHeader">
-            {{ c.title }}
-          </view>
-          <view class="m-body"
-            v-if="!c.hideBody">
-            <div v-html="c.content"
-              class="w-b"></div>
-          </view>
-          <view class="m-footer"
-            v-if="!c.hideFooter">
-            <view class="m-btn"
-              v-if="!c.hideCancel"
-              @click.stop="cancel()">
-              {{ c.cancelText || '取消' }}
+          <slot name="header">
+            <view class="m-header"
+              v-if="!c.hideHeader">
+              {{ c.title }}
             </view>
-            <view class="m-btn"
-              v-if="!c.hideConfirm"
-              @click.stop="confirm()">
-              {{ c.confirmText || '确定' }}
+          </slot>
+          <slot name="body">
+            <view class="m-body"
+              v-if="!c.hideBody">
+              <div v-html="c.content"
+                class="w-b"></div>
             </view>
-          </view>
+          </slot>
+          <slot name="footer">
+            <view class="m-footer"
+              v-if="!c.hideFooter">
+              <view class="m-btn"
+                v-if="!c.hideCancel"
+                @click.stop="cancel()">
+                {{ c.cancelText || '取消' }}
+              </view>
+              <view class="m-btn"
+                v-if="!c.hideConfirm"
+                @click.stop="confirm()">
+                {{ c.confirmText || '确定' }}
+              </view>
+            </view>
+          </slot>
         </view>
       </slot>
     </view>

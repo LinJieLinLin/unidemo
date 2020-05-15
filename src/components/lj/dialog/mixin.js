@@ -30,7 +30,6 @@ let mixin = {
     },
     // 显示dialog
     DialogShow(argData, argOptions = {}) {
-      console.log(this.DialogC, argData, argOptions)
       if (this.DialogC.show) {
         return
       }

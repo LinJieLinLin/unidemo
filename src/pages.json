@@ -64,7 +64,7 @@
   "preloadRule": {
     "pages/index/index": {
       "network": "wifi",
-      "packages": ["pages/p1", "pages/p2"]
+      "packages": ["pages/p1", "pages/com"]
     }
   },
   // 底部栏

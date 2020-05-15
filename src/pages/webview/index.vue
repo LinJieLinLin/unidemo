@@ -1,3 +1,12 @@
+<!--
+ * @Author: linj
+ * @Email: 993353454@qq.com
+ * @Date: 2020-03-30 16:44:05
+ * @Description:webview页面
+ params{
+   url:'页面链接'
+ }
+-->
 <template>
   <web-view :src="src"
     v-if="src"
@@ -20,7 +29,6 @@ export default {
   },
   computed: {},
   onLoad(argOption) {
-    console.error(argOption)
     temSrc = argOption.url || ''
     this.init()
   },
