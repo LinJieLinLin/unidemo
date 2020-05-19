@@ -40,22 +40,6 @@ export default {
     this.src = null
   },
   destroyed() { },
-  onShareAppMessage(argData) {
-    if (argData.from === 'button') {
-      // 来自页面内转发按钮
-      // console.log(argData.target)
-    }
-    if (argData.from === 'menu') {
-      // 来自右上角转发按钮
-      // console.log(argData.target)
-    }
-    let params = this.$f.getCurrentPage().options
-    return {
-      title: '南山文体通，提升公共文体惠民服务，打造文体惠民活动盛宴',
-      imageUrl: 'https://sznswtt.gdtengnan.com/uploads/program/custom/share.png',
-      path: 'pages/index/main?isShare=1'
-    }
-  },
   methods: {
     init() {
       if (!temSrc) {

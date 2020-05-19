@@ -124,17 +124,17 @@ export default {
     },
     change(argData) {
       this.c.show = argData.show
-      this.$emit('change', argData.show)
+      this.$emit('mixinChange', { fn: 'DialogChange', data: argData.show })
     },
     cancel(argData) {
       this.change({ show: false })
-      this.$emit('cancel')
+      this.$emit('mixinChange', { fn: this.c.cancelFn })
     },
     confirm() {
       if (!this.c.confirmNoHide) {
         this.change({ show: false })
       }
-      this.$emit('confirm')
+      this.$emit('mixinChange', { fn: this.c.confirmFn })
     },
   },
 }

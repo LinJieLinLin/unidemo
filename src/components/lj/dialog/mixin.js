@@ -13,20 +13,8 @@ let mixin = {
     }
   },
   methods: {
-    DialogChange(argData) {
+    DialogChange(argData = false) {
       this.DialogC.show = argData
-    },
-    async DialogCancel() {
-      if (this.DialogC.cancelFn) {
-        this[this.DialogC.cancelFn]()
-        this.DialogC.cancelFn = ''
-      }
-    },
-    async DialogConfirm() {
-      if (this.DialogC.confirmFn) {
-        this[this.DialogC.confirmFn]()
-        this.DialogC.confirmFn = ''
-      }
     },
     // 显示dialog
     DialogShow(argData, argOptions = {}) {

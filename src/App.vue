@@ -1,10 +1,10 @@
 <script>
 export default {
-  onError (err) {
+  onError(err) {
     console.log('捕捉错误：', err)
     this.$f.log(err)
   },
-  onLaunch (argData) {
+  onLaunch(argData) {
     console.log('App Launch')
     // #ifdef  MP-WEIXIN
     try {
@@ -37,4 +37,11 @@ export default {
 <style lang="scss">
 @import './scss/settings';
 @import './scss/base';
+// icon处理
+.i-del {
+  @include iIcon(i-del, 20);
+}
+.i-add {
+  @include iIcon(i-add, 30);
+}
 </style>

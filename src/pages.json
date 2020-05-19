@@ -56,6 +56,10 @@
         {
           "path": "dialog/index",
           "style": {}
+        },
+        {
+          "path": "drag/index",
+          "style": {}
         }
       ]
     }
@@ -109,7 +113,7 @@
   "globalStyle": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "文体通",
+    "navigationBarTitleText": "uni-demo",
     "navigationBarTextStyle": "black"
   },
   "easycom": {

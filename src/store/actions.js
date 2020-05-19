@@ -25,7 +25,7 @@ const actions = {
       }
       return rs.target
     } else {
-      const _res = await new Promise(function (resolve, reject) {
+      const _res = await new Promise(function(resolve, reject) {
         wx.getUserInfo({
           success: res => {
             return resolve(res)

@@ -326,6 +326,41 @@
     justify-content: space-between;
   }
 }
+@mixin iFlex($k: flex) {
+  @if $k==flex {
+    display: flex;
+  } @else if $k==flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+  } @else if $k==flex-column {
+    display: flex;
+    flex-direction: column;
+  } @else if $k==flex-center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  } @else if $k==flex-middle {
+    display: flex;
+    align-items: center;
+  } @else if $k==flex-column-between {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  } @else if $k==flex-column-around {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  } @else if $k==flex-row-between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  } @else if $k==flex-row-around {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
 @mixin oReset() {
   /* http://meyerweb.com/eric/tools/css/reset/ */
   /* v1.0 | 20080212 */
@@ -597,5 +632,51 @@
   .y-1px {
     border-top: 1px solid $c;
     border-bottom: 1px solid $c;
+  }
+}
+@mixin iBorder1px($c: #c7c7c7, $type: f) {
+  @if $type==f {
+    border: 1px solid $c;
+  } @else if $type==t {
+    border-top: 1px solid $c;
+  } @else if $type==b {
+    border-bottom: 1px solid $c;
+  } @else if $type==l {
+    border-left: 1px solid $c;
+  } @else if $type==r {
+    border-right: 1px solid $c;
+  } @else if $type==x {
+    border-left: 1px solid $c;
+    border-right: 1px solid $c;
+  } @else if $type==y {
+    border-top: 1px solid $c;
+    border-bottom: 1px solid $c;
+  }
+}
+
+/**
+icon背景
+eg: @include iIcon(close,16)
+**/
+@mixin iIcon(
+  $name,
+  $sw,
+  $sh: $sw,
+  $w: 0,
+  $h: 0,
+  $path: './assets/img/logo/',
+  $suffix: '.png'
+) {
+  background-image: url($path+$name+$suffix);
+  background-size: $sw + px $sh + px;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  @if $w==0 {
+    width: $sw + px;
+    height: $sh + px;
+  } @else {
+    width: $w + px;
+    height: $h + px;
   }
 }

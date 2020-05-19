@@ -1,0 +1,133 @@
+<!--
+ * @Author: linj
+ * @Email: 993353454@qq.com
+ * @Date: 2020-05-18 14:43:59
+ * @Description:
+-->
+<template>
+  <div class="drag pd-lr16">
+    <uni-section title="图片为普通数组"
+      type="line"></uni-section>
+    <lj-drag :ref="dragC.id"
+      :c="dragC"
+      :data-list="list"
+      @change="dragChange">
+    </lj-drag>
+    <uni-section title="图片obj数组，slot添加"
+      type="line"></uni-section>
+    <lj-drag :ref="dragC1.id"
+      :c="dragC1"
+      :data-list="listObj"
+      @change="dragChange">
+      <template v-slot:add-item>
+        123
+      </template>
+    </lj-drag>
+    <uni-section title="仅查看"
+      type="line"></uni-section>
+    <lj-drag :ref="dragC.id"
+      :c="dragC2"
+      :data-list="list"
+      @change="dragChange">
+    </lj-drag>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+
+  },
+  components: {
+
+  },
+  onLoad(argData) {
+
+  },
+  onShow() {
+
+  },
+  onReady() {
+    this.init()
+  },
+  onUnload() {
+
+  },
+  onShareAppMessage(argData) {
+
+  },
+  async onPullDownRefresh() {
+    // console.log('下拉')
+    uni.stopPullDownRefresh()
+  },
+  async onReachBottom() {
+    // console.log('上拉')
+  },
+  computed: {
+
+  },
+  data() {
+    return {
+      list: [
+        '/static/img/1.jpg',
+        '/static/img/2.jpg',
+        '/static/img/3.jpg',
+        '/static/img/4.jpg',
+        '/static/img/5.jpg',
+        '/static/img/6.jpg',
+      ],
+      listObj: [
+        { url: '/static/img/1.jpg', },
+        { url: '/static/img/2.jpg', },
+        { url: '/static/img/3.jpg', },
+        { url: '/static/img/4.jpg', },
+        { url: '/static/img/5.jpg', },
+        { url: '/static/img/6.jpg', },
+        { url: '/static/img/7.jpg', },
+      ],
+      dragC: {
+        id: 'drag0',
+        maxlength: 9,
+      },
+      dragC1: {
+        id: 'drag0',
+        listKey: 'url',
+        maxlength: 9,
+      },
+      dragC2: {
+        id: 'drag2',
+        isView: true,
+      }
+    }
+  },
+  methods: {
+    dragChange(argData) {
+      console.log(argData)
+    },
+    async init() {
+      console.log('init')
+      await this.$f.sleep(1000)
+      this.$refs[this.dragC.id].init()
+    }
+  },
+}
+</script>
+
+<style lang="scss">
+.drag {
+  /deep/.drag-item {
+    width: 103px;
+    height: 103px;
+    margin-bottom: 10px;
+    .img-item {
+      width: 103px;
+      height: 103px;
+      image {
+        border-radius: 4px;
+        width: 103px;
+        height: 103px;
+      }
+    }
+  }
+}
+</style>

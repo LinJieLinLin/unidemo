@@ -1,4 +1,4 @@
-import { setStorage } from '../utils/microApi'
+import { setStorage, getCurrentPage } from '../utils/microApi'
 const matations = {
   /**
    * @description 获取用户信息
@@ -20,6 +20,13 @@ const matations = {
   SetCountNum(state, argData = '') {
     state.CountNum = +argData
     setStorage('CountNum', argData)
+  },
+  // 打开dialog
+  OpenDialog(state, argData = {}) {
+    let nowThis = getCurrentPage().$vm
+    if (nowThis.DialogShow) {
+      nowThis.DialogShow(argData.data, argData.options)
+    }
   }
 }
 

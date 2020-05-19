@@ -27,12 +27,12 @@ export default {
         url: 'com/dialog'
       },
       {
-        name: '---以下未做---',
-        url: 'test'
+        name: 'drag 拖拽',
+        url: 'com/drag'
       },
       {
-        name: 'Calendar 日历',
-        url: 'calendar'
+        name: '---以下未做---',
+        url: 'test'
       },
       {
         name: 'Card 卡片',
