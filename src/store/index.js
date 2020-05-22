@@ -17,6 +17,7 @@ export default new Vuex.Store({
   getters,
   actions,
   plugins: [
+    // https://github.com/robinvdvleuten/vuex-persistedstate#readme
     createPersistedState({
       storage: {
         getItem: key => {
@@ -25,7 +26,7 @@ export default new Vuex.Store({
         setItem: (argKey, argValue) => {
           return setStorage(argKey, argValue)
         },
-        removeItem: () => { }
+        removeItem: () => {}
       },
       // 只储存某些字段
       reducer: argData => {
