@@ -40,7 +40,7 @@
         <h1>Here might be a page body</h1>
       </template>
       <template v-slot:footer>
-        <h1>Here might be a page footer</h1>
+        <h1 @click="dialogChange()">Here might be a page footer</h1>
       </template>
     </lj-dialog>
   </div>
@@ -83,7 +83,8 @@ export default {
   data() {
     return {
       dialogC: {
-        show: false
+        show: false,
+        changeFn: 'dialogChange',
       }
     }
   },
@@ -117,10 +118,10 @@ export default {
       this.$f.toast('点了取消')
     },
     dialogShowCc(argType, argMsgType) {
-      this.dialogC = this.$f.getObj('dialog.info')
+      Object.assign(this.dialogC, this.$f.getObj('dialog.info'))
       this.dialogC.show = true
     },
-    dialogChange(argData) {
+    dialogChange(argData = false) {
       this.dialogC.show = argData
     },
     byStore() {

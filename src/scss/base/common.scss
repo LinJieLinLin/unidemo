@@ -173,3 +173,25 @@ body {
     background-color: #d9d9d9;
   }
 }
+// 清除btn样式
+button::after {
+  border: none;
+}
+.btn-none {
+  margin: 0;
+  padding: 0;
+  line-height: unset;
+  text-align: unset;
+  border-radius: 0;
+  background-color: transparent;
+  border: none;
+  @include iFlex(flex-middle);
+  &.button-hover {
+    color: unset;
+    background-color: transparent;
+  }
+}
+// uniui
+.uni-section__content {
+  display: flex;
+}

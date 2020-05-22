@@ -8,17 +8,17 @@
   <div class="drag pd-lr16">
     <uni-section title="图片为普通数组"
       type="line"></uni-section>
-    <lj-drag :ref="dragC.id"
-      :c="dragC"
-      :data-list="list"
-      @change="dragChange">
+    <lj-drag :c="dragC"
+      :list="list"
+      :d="list"
+      @mixinChange="ComChange">
     </lj-drag>
     <uni-section title="图片obj数组，slot添加"
       type="line"></uni-section>
     <lj-drag :ref="dragC1.id"
       :c="dragC1"
-      :data-list="listObj"
-      @change="dragChange">
+      :list="listObj"
+      @mixinChange="ComChange">
       <template v-slot:add-item>
         123
       </template>
@@ -27,8 +27,8 @@
       type="line"></uni-section>
     <lj-drag :ref="dragC.id"
       :c="dragC2"
-      :data-list="list"
-      @change="dragChange">
+      :list="list"
+      @mixinChange="ComChange">
     </lj-drag>
   </div>
 </template>
@@ -69,12 +69,12 @@ export default {
   data() {
     return {
       list: [
-        '/static/img/1.jpg',
-        '/static/img/2.jpg',
-        '/static/img/3.jpg',
-        '/static/img/4.jpg',
-        '/static/img/5.jpg',
-        '/static/img/6.jpg',
+        'http://static.gdtn.io/imgs/1.jpg',
+        'http://static.gdtn.io/imgs/2.jpg',
+        'http://static.gdtn.io/imgs/3.jpg',
+        'http://static.gdtn.io/imgs/4.jpg',
+        'http://static.gdtn.io/imgs/5.jpg',
+        'http://static.gdtn.io/imgs/6.jpg',
       ],
       listObj: [
         { url: '/static/img/1.jpg', },
@@ -88,15 +88,18 @@ export default {
       dragC: {
         id: 'drag0',
         maxlength: 9,
+        listName: 'list',
       },
       dragC1: {
         id: 'drag0',
         listKey: 'url',
         maxlength: 9,
+        listName: 'listObj',
       },
       dragC2: {
         id: 'drag2',
         isView: true,
+        listName: 'list',
       }
     }
   },

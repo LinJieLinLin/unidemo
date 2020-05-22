@@ -3,7 +3,7 @@
  * @Email: 993353454@qq.com
  * @Date: 2020-05-13 09:51:19
  * @Description:
- -->
+
 /** modalC: {
 // 显示隐藏
 show: false,
@@ -30,28 +30,15 @@ title: '标题',
 content:
 '告知当前状态，信息和解决方法，文字换行状态',
 cancelText: '取消文字',
-confirmText: '确定文字', }, eg:
-<lj-dialog :c="DialogC" @change="DialogChange" @cancel="DialogCancel" @confirm="DialogConfirm"></lj-dialog>
-// 控制弹窗显示隐藏
-DialogChange(argData) {
-this.dialogC.show = argData
-},
-// 点击取消回调
-async DialogCancel() {
-if (this.dialogC.cancelFn) {
-this[this.dialogC.cancelFn]()
-this.dialogC.cancelFn = ''
-}
-},
-// 点击确定回调
-async DialogConfirm() {
-if (this.dialogC.confirmFn) {
-this[this.dialogC.confirmFn]()
-this.dialogC.confirmFn = ''
-}
-},
-*/
+cancelFn: '点取消调用的函数',
+confirmText: '确定文字',
+confirmFn: '点确定调用的函数',
+changeFn: '改变时回调函数',
+ }, eg:
+<lj-dialog :c="DialogC" @mixinChange="ComChange">
 
+*/
+-->
 <template>
   <popup ref="popup"
     type="center"
@@ -123,8 +110,7 @@ export default {
       }
     },
     change(argData) {
-      this.c.show = argData.show
-      this.$emit('mixinChange', { fn: 'DialogChange', data: argData.show })
+      this.$emit('mixinChange', { fn: (this.c.changeFn || 'DialogChange'), data: argData.show })
     },
     cancel(argData) {
       this.change({ show: false })

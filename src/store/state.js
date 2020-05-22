@@ -1,5 +1,7 @@
+import config from '../../package.json'
 // 变量定义
 const state = {
+  Version: config.version,
   // 需要本地缓存字段
   localKey: ['NeedAuth', 'UserInfo', 'CountNum'],
   // 是否打开实名认证弹窗

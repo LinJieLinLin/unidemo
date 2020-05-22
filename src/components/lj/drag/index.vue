@@ -3,18 +3,20 @@
  * @Email: 993353454@qq.com
  * @Date: 2020-05-18 14:42:40
  * @Description: 图片拖拽插件
- dataList:[]图片数组
+ list:[]图片数组
  c:{
    id:'ref&id',
+   listName:'list在this下的路径',
    listKey:'图片对应obj下标',
    isView:'查看模式',
-   maxlength:'dataList最大长度',
+   maxlength:'list最大长度',
+   changeFn:'',
  }
  eg:
 <lj-drag :ref="dragC.id"
       :c="dragC"
-      :data-list="list"
-      @change="dragChange">
+      :list="list"
+      @mixinChange="ComChange">
     </lj-drag>
 -->
 <template>
@@ -24,7 +26,7 @@
       :ref="c.id||'dragBox'"
       :id="c.id||'dragBox'">
       <view class="drag-item p-r"
-        v-for="(item, index) in dataList"
+        v-for="(item, index) in list"
         :key="index"
         :id="'item-' + index"
         :class="{'mg-r16':(index+1)%3}"
@@ -49,7 +51,7 @@
       </view>
       <slot name="add-item">
         <div class="drag-item add-item flex-center"
-          v-show="dataList.length < c.maxlength && !c.isView"
+          v-show="list.length < c.maxlength && !c.isView"
           @click.stop="addImg(c.maxlength)">
           <i class="i-add"></i>
         </div>
@@ -79,7 +81,7 @@
 <script>
 export default {
   props: {
-    dataList: {
+    list: {
       type: Array,
       default: function () {
         return []
@@ -95,6 +97,7 @@ export default {
   components: {},
   data() {
     return {
+      isMove: false,
       imgSize: 0,
       itemList: [],
       // 整个可移动区域元素
@@ -132,22 +135,23 @@ export default {
       // console.log(this.boxDom)
 
       // 设置可移动方块的初始位置为当前所选中图片的位置坐标
-      this.x = this.itemList[argIndex].x
-      this.y = this.itemList[argIndex].y
+      this.x = this.$f.safeData(this.itemList, argIndex, { x: 0, y: 0 }).x
+      this.y = this.$f.safeData(this.itemList, argIndex, { x: 0, y: 0 }).y
       // 显示可移动方块
-      this.moveItem = this.dataList[argIndex]
+      this.moveItem = this.list[argIndex]
       var x = argEvent.changedTouches[0].clientX - areaBoxLeft
       var y = argEvent.changedTouches[0].clientY - areaBoxTop
       // 保存鼠标在图片内的坐标
       this.inBoxXY = {
-        x: x - this.itemList[argIndex].x,
-        y: y - this.itemList[argIndex].y,
+        x: x - this.$f.safeData(this.itemList, argIndex, { x: 0, y: 0 }).x,
+        y: y - this.$f.safeData(this.itemList, argIndex, { x: 0, y: 0 }).y,
       }
     },
     touchmove(e) {
       if (this.c.isView) {
         return
       }
+      this.isMove = true
       let areaBoxTop = this.boxDom.top
       let areaBoxLeft = this.boxDom.left
       let imgSize = this.imgSize
@@ -165,9 +169,19 @@ export default {
       })
     },
     touchend(e) {
+      console.log('end')
       if (this.c.isView) {
         return
       }
+      // 必须有移动才触发结束
+      if (!this.isMove) {
+        setTimeout(() => {
+          this.moveItem = ''
+          this.hoverImgIndex = ''
+        }, 10)
+        return
+      }
+      this.isMove = false
       let areaBoxTop = this.boxDom.top
       let areaBoxLeft = this.boxDom.left
       let imgSize = this.imgSize
@@ -175,34 +189,35 @@ export default {
       var x = e.changedTouches[0].clientX - areaBoxLeft
       var y = e.changedTouches[0].clientY - areaBoxTop
 
-      let temLen = this.dataList.length
+      let temLen = this.list.length
       for (let i = 0; i < temLen; i++) {
         let v = this.itemList[i]
         if (x > v.x && x < v.x + imgSize && y > v.y && y < v.y + imgSize) {
-          this.dataList[this.nowIndex] = this.dataList[i]
-          this.dataList[i] = this.moveItem
+          let temItem = this.list[this.nowIndex]
+          this.list[this.nowIndex] = this.list[i]
+          this.list[i] = temItem
         }
       }
       // 移动结束隐藏可移动方块
       this.moveItem = ''
       this.hoverImgIndex = ''
-      this.$emit('change', this.dataList)
+      this.$emit('mixinChange', { key: this.c.listName, data: this.list })
     },
     addImg() {
       // todo
-      this.dataList.push('/static/img/1.jpg')
-      this.$emit('change', this.dataList)
+      this.list.push('/static/img/1.jpg')
+      this.$emit('mixinChange', { key: this.c.listName, data: this.list })
     },
     deleteImg(argIndex) {
-      this.dataList.splice(argIndex, 1)
-      this.$emit('change', this.dataList)
+      this.list.splice(argIndex, 1)
+      this.$emit('mixinChange', { key: this.c.listName, data: this.list })
     },
     async init() {
       let res = await this.GetDom('#' + this.c.id)
       this.boxDom = res
       console.log('drag init:', res)
       // 设置区域内所有item的左上角坐标
-      this.dataList.map(async (v, k) => {
+      this.list.map(async (v, k) => {
         let temRes = await this.GetDom('#item-' + k)
         this.imgSize = temRes.width
         if (!this.itemList[k]) {

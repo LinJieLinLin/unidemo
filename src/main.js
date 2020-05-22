@@ -10,6 +10,7 @@ import {
   setStorage,
   GlobalCounter,
   getCurrentPage,
+  P,
   toast
 } from './utils/microApi'
 import { request, response } from './utils/project'
@@ -45,6 +46,8 @@ Vue.prototype.$f = {
   getStorageSync,
   setStorage,
   getCurrentPage,
+  // promise
+  P,
   getObj
 }
 App.mpType = 'app'

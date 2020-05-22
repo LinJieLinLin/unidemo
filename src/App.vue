@@ -5,7 +5,7 @@ export default {
     this.$f.log(err)
   },
   onLaunch(argData) {
-    console.log('App Launch')
+    console.log('onLaunch')
     // #ifdef  MP-WEIXIN
     try {
       wx.cloud.init({

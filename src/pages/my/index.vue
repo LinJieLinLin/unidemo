@@ -2,9 +2,36 @@
   <div>
     <top :c="UserInfo"></top>
     <view class="m-list mg-lr10 of-h">
+      <!-- #ifdef MP-WEIXIN -->
+
+      <uni-section title="小程序特有"
+        type="line"></uni-section>
       <uni-list>
-        <uni-list-item :show-arrow="false"
-          title="列表文字" />
+        <uni-list-item :show-extra-icon="true"
+          :extra-icon="extraIcon1">
+          <button class="btn-none"
+            open-type="contact">
+            客服会话
+          </button>
+        </uni-list-item>
+        <uni-list-item :show-extra-icon="true"
+          :extra-icon="extraIcon1">
+          <button class="btn-none"
+            open-type="openSetting">
+            授权设置
+          </button>
+        </uni-list-item>
+      </uni-list>
+      <!-- #endif -->
+      <view class="w-b">
+        {{ qrcodeInfo }}
+      </view>
+      <uni-list>
+        <uni-list-item @click="scanCode"
+          :show-extra-icon="true"
+          :extra-icon="extraIcon1"
+          title="扫码">
+        </uni-list-item>
         <uni-list-item :show-arrow="false"
           title="列表文字"
           note="列表描述信息" />
@@ -80,6 +107,7 @@ export default {
   },
   data() {
     return {
+      qrcodeInfo: '未有值',
       extraIcon1: {
         color: '#007aff',
         size: '22',
@@ -93,6 +121,12 @@ export default {
     }
   },
   methods: {
+    async scanCode() {
+      let res = await this.$f.P('scanCode').catch(err => {
+        console.log(err)
+      })
+      this.qrcodeInfo = JSON.stringify(res)
+    },
     init() {
 
     },

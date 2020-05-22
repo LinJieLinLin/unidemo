@@ -6,9 +6,7 @@
     <button @click="toWebview">webview</button>
     <button @click="$f.toPage('my')">my</button>
     <lj-dialog :c="dialogC"
-      @change="dialogChange"
-      @cancel="dialogCancel"
-      @confirm="dialogConfirm"></lj-dialog>
+      @mixinChange="ComChange"></lj-dialog>
   </div>
 </template>
 
@@ -46,23 +44,13 @@ export default {
       this.$f.toPage('webview', { url: 'http://localhost:8001/#/pages/p1/demo/index' })
     },
     dialogChange(argData) {
+      console.log(argData)
       this.dialogC.show = argData
-    },
-    dialogCancel() {
-      if (this.dialogC.cancleFn) {
-        this[this.dialogC.cancleFn]()
-        this.dialogC.cancleFn = ''
-      }
-    },
-    async dialogConfirm() {
-      if (this.dialogC.confirmFn) {
-        this[this.dialogC.confirmFn]()
-        this.dialogC.confirmFn = ''
-      }
     },
     async login() {
       this.dialogSu.show = true
       this.dialogSu.content = 'test'
+      this.dialogSu.changeFn = 'dialogChange'
       this.dialogC = this.dialogSu
       // let res = await login()
       // res = await wxLogin(res)
