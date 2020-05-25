@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
   },
   extends: ['plugin:vue/strongly-recommended', '@vue/standard'],
   rules: {
@@ -42,7 +42,11 @@ module.exports = {
     'vue/html-closing-bracket-newline': 0,
     'vue/max-attributes-per-line': 0,
     'vue/singleline-html-element-content-newline': 0,
-    'no-unused-vars': 0
+    'no-dupe-keys': 0,
+    'quote-props': 0,
+    'no-unused-vars': 0,
+    'no-case-declarations': 0,
+    'lines-between-class-members': 0,
   },
   globals: {
     uniCloud: true,
@@ -53,9 +57,9 @@ module.exports = {
     getApp: true,
     getPage: true,
     getCurrentPages: true,
-    requirePlugin: true
+    requirePlugin: true,
   },
   parserOptions: {
-    parser: 'babel-eslint'
-  }
+    parser: 'babel-eslint',
+  },
 }

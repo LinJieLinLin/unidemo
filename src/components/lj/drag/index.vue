@@ -2,7 +2,9 @@
  * @Author: linj
  * @Email: 993353454@qq.com
  * @Date: 2020-05-18 14:42:40
- * @Description: 图片拖拽插件
+ * @Description: item拖拽插件
+ * @version:0.0.1
+
  list:[]图片数组
  c:{
    id:'ref&id',
