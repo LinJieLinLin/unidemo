@@ -8,14 +8,16 @@
   <div class="drag pd-lr16">
     <uni-section title="图片为普通数组"
       type="line"></uni-section>
-    <lj-drag :c="dragC"
+    <lj-drag class="pd-t20"
+      :c="dragC"
       :list="list"
       :d="list"
       @mixinChange="ComChange">
     </lj-drag>
     <uni-section title="图片obj数组，slot添加"
       type="line"></uni-section>
-    <lj-drag :ref="dragC1.id"
+    <lj-drag class="pd-t20"
+      :ref="dragC1.id"
       :c="dragC1"
       :list="listObj"
       @mixinChange="ComChange">
@@ -25,11 +27,19 @@
     </lj-drag>
     <uni-section title="仅查看"
       type="line"></uni-section>
-    <lj-drag :ref="dragC.id"
+    <lj-drag class="pd-t20"
+      :ref="dragC.id"
       :c="dragC2"
       :list="list"
       @mixinChange="ComChange">
     </lj-drag>
+    <button class="mg-t10"
+      @click="DialogShow({msg:'调用了弹窗'})">
+      提示
+    </button>
+    <lj-dialog :c="DialogC"
+      @mixinChange="ComChange">
+    </lj-dialog>
   </div>
 </template>
 

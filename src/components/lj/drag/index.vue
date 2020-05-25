@@ -12,6 +12,7 @@
    listKey:'图片对应obj下标',
    isView:'查看模式',
    maxlength:'list最大长度',
+   outSideInit:'是否外部触发init',
    changeFn:'',
  }
  eg:
@@ -81,6 +82,7 @@
 </template>
 
 <script>
+import { uploadImgs } from '../../../utils/microApi'
 export default {
   props: {
     list: {
@@ -205,10 +207,12 @@ export default {
       this.hoverImgIndex = ''
       this.$emit('mixinChange', { key: this.c.listName, data: this.list })
     },
-    addImg() {
+    async addImg() {
       // todo
       this.list.push('/static/img/1.jpg')
-      this.$emit('mixinChange', { key: this.c.listName, data: this.list })
+      let res = await uploadImgs()
+      console.error(res)
+      // this.$emit('mixinChange', { key: this.c.listName, data: this.list })
     },
     deleteImg(argIndex) {
       this.list.splice(argIndex, 1)
@@ -264,7 +268,7 @@ export default {
   }
   .move-item {
     opacity: 0.8;
-    z-index: 999;
+    z-index: 1;
   }
 
   .select {
@@ -272,6 +276,7 @@ export default {
   }
   .i-del {
     position: absolute;
+    z-index: 2;
     padding: 8px;
     top: -16px;
     right: -16px;

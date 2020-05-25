@@ -1,17 +1,9 @@
 /* eslint-disable no-case-declarations */
 import store from '../store'
-import {
-  getRegexp,
-  safeData,
-  isJson,
-  hideInfo,
-  sleep,
-  getUrlParam,
-  toFixed
-} from './j'
-import { toast, getStorageSync, setStorage, toPage, getCurrentPage } from './microApi'
+import { getRegexp, safeData, isJson, hideInfo, toFixed } from './j'
+import { toast, getStorageSync, setStorage, hideLoading } from './microApi'
 import md5 from 'md5'
-var Base64 = require('js-base64').Base64
+import { enBase64, deBase64 } from './encrypt/crypto'
 export const clearParams = (argData = {}) => {
   const isFormData =
     Object.prototype.toString.call(argData) === '[object FormData]'
@@ -54,7 +46,7 @@ export const clearParams = (argData = {}) => {
     })
     keys.sort()
     // 按照keys依次获取value
-    keys.forEach(key => {
+    keys.forEach((key) => {
       // 如果null 或 undefined等置为
       if (data.get(key) == null || typeof data.get(key) === 'undefined') {
         data.set(key, '')
@@ -86,7 +78,7 @@ export const clearParams = (argData = {}) => {
     }
     keys.sort()
     // 按照keys依次获取value
-    keys.forEach(key => {
+    keys.forEach((key) => {
       const __val = data[key]
       if (__val == null || typeof __val === 'undefined') {
         // 如果null 或 undefined等置为
@@ -130,7 +122,7 @@ export const setToken = (argData = {}, argKey) => {
   }
   if (argData.tk && argData.timestamp) {
     const accesskey = argKey
-    const temTk = Base64.encode(accesskey + argData.tk)
+    const temTk = enBase64(accesskey + argData.tk)
     setStorage('tk', temTk)
     setStorage('delay', Date.now() - argData.timestamp * 1000)
   }
@@ -140,15 +132,15 @@ export const setToken = (argData = {}, argKey) => {
  * @description 获取token
  * @param  {object} argData 响应数据
  */
-export const getToken = argKey => {
-  let tk = Base64.decode(getStorageSync('tk'))
+export const getToken = (argKey) => {
+  let tk = deBase64(getStorageSync('tk'))
   const accesskey = argKey
   tk = tk.replace(accesskey, '')
   const _now = new Date()
   _now.setMilliseconds(0)
   _now.setSeconds(0)
   const timestamp = Math.floor(+_now / 1000, 10)
-  tk = Base64.encode(md5(String(timestamp)) + tk)
+  tk = enBase64(md5(String(timestamp)) + tk)
   return tk
 }
 /**
@@ -157,14 +149,18 @@ export const getToken = argKey => {
  * @param  {object} argData 请求数据
  * @returns {object} 处理后的数据
  */
-export const request = argData => {
+export const request = (argData) => {
+  // 不显示loading
+  if (argData.config.noLoading) {
+    hideLoading()
+  }
   argData.params = argData.params || {}
   argData.params.token = getStorageSync('tk')
   console.log('req:', argData)
   // 设置header
   argData.config.header = Object.assign(
     {
-      'content-type': 'application/x-www-form-urlencoded'
+      'content-type': 'application/x-www-form-urlencoded',
     },
     argData.config.header || {}
   )
@@ -203,7 +199,7 @@ export const response = (argData = { config: {} }) => {
             argData.msg = '接口404，请刷新重试！'
           }
           reject(argData)
-        }
+        },
       }
     default:
       if (safeData(argData, 'data.msg') && !argData.config.noToast) {
@@ -213,7 +209,7 @@ export const response = (argData = { config: {} }) => {
               await toast(argData.data.msg)
             }
             reject(argData)
-          }
+          },
         }
       }
       break
@@ -294,7 +290,7 @@ export const checkInput = (argItem, argData) => {
         if (
           argItem.value &&
           argItem.value ===
-          hideInfo(safeData(getStorageSync('UserInfo'), 'sjhm', ''))
+            hideInfo(safeData(getStorageSync('UserInfo'), 'sjhm', ''))
         ) {
           argItem.saveValue = safeData(getStorageSync('UserInfo'), 'sjhm', '')
         }
@@ -391,7 +387,7 @@ export const checkInput = (argItem, argData) => {
   }
 }
 // 表单检查
-export const formCheck = argList => {
+export const formCheck = (argList) => {
   let fail = false
   // 遇到错误返回
   // let temLen = argList.length
@@ -405,7 +401,7 @@ export const formCheck = argList => {
   //     return
   //   }
   // }
-  argList.map(v => {
+  argList.map((v) => {
     if (v.isFail) {
       fail = true
     }
@@ -427,7 +423,7 @@ export const formCheck = argList => {
         }
         break
       case 'multiSelector':
-        v.value.map(v1 => {
+        v.value.map((v1) => {
           if (+v1 === -1) {
             temFail = true
           }
