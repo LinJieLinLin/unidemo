@@ -60,6 +60,17 @@
         {
           "path": "drag/index",
           "style": {}
+        },
+        {
+          "path": "editor/index",
+          "style": {
+            "style": {
+              "app-plus": {
+                // 控制键盘弹起不上推
+                "softinputMode": "adjustResize"
+              }
+            }
+          }
         }
       ]
     }

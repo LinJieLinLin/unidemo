@@ -5,13 +5,13 @@ import {
   toPage,
   log,
   setRequest,
-  wxLog,
+  ljLog,
   getStorageSync,
   setStorage,
   GlobalCounter,
   getCurrentPage,
   P,
-  toast
+  toast,
 } from './utils/microApi'
 import { request, response } from './utils/project'
 import { safeData, hideInfo, getRegexp, sleep } from './utils/j'
@@ -48,7 +48,7 @@ Vue.prototype.$f = {
   getCurrentPage,
   // promise
   P,
-  getObj
+  getObj,
 }
 App.mpType = 'app'
 // 设置请求拦截
@@ -58,15 +58,16 @@ Vue.mixin(comMixin.mixin)
 Vue.mixin(dialogMixin)
 // 初始化
 const app = new Vue({
-  ...App
+  ...App,
 })
 // 添加微信实时日志
-let wxLogFn = wxLog()
-if (wxLogFn) {
-  console.error = wxLogFn.error
-  console.warn = wxLogFn.warn
-  console.debug = wxLogFn.debug
-  console.setFilterMsg = wxLogFn.setFilterMsg
-  console.addFilterMsg = wxLogFn.addFilterMsg
-}
+// let wxLogFn = ljLog()
+// if (wxLogFn) {
+//   console.error = wxLogFn.error
+//   console.warn = wxLogFn.warn
+//   console.debug = wxLogFn.debug
+//   console.setFilterMsg = wxLogFn.setFilterMsg
+//   console.addFilterMsg = wxLogFn.addFilterMsg
+// }
+ljLog()
 app.$mount()

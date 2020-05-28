@@ -31,12 +31,12 @@ export default {
         url: 'com/drag'
       },
       {
-        name: '---以下未做---',
-        url: 'test'
+        name: 'editor',
+        url: 'com/editor'
       },
       {
-        name: 'Card 卡片',
-        url: 'card'
+        name: '---以下未做---',
+        url: 'test'
       },
       {
         name: 'Collapse 折叠面板',
