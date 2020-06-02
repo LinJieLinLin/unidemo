@@ -5,7 +5,9 @@
  * @Description:
  * @version:0.0.1
 
-/** modalC: {
+/** DialogC: {
+// Dialog在this下的路径
+key: 'DialogC',
 // 显示隐藏
 show: false,
 // 背景是否可点击
@@ -111,10 +113,12 @@ export default {
       }
     },
     change(argData) {
-      this.$emit('mixinChange', { fn: (this.c.changeFn || 'DialogChange'), data: argData.show })
+      this.$emit('mixinChange', { fn: this.c.changeFn || 'DialogChange', data: { key: this.c.dialogKey, show: argData.show } })
     },
     cancel(argData) {
-      this.change({ show: false })
+      if (!this.c.cancelNoHide) {
+        this.change({ show: false })
+      }
       this.$emit('mixinChange', { fn: this.c.cancelFn })
     },
     confirm() {

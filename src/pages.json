@@ -62,6 +62,14 @@
           "style": {}
         },
         {
+          "path": "dragList/index",
+          "style": {}
+        },
+        {
+          "path": "multiSelect/index",
+          "style": {}
+        },
+        {
           "path": "editor/index",
           "style": {
             "style": {
@@ -130,6 +138,7 @@
   "easycom": {
     "autoscan": true,
     "custom": {
+      "lj-item-(.*)": "@/components/lj/item/$1/index.vue",
       "lj-(.*)": "@/components/lj/$1/index.vue",
       "uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
     }

@@ -5,7 +5,7 @@
     <button @click="login">登录</button>
     <button @click="toWebview">webview</button>
     <button @click="$f.toPage('my')">my</button>
-    <lj-dialog :c="dialogC"
+    <lj-dialog :c="DialogC"
       @mixinChange="ComChange"></lj-dialog>
   </div>
 </template>
@@ -32,10 +32,6 @@ export default {
   },
   data() {
     return {
-      dialogSu: getObj('dialog.su'),
-      dialogC: {
-        show: false,
-      },
     }
   },
   computed: {},
@@ -43,19 +39,8 @@ export default {
     toWebview() {
       this.$f.toPage('webview', { url: 'http://localhost:8001/#/pages/p1/demo/index' })
     },
-    dialogChange(argData) {
-      console.log(argData)
-      this.dialogC.show = argData
-    },
     async login() {
-      this.dialogSu.show = true
-      this.dialogSu.content = 'test'
-      this.dialogSu.changeFn = 'dialogChange'
-      this.dialogC = this.dialogSu
-      // let res = await login()
-      // res = await wxLogin(res)
-      // console.log(1111)
-      // console.log(res)
+      this.DialogShow({ msg: 'test' })
     }
   }
 }

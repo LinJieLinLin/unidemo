@@ -114,6 +114,11 @@ export default {
     }
   },
   methods: {
+    onDragSortChange(e) {
+      console.log(e)
+      // frontData 插到谁后面
+      // data 操作的数据
+    },
     dragChange(argData) {
       console.log(argData)
     },

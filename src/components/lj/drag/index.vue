@@ -28,7 +28,7 @@
       inertia
       :ref="c.id||'dragBox'"
       :id="c.id||'dragBox'">
-      <view class="drag-item p-r"
+      <movable-view class="drag-item p-r"
         v-for="(item, index) in list"
         :key="index"
         :id="'item-' + index"
@@ -51,7 +51,7 @@
         <i class="i-del"
           v-if="!c.isView"
           @click.stop="deleteImg(index)"></i>
-      </view>
+      </movable-view>
       <slot name="add-item">
         <div class="drag-item add-item flex-center"
           v-show="list.length < c.maxlength && !c.isView"

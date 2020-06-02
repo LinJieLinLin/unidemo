@@ -40,7 +40,7 @@
         <h1>Here might be a page body</h1>
       </template>
       <template v-slot:footer>
-        <h1 @click="dialogChange()">Here might be a page footer</h1>
+        <h1 @click="DialogChange({key:'dialogC'})">Here might be a page footer</h1>
       </template>
     </lj-dialog>
   </div>
@@ -83,8 +83,8 @@ export default {
   data() {
     return {
       dialogC: {
-        show: false,
-        changeFn: 'dialogChange',
+        dialogKey: 'dialogC',
+        show: false
       }
     }
   },
@@ -120,9 +120,6 @@ export default {
     dialogShowCc(argType, argMsgType) {
       Object.assign(this.dialogC, this.$f.getObj('dialog.info'))
       this.dialogC.show = true
-    },
-    dialogChange(argData = false) {
-      this.dialogC.show = argData
     },
     byStore() {
       this.OpenDialog({

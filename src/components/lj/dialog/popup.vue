@@ -1,6 +1,7 @@
 <template>
   <view v-if="showPopup"
-    class="uni-popup">
+    class="uni-popup"
+    @touchmove.stop.prevent="clear">
     <uni-transition :mode-class="['fade']"
       :styles="maskClass"
       :duration="duration"
@@ -21,7 +22,6 @@
 
 <script>
 import { uniTransition } from '@dcloudio/uni-ui'
-// import uniTransition from '@dcloudio/uni-ui/lib/uni-transition/uni-transition.vue'
 /**
  * PopUp 弹出层
  * @description 弹出层组件，为了解决遮罩弹层的问题
