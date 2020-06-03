@@ -8,36 +8,28 @@ let mixin = {
   data() {
     return {
       DialogC: {
-        dialogKey: 'DialogC',
+        key: 'DialogC',
         show: false,
-        changeFn: 'DialogChange',
       },
     }
   },
   methods: {
-    DialogChange(argData = { key: 'DialogC', show: false }) {
-      this[argData.key].show = argData.show || false
-    },
     // 显示dialog
     DialogShow(argData = {}, argOptions = {}) {
-      console.log(argData, argOptions)
-      if (!argOptions.dialogKey) {
-        argOptions.dialogKey = 'DialogC'
-      }
-      if (this.$f.safeData(this, argOptions.dialogKey)) {
-        if (this[argOptions.dialogKey].show) {
+      let temKey = argOptions.key || 'DialogC'
+      if (this.$f.safeData(this, temKey)) {
+        if (this[temKey].show) {
           return
         }
         Object.assign(
-          this[argOptions.dialogKey],
-          this.$f.getObj('dialog.' + (argOptions.key || 'tip'))
+          this[temKey],
+          this.$f.getObj('dialog.' + (argOptions.type || 'tip'))
         )
-        this[argOptions.dialogKey].show = true
-        this[argOptions.dialogKey].content = argData.msg
-        this[argOptions.dialogKey].confirmFn = ''
-        this[argOptions.dialogKey].cancelFn = ''
-        Object.assign(this[argOptions.dialogKey], argOptions)
-        console.log(this[argOptions.dialogKey], argOptions.dialogKey)
+        this[temKey].show = true
+        this[temKey].content = argData.msg
+        this[temKey].confirmFn = ''
+        this[temKey].cancelFn = ''
+        Object.assign(this[temKey], argOptions)
       } else {
         console.error('缺少参数:dialogKey或数据不存在')
       }

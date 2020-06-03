@@ -31,6 +31,10 @@ export default {
         url: 'com/drag'
       },
       {
+        name: '全屏弹窗',
+        url: 'com/dialogFull'
+      },
+      {
         name: 'drag 竖向列表拖拽',
         url: 'com/dragList'
       },

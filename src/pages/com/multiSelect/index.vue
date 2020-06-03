@@ -84,10 +84,6 @@ export default {
     selectShow() {
       this.selectC.show = true
     },
-    fuck() {
-      console.error('fuck')
-      console.log('fuck')
-    },
     selectSu(argData) {
       console.log(argData)
     },

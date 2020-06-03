@@ -113,12 +113,18 @@ export default {
       }
     },
     change(argData) {
-      this.$emit('mixinChange', { fn: this.c.changeFn || 'DialogChange', data: { key: this.c.dialogKey, show: argData.show } })
+      // #ifndef MP
+      this.c.show = argData.show
+      // #endif
+      // #ifdef MP
+      this.$emit('mixinChange', { key: this.c.key + '.show', data: argData.show })
+      // #endif
     },
     cancel(argData) {
       if (!this.c.cancelNoHide) {
         this.change({ show: false })
       }
+      console.log(1)
       this.$emit('mixinChange', { fn: this.c.cancelFn })
     },
     confirm() {

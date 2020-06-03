@@ -62,6 +62,10 @@
           "style": {}
         },
         {
+          "path": "dialogFull/index",
+          "style": {}
+        },
+        {
           "path": "dragList/index",
           "style": {}
         },

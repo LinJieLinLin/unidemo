@@ -1,26 +1,31 @@
 <!--
  * @Author: linj
  * @Email: 993353454@qq.com
- * @Date: 2020-05-18 14:43:59
+ * @Date: 2020-05-13 10:00:18
  * @Description:
--->
+ -->
 <template>
-  <div class="drag page flex-column">
-    <div class="flex1 of-a">
-      <lj-drag-list :list="list"
-        @change="onDragSortChange"></lj-drag-list>
-    </div>
-    <div class="flex0 flex-row-around bg-w">
-      <button class="flex1">取消</button>
-      <button class="flex1"
-        @click="submit()">
-        确定
+  <div>
+    <div class="pd-lr20">
+      <button class="mg-t10"
+        @click="selectShow">
+        打开弹窗
       </button>
     </div>
+    <lj-dialog-full :c="dialogC"
+      @mixinChange="ComChange">
+      <template v-slot:body>
+        <lj-drag-list :ref="dragListC.id"
+          :list="list"
+          :c="dragListC"
+          @change="onDragSortChange"></lj-drag-list>
+      </template>
+    </lj-dialog-full>
   </div>
 </template>
 
 <script>
+import { mapActions, mapMutations } from 'vuex'
 export default {
   props: {
 
@@ -115,34 +120,40 @@ export default {
           name: 't'
         }
       ],
-      temList: [],
+      dragListC: {
+        id: 'dragList0',
+        listKey: 'name'
+      },
+      dialogC: {
+        key: 'dialogC',
+        show: false,
+        cancelFn: 'selectSu',
+        confirmFn: 'selectSu'
+      }
     }
   },
   methods: {
     onDragSortChange(argData) {
       console.log(argData)
       this.temList = argData.data
-      console.log('fuck')
-      console.error(this.temList)
     },
-    dragChange(argData) {
+    async selectShow() {
+      this.dialogC.show = true
+      await this.$f.sleep(50)
+      this.$refs[this.dragListC.id].init()
+    },
+    selectSu(argData) {
+      console.log(argData)
+    },
+    init() {
 
-    },
-    submit() {
-      console.log(this.temList)
-      let temList = this.temList.map(v => {
-        return {
-          ...v
-        }
-      })
-      console.log(temList.sort((a, b) => a.index - b.index))
-    },
-    async init() {
-      console.log('init')
     }
   },
 }
 </script>
 
 <style lang="scss">
+.item {
+  width: 103px;
+}
 </style>

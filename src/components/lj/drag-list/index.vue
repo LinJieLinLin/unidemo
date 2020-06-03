@@ -8,24 +8,21 @@
  list:[]图片数组
  c:{
    id:'ref&id',
-   listName:'list在this下的路径',
-   listKey:'图片对应obj下标',
-   isView:'查看模式',
-   maxlength:'list最大长度',
+   listKey:'list显示名称',
    outSideInit:'是否外部触发init',
    changeFn:'',
  }
  eg:
-<lj-drag :ref="dragC.id"
-      :c="dragC"
+<lj-drag-list :ref="dragListC.id"
+      :c="dragListC"
       :list="list"
       @mixinChange="ComChange">
-    </lj-drag>
+    </lj-drag-list>
 -->
 <template>
   <movable-area class="drag-list"
     :style="{height: currentListLength + 'px'}"
-    id="drag">
+    :id="c.id">
     <view id="dlItem"
       class="drag-list-item hide-v"></view>
     <movable-view v-for="(item, index) in currentList"
@@ -121,7 +118,7 @@ export default {
     touchstart(e) {
       // 计算y轴点击位置
       var query = uni.createSelectorQuery().in(this)
-      query.select('#drag').boundingClientRect()
+      query.select('#' + this.c.id).boundingClientRect()
       query.exec((res) => {
         this.topY = res[0].top
         let touchY = e.mp.touches[0].clientY - res[0].top
@@ -166,31 +163,22 @@ export default {
       if ((this.itemIndex !== this.currentList[this.active].index) && (this.active > -1)) {
         this.$emit('change', {
           // 操作值
-          data: this.currentList,
-          // 插队的位置前面的值
-          frontData: (() => {
-            for (const iterator of this.currentList) {
-              if (this.currentList[this.active].index - 1 === iterator.index) {
-                let data = {
-                  ...iterator
-                }
-                delete data.index
-                delete data.y
-                return data
-              }
-            }
-          })()
+          data: this.currentList
         })
+        if (this.$f.safeData(this.c, 'changeFn')) {
+          this.$emit('mixinChange', {
+            fn: this.c.changeFn,
+            // 操作值
+            data: this.currentList,
+          })
+        }
       }
       this.currentList[this.active].y = this.currentList[this.active].index * this.itemHeight
-      console.error(this.active)
-      console.log(this.currentList)
-      // let temList = this.currentList.sort((a, b) => a.index - b.index)
-      // console.log(temList, this.currentList)
       this.active = -1
     },
     async init() {
       let temRes = await this.GetDom('#dlItem')
+      console.error('drag-list init', temRes)
       this.itemHeight = temRes.height
       this.onUpdateCurrentList()
     }

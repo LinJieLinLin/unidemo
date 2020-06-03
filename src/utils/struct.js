@@ -9,8 +9,8 @@ export const getObj = (argKey, argData = {}) => {
       uniCloud: {
         provider: 'aliyun',
         spaceId: '5bd69b81-b875-4ce7-9b9a-9832134deda8',
-        clientSecret: 'Ac3DqITt8A18CHrdWpZ1XQ=='
-      }
+        clientSecret: 'Ac3DqITt8A18CHrdWpZ1XQ==',
+      },
     },
     dialog: {
       su: {
@@ -22,7 +22,7 @@ export const getObj = (argKey, argData = {}) => {
         content: '',
         cancelText: '',
         confirmText: '',
-        key: 'su'
+        type: 'su',
       },
       err: {
         show: false,
@@ -32,7 +32,7 @@ export const getObj = (argKey, argData = {}) => {
         content: '',
         cancelText: '',
         confirmText: '',
-        key: 'err'
+        type: 'err',
       },
       info: {
         show: false,
@@ -48,7 +48,7 @@ export const getObj = (argKey, argData = {}) => {
         content: '',
         cancelText: '',
         confirmText: '',
-        key: 'info'
+        type: 'info',
       },
       tip: {
         show: false,
@@ -64,9 +64,9 @@ export const getObj = (argKey, argData = {}) => {
         content: '',
         cancelText: '',
         confirmText: '',
-        key: 'tip'
-      }
-    }
+        type: 'tip',
+      },
+    },
   }
   return Object.assign(safeData(obj, argKey, {}), argData)
 }

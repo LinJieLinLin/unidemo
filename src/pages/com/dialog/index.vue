@@ -40,7 +40,7 @@
         <h1>Here might be a page body</h1>
       </template>
       <template v-slot:footer>
-        <h1 @click="DialogChange({key:'dialogC'})">Here might be a page footer</h1>
+        <h1 @click="ComChange({key:'dialogC.show',data:false})">Here might be a page footer</h1>
       </template>
     </lj-dialog>
   </div>
@@ -83,7 +83,7 @@ export default {
   data() {
     return {
       dialogC: {
-        dialogKey: 'dialogC',
+        key: 'dialogC',
         show: false
       }
     }
@@ -98,21 +98,21 @@ export default {
             msg += msg
           }
           this.DialogShow({ msg: msg }, {
-            key: argType,
+            type: argType,
             confirmFn: 'dialogSu',
             cancelFn: 'dialogErr',
             confirmNoHide: true
           })
           break
         default:
-          this.DialogShow({ msg: '信息提示' }, { key: argType })
+          this.DialogShow({ msg: '信息提示' }, { type: argType })
           break
       }
     },
     async dialogSu() {
       this.$f.toast('点了确定3S后关闭')
       await this.$f.sleep(3000)
-      this.DialogChange()
+      this.DialogC.show = false
     },
     dialogErr() {
       this.$f.toast('点了取消')
@@ -124,7 +124,7 @@ export default {
     byStore() {
       this.OpenDialog({
         data: { msg: '信息提示' },
-        options: { key: 'info' }
+        options: { type: 'info' }
       })
     }
   },
