@@ -166,7 +166,6 @@ export default {
       this.y = y - this.inBoxXY.y
 
       this.itemList.map(async (v, k) => {
-        let temRes = await this.GetDom('#item-' + k)
         if (x > v.x && x < v.x + imgSize && y > v.y && y < v.y + imgSize) {
           this.hoverImgIndex = 'item-' + k
         }
