@@ -77,10 +77,12 @@
           "path": "editor/index",
           "style": {
             "style": {
+              // #ifdef APP-PLUS
               "app-plus": {
                 // 控制键盘弹起不上推
                 "softinputMode": "adjustResize"
               }
+              // #endif
             }
           }
         }
@@ -125,6 +127,8 @@
       "desc": "你的位置信息将用于小程序位置展示"
     }
   },
+  // 小程序内搜索
+  "sitemapLocation": "sitemap.json",
   "networkTimeout": {
     "request": 15000,
     "downloadFile": 30000

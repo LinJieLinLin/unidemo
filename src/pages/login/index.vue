@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <button class="login"
+  <div class="page lg-bg flex-center">
+    <button class="login "
       open-type="getUserInfo"
       @getuserinfo="checkUserInfo">
       登录
@@ -42,7 +42,7 @@ export default {
   methods: {
     ...mapMutations(['SetUserInfo']),
     async checkUserInfo(rs) {
-      // console.log(rs)
+      console.log(rs)
       const userInfo = await getUserInfo(rs).catch(err => {
         // console.log('出错啦')
         console.log(err)
@@ -109,21 +109,15 @@ export default {
 
 <style scope lang="scss">
 .login {
-  width: 100vw;
-  height: 100vh;
+  width: 50vw;
+  // height: 100vh;
   padding: 0;
   margin: 0;
-  border-radius: 0;
+  border-radius: 8px;
   border: 0 solid #fff;
   box-sizing: unset;
 }
-.login-bg {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  transform: translate(0, -50%);
-  width: 100vw;
-  height: 1624px;
+.lg-bg {
+  background-color: $theme;
 }
 </style>

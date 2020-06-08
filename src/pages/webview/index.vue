@@ -29,6 +29,7 @@ export default {
   },
   computed: {},
   onLoad(argOption) {
+    console.log(argOption)
     temSrc = argOption.url || ''
     this.init()
   },
