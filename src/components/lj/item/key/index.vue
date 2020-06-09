@@ -6,7 +6,7 @@
 -->
 <template>
   <div class="item-key flex-center pd-lr4 pd-tb4"
-    :class="{ active: item.isSelect }">
+    :class="{ active: item.isSelect,'hide':isSelect&&!item.isSelect }">
     {{ item[itemKey] }}
   </div>
 </template>
@@ -14,6 +14,10 @@
 <script>
 export default {
   props: {
+    'isSelect': {
+      type: Boolean,
+      default: false
+    },
     itemKey: {
       type: String,
       default: 'name'

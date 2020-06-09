@@ -47,12 +47,8 @@ export default {
         url: 'com/multiSelect'
       },
       {
-        name: '---以下未做---',
-        url: 'test'
-      },
-      {
-        name: 'Transition 过渡动画',
-        url: 'transition'
+        name: 'demo',
+        url: 'index'
       },
       ]
     }

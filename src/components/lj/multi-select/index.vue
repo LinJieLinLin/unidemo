@@ -7,6 +7,7 @@
 list: []数组,
 
 /** modalC: {
+key: 'codalC在this下的路径',
 listName: list在this下的路径',
 // 显示隐藏
 show: false,
@@ -18,29 +19,9 @@ hideConfirm: false,
 confirmNoHide: false,
 // 取消按钮点击是否保持弹窗
 cancelNoHide: false,
-list:[],
 cancelText: '取消文字',
 confirmText: '确定文字', }, eg:
 <lj-multi-select :c="dialogC" @change="dialogChange" @cancel="dialogCancel" @confirm="dialogConfirm"></lj-multi-select>
-// 控制弹窗显示隐藏
-dialogChange(argData) {
-this.dialogC.show = argData
-},
-// 点击取消回调
-async dialogCancel() {
-if (this.dialogC.cancelFn) {
-this[this.dialogC.cancelFn]()
-this.dialogC.cancelFn = ''
-}
-},
-// 点击确定回调
-async dialogConfirm() {
-if (this.dialogC.confirmFn) {
-this[this.dialogC.confirmFn]()
-this.dialogC.confirmFn = ''
-}
-},
-*/
 -->
 <template>
   <uni-transition class="multi-select"

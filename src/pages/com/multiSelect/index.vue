@@ -16,7 +16,7 @@
       <div class="flex-row-between flex-wrap">
         <lj-item-key @click.native="keysClick(item)"
           class="mg-t10"
-          v-show="item.isSelect"
+          is-select
           :item="item"
           v-for="(item, index) in list"
           :key="index"></lj-item-key>
@@ -73,9 +73,10 @@ export default {
         { name: '我是一个很长的', isSelect: false }
       ],
       selectC: {
+        key: 'selectC',
         listName: 'list',
         show: false,
-        cancelFn: 'selectSu',
+        cancelFn: null,
         confirmFn: 'selectSu'
       }
     }
@@ -83,6 +84,9 @@ export default {
   methods: {
     selectShow() {
       this.selectC.show = true
+    },
+    keysClick(argData) {
+      console.log(argData)
     },
     selectSu(argData) {
       console.log(argData)
