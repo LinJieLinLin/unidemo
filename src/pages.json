@@ -76,7 +76,6 @@
         {
           "path": "editor/index",
           "style": {
-            "style": {
               // #ifdef APP-PLUS
               "app-plus": {
                 // 控制键盘弹起不上推
@@ -84,7 +83,6 @@
               }
               // #endif
             }
-          }
         }
       ]
     }
