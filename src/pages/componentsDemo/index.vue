@@ -2,8 +2,8 @@
   <view class="uni-container">
     <view class="uni-hello-text">
       <uni-list>
-        <uni-list-item v-for="item in lists"
-          :key="item.url"
+        <uni-list-item v-for="(item,index) in lists"
+          :key="index"
           :title="item.name"
           @click="toComponents(item)" />
         <uni-list-item :disabled="true"
@@ -28,7 +28,7 @@ export default {
       },
       {
         name: 'drag 图片拖拽',
-        url: 'com/drag'
+        url: 'com/dragImg'
       },
       {
         name: '全屏弹窗',

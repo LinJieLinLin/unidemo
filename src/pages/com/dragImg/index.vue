@@ -8,31 +8,31 @@
   <div class="drag pd-lr16">
     <uni-section title="图片为普通数组"
       type="line"></uni-section>
-    <lj-drag class="pd-t20"
+    <lj-drag-img class="pd-t20"
       :c="dragC"
       :list="list"
       :d="list"
       @mixinChange="ComChange">
-    </lj-drag>
+    </lj-drag-img>
     <uni-section title="图片obj数组，slot添加"
       type="line"></uni-section>
-    <lj-drag class="pd-t20"
+    <lj-drag-img class="pd-t20"
       :ref="dragC1.id"
       :c="dragC1"
       :list="listObj"
       @mixinChange="ComChange">
       <template v-slot:add-item>
-        123
+        自定义
       </template>
-    </lj-drag>
+    </lj-drag-img>
     <uni-section title="仅查看"
       type="line"></uni-section>
-    <lj-drag class="pd-t20"
+    <lj-drag-img class="pd-t20"
       :ref="dragC.id"
       :c="dragC2"
       :list="list"
       @mixinChange="ComChange">
-    </lj-drag>
+    </lj-drag-img>
     <button class="mg-t10"
       @click="DialogShow({msg:'调用了弹窗'})">
       提示

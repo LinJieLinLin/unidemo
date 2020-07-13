@@ -161,10 +161,7 @@ export default {
     },
     touchend(e) {
       if ((this.itemIndex !== this.currentList[this.active].index) && (this.active > -1)) {
-        this.$emit('change', {
-          // 操作值
-          data: this.currentList
-        })
+        this.$emit('change', this.currentList)
         if (this.$f.safeData(this.c, 'changeFn')) {
           this.$emit('mixinChange', {
             fn: this.c.changeFn,

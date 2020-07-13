@@ -18,7 +18,7 @@
         <lj-drag-list :ref="dragListC.id"
           :list="list"
           :c="dragListC"
-          @change="onDragSortChange"></lj-drag-list>
+          @mixinChange="ComChange"></lj-drag-list>
       </template>
     </lj-dialog-full>
   </div>
@@ -122,20 +122,20 @@ export default {
       ],
       dragListC: {
         id: 'dragList0',
-        listKey: 'name'
+        listKey: 'name',
+        changeFn: 'onDragSortChange',
       },
       dialogC: {
         key: 'dialogC',
         show: false,
-        cancelFn: 'selectSu',
+        cancelFn: '',
         confirmFn: 'selectSu'
       }
     }
   },
   methods: {
     onDragSortChange(argData) {
-      console.log(argData)
-      this.temList = argData.data
+      this.temList = argData
     },
     async selectShow() {
       this.dialogC.show = true
@@ -143,7 +143,11 @@ export default {
       this.$refs[this.dragListC.id].init()
     },
     selectSu(argData) {
-      console.log(argData)
+      let temArr = []
+      this.temList.map((v, k) => {
+        temArr[v.index] = v
+      })
+      console.log('更新后数据为：', temArr)
     },
     init() {
 

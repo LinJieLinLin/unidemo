@@ -1,4 +1,6 @@
+/* eslint-disable */
 <script>
+import { setStorage } from './utils/microApi'
 export default {
   onError(err) {
     console.log('捕捉错误：', err)
@@ -14,16 +16,27 @@ export default {
     } catch (err) {
       console.error(err)
     }
+    // #ifdef MP-WEIXIN
+    let Verify = require('./verify_mpsdk/main')
+    Verify.init()
+    console.log('fuck', Verify)
     // #endif
-    // 记录首次打开参数
-    uni.setStorage({
-      key: 'openPage',
-      data: argData.path
-    })
-    uni.setStorage({
-      key: 'openQuery',
-      data: JSON.stringify(argData.query || {})
-    })
+    // #endif
+    // 记录首次加载打开参数
+    setStorage('openPage', argData.path)
+    setStorage('openQuery', argData.query)
+    // #ifdef H5
+    if (
+      process.env.NODE_ENV === 'development' ||
+      window.location.host.match('gzgjjtest.gdtengnan.com') ||
+      window.location.port === '8001'
+    ) {
+      var VConsole = require('vconsole')
+      // eslint-disable-next-line no-undef
+      var vConsole = new VConsole()
+      console.log('vconsole开启')
+    }
+    // #endif
   },
   onShow: function () {
     console.log('App Show')

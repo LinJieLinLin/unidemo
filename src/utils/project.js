@@ -4,6 +4,7 @@ import { getRegexp, safeData, isJson, hideInfo, toFixed } from './j'
 import { toast, getStorageSync, setStorage, hideLoading } from './microApi'
 import md5 from 'md5'
 import { enBase64, deBase64 } from './encrypt/crypto'
+
 export const clearParams = (argData = {}) => {
   const isFormData =
     Object.prototype.toString.call(argData) === '[object FormData]'

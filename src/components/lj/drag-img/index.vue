@@ -53,6 +53,7 @@
           @click.stop="deleteImg(index)"></i>
       </movable-view>
       <slot name="add-item">
+        <!--  上传图片 -->
         <div class="drag-item add-item flex-center"
           v-show="list.length < c.maxlength && !c.isView"
           @click.stop="addImg(c.maxlength)">

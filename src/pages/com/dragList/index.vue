@@ -8,6 +8,7 @@
   <div class="drag page flex-column">
     <div class="flex1 of-a">
       <lj-drag-list :list="list"
+        :c="dragListC"
         @change="onDragSortChange"></lj-drag-list>
     </div>
     <div class="flex0 flex-row-around bg-w">
@@ -55,6 +56,10 @@ export default {
   },
   data() {
     return {
+      dragListC: {
+        id: 'dragList0',
+        listKey: 'name'
+      },
       list: [
         {
           name: 'a'
@@ -120,22 +125,14 @@ export default {
   },
   methods: {
     onDragSortChange(argData) {
-      console.log(argData)
-      this.temList = argData.data
-      console.log('fuck')
-      console.error(this.temList)
-    },
-    dragChange(argData) {
-
+      this.temList = argData
     },
     submit() {
-      console.log(this.temList)
-      let temList = this.temList.map(v => {
-        return {
-          ...v
-        }
+      let temArr = []
+      this.temList.map((v, k) => {
+        temArr[v.index] = v
       })
-      console.log(temList.sort((a, b) => a.index - b.index))
+      console.log('更新后数据为：', temArr)
     },
     async init() {
       console.log('init')

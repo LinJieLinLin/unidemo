@@ -18,6 +18,7 @@ const matations = {
   },
   // 倒计时数字
   SetCountNum(state, argData = '') {
+    // console.log(argData)
     state.CountNum = +argData
     setStorage('CountNum', argData)
   },
@@ -27,7 +28,7 @@ const matations = {
     if (nowThis.DialogShow) {
       nowThis.DialogShow(argData.data, argData.options)
     }
-  }
+  },
 }
 
 export default matations

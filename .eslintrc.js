@@ -53,6 +53,7 @@ module.exports = {
     App: true,
     Page: true,
     uni: true,
+    taro: true,
     wx: true,
     getApp: true,
     getPage: true,

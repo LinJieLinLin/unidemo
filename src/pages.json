@@ -16,7 +16,10 @@
     {
       "path": "pages/componentsDemo/index",
       "style": {
-        "navigationBarTitleText": "uni-demo"
+        "navigationBarTitleText": "组件demo",
+        "navigationBarBackgroundColor": "#18905f",
+        // 透明导航栏
+        "transparentTitle": "auto"
       }
     },
     {
@@ -28,7 +31,7 @@
     {
       "path": "pages/webview/index",
       "style": {
-        "navigationBarTitleText": "webviewe"
+        "navigationBarTitleText": "webview"
       }
     },
     {
@@ -58,7 +61,7 @@
           "style": {}
         },
         {
-          "path": "drag/index",
+          "path": "dragImg/index",
           "style": {}
         },
         {
@@ -76,13 +79,13 @@
         {
           "path": "editor/index",
           "style": {
-              // #ifdef APP-PLUS
-              "app-plus": {
-                // 控制键盘弹起不上推
-                "softinputMode": "adjustResize"
-              }
-              // #endif
+            // #ifdef APP-PLUS
+            "app-plus": {
+              // 控制键盘弹起不上推
+              "softinputMode": "adjustResize"
             }
+            // #endif
+          }
         }
       ]
     }
