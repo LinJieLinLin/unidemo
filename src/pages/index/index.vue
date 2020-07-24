@@ -33,6 +33,10 @@
     <view class="pd-lr20">
       <button @click="login">登录</button>
       <button @click="toWebview">打开webview</button>
+      <!-- #ifdef MP-WEIXIN -->
+      <button @click="$f.toPage('testPackage/customer')">腾讯云小微</button>
+      <button @click="$f.toPage('testPackage/kd')">快递查询</button>
+      <!-- #endif -->
       <button @click="$f.toPage('my','','switchTab')">我的</button>
     </view>
     <lj-dialog :c="DialogC"
@@ -50,7 +54,9 @@ export default {
   props: {},
   onLoad(argData) { },
   onShow() { },
-  onReady() { },
+  onReady() {
+    console.error('refs', this.$refs)
+  },
   onUnload() { },
   onShareAppMessage(argData) { },
   async onPullDownRefresh() {
@@ -72,6 +78,13 @@ export default {
     toWebview() {
       this.$f.toPage('webview', { url: ('https://mp.weixin.qq.com/s/pBT383HTpQ-DDrlWL0h_kA') })
     },
+    // #ifdef MP-WEIXIN
+    jumpPlugin(argUrl) {
+      wx.navigateTo({
+        url: argUrl
+      })
+    },
+    // #endif
     async login() {
       this.DialogShow({ msg: 'test' })
     }

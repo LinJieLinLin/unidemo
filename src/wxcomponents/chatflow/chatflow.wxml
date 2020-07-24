@@ -1,0 +1,4 @@
+<!--miniprogram/pages/chatflow/chatflow.wxml-->
+<view style="height: 100vh">
+  这里是小程序组件
+</view>

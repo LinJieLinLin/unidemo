@@ -17,9 +17,11 @@
       "path": "pages/componentsDemo/index",
       "style": {
         "navigationBarTitleText": "组件demo",
-        "navigationBarBackgroundColor": "#18905f",
         // 透明导航栏
-        "transparentTitle": "auto"
+        // #ifndef MP-WEIXIN
+        "transparentTitle": "auto",
+        // #endif
+        "navigationBarBackgroundColor": "#18905f"
       }
     },
     {
@@ -45,6 +47,39 @@
   // 分包
   "subPackages": [
     {
+      // 云小微智能客服接入
+      "root": "pages/testPackage",
+      // #ifdef MP-WEIXIN
+      "plugins": {
+        // 腾讯云小微
+        "myPlugin": {
+          "version": "2.0.10", //此处请使用最新版本
+          "provider": "wxf69f7a93a5cabfa4"
+        }
+      },
+      // #endif
+      "pages": [
+        {
+          "path": "customer/index",
+          "style": {
+            // #ifdef MP-WEIXIN
+            "usingComponents": {
+              "chat-flow": "plugin://myPlugin/ChatFlow",
+              "custom": "/wxcomponents/chatflow/chatflow"
+            },
+            // #endif
+            "navigationBarTitleText": "智能客服"
+          }
+        },
+        {
+          "path": "demo/index",
+          "style": {
+            "navigationBarTitleText": "demo"
+          }
+        }
+      ]
+    },
+    {
       "root": "pages/p1",
       "pages": [
         {
@@ -53,6 +88,7 @@
         }
       ]
     },
+    // 组件分包
     {
       "root": "pages/com",
       "pages": [
@@ -135,8 +171,6 @@
     "downloadFile": 30000
   },
   "debug": false,
-  // 允许跳小程序
-  "navigateToMiniProgramAppIdList": ["wxd1aa15dc25901662"],
   // 全局样式
   "globalStyle": {
     "backgroundTextStyle": "dark",

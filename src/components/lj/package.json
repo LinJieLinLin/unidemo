@@ -1,0 +1,31 @@
+{
+  "name": "lj-components",
+  "version": "0.0.1",
+  "description": "lj uni-app components",
+  "main": "./dialog/index.js",
+  "keywords": [
+    "utils",
+    "uni-app",
+    "vue"
+  ],
+  "author": "linjielinlin",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "test": "npm -v"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/uni-pro/lj-components.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}

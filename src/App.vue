@@ -16,11 +16,6 @@ export default {
     } catch (err) {
       console.error(err)
     }
-    // #ifdef MP-WEIXIN
-    let Verify = require('./verify_mpsdk/main')
-    Verify.init()
-    console.log('fuck', Verify)
-    // #endif
     // #endif
     // 记录首次加载打开参数
     setStorage('openPage', argData.path)

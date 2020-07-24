@@ -82,7 +82,11 @@
     "setting": {
       "urlCheck": false
     },
-    "usingComponents": true
+    "usingComponents": true,
+    // 需要在后台使用的能力，如「音乐播放」
+    "requiredBackgroundModes": ["audio"]
+    // 跳其它小程序页面 已弃用
+    // "navigateToMiniProgramAppIdList": ["wxb1070eabc6f9107e"]
   },
   "mp-alipay": {
     "usingComponents": true
