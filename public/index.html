@@ -7,7 +7,7 @@
       <%= htmlWebpackPlugin.options.title %>
     </title>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function () {
         document.documentElement.style.fontSize =
           document.documentElement.clientWidth / 20 + 'px'
       })
@@ -21,7 +21,15 @@
           '" />'
       )
     </script>
-    <link rel="stylesheet" href="<%= BASE_URL %>static/index.css" />
+    <!-- import cdn css -->
+    <% if(htmlWebpackPlugin.options.cdn) {%> <% for(var css of
+    htmlWebpackPlugin.options.cdn.css) { %>
+    <link rel="stylesheet" href="<%=css%>" />
+    <% } %> <% } %>
+    <link
+      rel="stylesheet"
+      href="<%= htmlWebpackPlugin.options.baseUrl %>static/index.css"
+    />
   </head>
 
   <body>
@@ -29,6 +37,11 @@
       <strong>Please enable JavaScript to continue.</strong>
     </noscript>
     <div id="app"></div>
+    <!-- 使用 CDN 的 JS 文件 -->
+    <% for (var i in htmlWebpackPlugin.options.cdn &&
+    htmlWebpackPlugin.options.cdn.js) { %>
+    <script src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"></script>
+    <% } %>
     <!-- built files will be auto injected -->
   </body>
 </html>

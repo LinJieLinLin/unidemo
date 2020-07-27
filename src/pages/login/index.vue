@@ -22,23 +22,6 @@ export default {
   computed: {
     ...mapState(['UserInfo'])
   },
-  onShareAppMessage(argData) {
-    if (argData.from === 'button') {
-      // 来自页面内转发按钮
-      // console.log(argData.target)
-    }
-    if (argData.from === 'menu') {
-      // 来自右上角转发按钮
-      // console.log(argData.target)
-    }
-    let params = this.$f.getCurrentPage().options
-    return {
-      title: '南山文体通，提升公共文体惠民服务，打造文体惠民活动盛宴',
-      imageUrl:
-        'https://sznswtt.gdtengnan.com/uploads/program/custom/share.png',
-      path: 'pages/index/main?isShare=1'
-    }
-  },
   methods: {
     ...mapMutations(['SetUserInfo']),
     async checkUserInfo(rs) {
@@ -56,38 +39,34 @@ export default {
       }
       console.log(userInfo)
       if (userInfo.iv) {
-        saveUserinfo(data)
-          .then(res => {
-            login(1)
-            if (!res) {
-              return
-            }
-            this.SetUserInfo(userInfo.userInfo)
-            this.SetUserInfo(res.wechatinfo)
-            let temPath = (wx.getStorageSync('openPage') || '')
-              .replace('pages/', '')
-              .replace('/main', '')
-            let temQuery = JSON.parse(wx.getStorageSync('openQuery') || '{}')
-            wx.setStorage({
-              key: 'openPage',
-              data: ''
-            })
-            wx.setStorage({
-              key: 'openQuery',
-              data: '{}'
-            })
-            console.log('参数', temPath, temQuery)
-            if (temPath && temPath !== 'index') {
-              console.log('跳转path:', temPath)
-              this.$f.toPage(temPath, temQuery, 'reLaunch')
-            } else {
-              this.$f.toPage('index', temQuery)
-            }
-          })
-          .catch(err => {
-            console.log('登录失败:', err)
-            login(1)
-          })
+        let res = await saveUserinfo(data).catch(err => {
+          console.log('登录失败:', err)
+        })
+        login(1)
+        if (!res) {
+          return
+        }
+        this.SetUserInfo(userInfo.userInfo)
+        this.SetUserInfo(res.wechatinfo)
+        let temPath = (wx.getStorageSync('openPage') || '')
+          .replace('pages/', '')
+          .replace('/main', '')
+        let temQuery = JSON.parse(wx.getStorageSync('openQuery') || '{}')
+        wx.setStorage({
+          key: 'openPage',
+          data: ''
+        })
+        wx.setStorage({
+          key: 'openQuery',
+          data: '{}'
+        })
+        console.log('参数', temPath, temQuery)
+        if (temPath && temPath !== 'index') {
+          console.log('跳转path:', temPath)
+          this.$f.toPage(temPath, temQuery, 'reLaunch')
+        } else {
+          this.$f.toPage('index', temQuery)
+        }
       } else {
         // this.$f.toast('获取不到用户信息，请删除小程序重试！')
         wx.clearStorageSync()
@@ -97,6 +76,17 @@ export default {
   },
   mounted() {
     // 挂载
+  },
+  onLoad() {
+    // #ifdef MP
+    uni.showShareMenu({
+      withShareTicket: true,
+      title: '自定义转发标题1',
+      query: 'a=1&b=2',
+      imageUrl: '',
+      menus: ['shareAppMessage', 'shareTimeline']
+    })
+    // #endif
   },
   onShow() {
     // 活动时

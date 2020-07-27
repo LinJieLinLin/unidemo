@@ -6,7 +6,8 @@ import actions from './actions'
 import mutations from './mutations'
 import createPersistedState from 'vuex-persistedstate'
 import { getObj } from '../utils/struct'
-import { decode, encode } from '../utils/encrypt/crypto'
+// import { decode, encode } from '../utils/encrypt/crypto'
+import { decode, encode } from '../utils/encrypt/base64'
 import { isJson } from '../utils/j'
 
 const appConfig = getObj('config') || {}

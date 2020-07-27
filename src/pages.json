@@ -18,7 +18,7 @@
       "style": {
         "navigationBarTitleText": "组件demo",
         // 透明导航栏
-        // #ifndef MP-WEIXIN
+        // #ifdef MP-ALIPAY || APP-PLUS || H5
         "transparentTitle": "auto",
         // #endif
         "navigationBarBackgroundColor": "#18905f"

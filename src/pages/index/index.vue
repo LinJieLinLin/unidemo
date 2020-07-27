@@ -35,7 +35,6 @@
       <button @click="toWebview">打开webview</button>
       <!-- #ifdef MP-WEIXIN -->
       <button @click="$f.toPage('testPackage/customer')">腾讯云小微</button>
-      <button @click="$f.toPage('testPackage/kd')">快递查询</button>
       <!-- #endif -->
       <button @click="$f.toPage('my','','switchTab')">我的</button>
     </view>
@@ -45,20 +44,21 @@
 </template>
 
 <script>
-import { login } from '../../utils/microApi'
+import { login, setStorage } from '../../utils/microApi'
 import { wxLogin } from '../../api/common'
 import { getObj } from '../../utils/struct'
+import { getStorageSync } from '../../store'
 export default {
   components: {
   },
   props: {},
-  onLoad(argData) { },
+  onLoad(argData) {
+    this.init()
+  },
   onShow() { },
   onReady() {
-    console.error('refs', this.$refs)
   },
   onUnload() { },
-  onShareAppMessage(argData) { },
   async onPullDownRefresh() {
     // console.log('下拉')
     uni.stopPullDownRefresh()
@@ -87,6 +87,9 @@ export default {
     // #endif
     async login() {
       this.DialogShow({ msg: 'test' })
+    },
+    init() {
+      console.log('init')
     }
   }
 }

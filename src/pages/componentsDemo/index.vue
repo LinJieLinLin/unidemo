@@ -1,6 +1,6 @@
 <template>
   <view class="uni-container">
-    <view class="uni-hello-text">
+    <view class="uni-hello-text mg-t50">
       <uni-list>
         <uni-list-item v-for="(item,index) in lists"
           :key="index"
