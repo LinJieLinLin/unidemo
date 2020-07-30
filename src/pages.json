@@ -113,6 +113,10 @@
           "style": {}
         },
         {
+          "path": "svgIcon/index",
+          "style": {}
+        },
+        {
           "path": "editor/index",
           "style": {
             // #ifdef APP-PLUS

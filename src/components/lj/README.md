@@ -40,6 +40,7 @@ utils
 
 ```
 # 发包前先修改version
+npm version patch
 npm login
 npm publish
 ```

@@ -48,13 +48,11 @@ import { login, setStorage } from '../../utils/microApi'
 import { wxLogin } from '../../api/common'
 import { getObj } from '../../utils/struct'
 import { getStorageSync } from '../../store'
+import { loadFile, sleep } from '../../utils/j'
 export default {
   components: {
   },
   props: {},
-  onLoad(argData) {
-    this.init()
-  },
   onShow() { },
   onReady() {
   },
@@ -88,8 +86,8 @@ export default {
     async login() {
       this.DialogShow({ msg: 'test' })
     },
-    init() {
-      console.log('init')
+    async init() {
+      console.warn('我是debug')
     }
   }
 }

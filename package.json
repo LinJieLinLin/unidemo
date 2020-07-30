@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint",
     "build:app-plus": "cross-env NODE_ENV=production UNI_PLATFORM=app-plus vue-cli-service uni-build",
     "build:h5": "cross-env NODE_ENV=production UNI_PLATFORM=h5 vue-cli-service uni-build",
+    "analyz": "cross-env NODE_ENV=production UNI_PLATFORM=h5 IS_ANALYZ=1 vue-cli-service uni-build",
     "build:mp-alipay": "cross-env NODE_ENV=production UNI_PLATFORM=mp-alipay vue-cli-service uni-build",
     "build:mp-baidu": "cross-env NODE_ENV=production UNI_PLATFORM=mp-baidu vue-cli-service uni-build",
     "build:mp-qq": "cross-env NODE_ENV=production UNI_PLATFORM=mp-qq vue-cli-service uni-build",
@@ -23,6 +24,9 @@
     "dev:mp-weixin": "cross-env NODE_ENV=development UNI_PLATFORM=mp-weixin vue-cli-service uni-build --watch",
     "api": "node build-api.js",
     "bz": "Bandizip c -fmt:tgz ./dist/build/h5.%date:~0,4%-%date:~5,2%-%date:~8,2%.tar.gz ./dist/build/h5",
+    "z": "echo '小改动' &&npm version patch",
+    "y": "echo '特性更新' &&npm version minor",
+    "x": "echo '大改动' &&npm version major",
     "info": "node node_modules/@dcloudio/vue-cli-plugin-uni/commands/info.js"
   },
   "dependencies": {
@@ -39,6 +43,7 @@
     "crypto-js": "^4.0.0",
     "dayjs": "^1.8.14",
     "flyio": "^0.6.2",
+    "icon-rchy": "^1.0.0",
     "js-base64": "^3.3.1",
     "md5": "^2.2.1",
     "secure-ls": "^1.2.6",
@@ -84,6 +89,7 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "sass-loader": "^8.0.2",
+    "terser-webpack-plugin": "^3.0.8",
     "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.10",
     "vuex-persistedstate": "^3.0.1",

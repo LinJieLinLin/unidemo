@@ -8,6 +8,7 @@ export default {
   },
   onLaunch(argData) {
     console.log('onLaunch', process.env)
+    console.log('params:', argData)
     // #ifdef  MP-WEIXIN
     try {
       wx.cloud.init({
@@ -33,10 +34,11 @@ export default {
     }
     // #endif
   },
-  onShow: function () {
-    console.log('App Show')
+  // 只有app.vue的onshow有参数
+  onShow(argData) {
+    console.log('App Show params:', argData)
   },
-  onHide: function () {
+  onHide() {
     console.log('App Hide')
   }
 }
@@ -45,7 +47,14 @@ export default {
 <style lang="scss">
 @import './scss/settings';
 @import './scss/base';
-// icon处理
+// iconf
+page,
+body {
+  .i {
+    font-size: inherit;
+  }
+}
+// icon处理 大于10K图标放static/icon下或在css中引入
 .i-del {
   @include iIcon(i-del, 20);
 }

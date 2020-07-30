@@ -1,3 +1,6 @@
+// 根目录改变需要修改baseUrl，默认/
+$baseUrl: '/';
+$static: $baseUrl + 'static';
 // 颜色
 $theme: #18905f;
 $link: #0000ff;

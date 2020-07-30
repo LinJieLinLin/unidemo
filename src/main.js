@@ -14,7 +14,7 @@ import {
   toast,
 } from './utils/microApi'
 import { request, response } from './utils/project'
-import { safeData, hideInfo, getRegexp, sleep } from './utils/j'
+import { safeData, hideInfo, getRegexp, sleep, loadFile } from './utils/j'
 import comMixin from './utils/mixins/common'
 import Throttle from './utils/class/Throttle'
 import Debounce from './utils/class/Debounce'
@@ -23,6 +23,10 @@ import dialogMixin from './components/lj/dialog/mixin'
 const throttle = new Throttle()
 const debounce = new Debounce()
 Vue.config.productionTip = false
+// #ifndef H5
+// 非H5使用css引入
+require('icon-rchy/iconfont.css')
+// #endif
 //  vuex
 Vue.prototype.$store = store
 Vue.prototype.$f = {
@@ -53,6 +57,10 @@ Vue.prototype.$f = {
 App.mpType = 'app'
 // 设置请求拦截
 setRequest(request, response)
+// h5加载图标
+// #ifdef H5
+loadFile('https://at.alicdn.com/t/font_717995_m4x3tvsl73.js')
+// #endif
 // 加载mixins
 Vue.mixin(comMixin.mixin)
 Vue.mixin(dialogMixin)

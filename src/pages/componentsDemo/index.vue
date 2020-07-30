@@ -47,6 +47,10 @@ export default {
         url: 'com/multiSelect'
       },
       {
+        name: 'svg-icon',
+        url: 'com/svgIcon'
+      },
+      {
         name: 'demo',
         url: 'index'
       },

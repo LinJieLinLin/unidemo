@@ -1,33 +1,60 @@
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 const path = require('path')
+const TerserPlugin = require('terser-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const cdnConfig = require('./cdnConfig')
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
-let isCdn = true
-let cdnConfig = {
-  // cdn：模块名称和模块作用域命名（对应window里面挂载的变量名称）
-  externals: {
-    'crypto-js': 'CryptoJS',
-  },
-  // cdn的css链接
-  css: ['https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.css'],
-  // cdn的js链接
-  js: ['https://cdn.bootcdn.net/ajax/libs/crypto-js/4.0.0/crypto-js.min.js'],
-}
+
 var publicPath = '/'
-console.log('当前环境', process.env.UNI_PLATFORM)
-// 只有H5时使用cdn
-if (
-  !isCdn ||
-  (process.env.UNI_PLATFORM && !process.env.UNI_PLATFORM.match('h5'))
-) {
-  cdnConfig = {
-    externals: {},
-    css: [],
-    js: [],
-  }
+let plugins = [
+  // 模板处理
+  new HtmlWebpackPlugin({
+    title: '',
+    template: resolve('public/index.html'),
+    cdn: cdnConfig,
+    baseUrl: publicPath,
+    minify: {
+      // 压缩 HTML 中出现的 CSS 代码
+      minifyCSS: true,
+      // 压缩 HTML 中出现的 JS 代码
+      minifyJS: true,
+      // 删除双引号
+      removeAttributeQuotes: false,
+    },
+  }),
+  // 复制文件到根目录
+  // new CopyWebpackPlugin([
+  //   {
+  //     from: './public/iconfont.js',
+  //     to: './iconfont.js'
+  //   }
+  // ])
+]
+if (process.env.NODE_ENV === 'production') {
+  plugins.push(
+    // 去除console
+    new TerserPlugin({
+      sourceMap: true,
+      cache: true,
+      parallel: true,
+      terserOptions: {
+        output: {
+          comments: false,
+        },
+        warnings: false,
+        compress: {
+          drop_debugger: true,
+          drop_console: false,
+        },
+      },
+    })
+  )
 }
+
+// console.log(cdnConfig)
 module.exports = {
   // index.html生成名称
   // indexPath: 'test.html',
@@ -61,32 +88,28 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        '@static': path.join(__dirname, 'static'),
-        '@assets': path.join(__dirname, 'assets'),
-        '@utils': path.join(__dirname, 'utils'),
-        '@store': path.join(__dirname, 'store'),
+        '@static': path.join(__dirname, 'src/static'),
+        '@assets': path.join(__dirname, 'src/assets'),
+        '@utils': path.join(__dirname, 'src/utils'),
+        '@store': path.join(__dirname, 'src/store'),
       },
     },
     // 要忽略打包的文件
     externals: cdnConfig.externals,
-    plugins: [
-      // 模板处理
-      new HtmlWebpackPlugin({
-        title: '',
-        template: resolve('public/index.html'),
-        cdn: cdnConfig,
-        baseUrl: publicPath,
-      }),
-      // 复制文件到根目录
-      // new CopyWebpackPlugin([
-      //   {
-      //     from: './public/iconfont.js',
-      //     to: './iconfont.js'
-      //   }
-      // ])
-    ],
+    plugins: plugins,
   },
-  chainWebpack: (config) => {},
+  chainWebpack: (config) => {
+    // 打包分析
+    if (process.env.IS_ANALYZ) {
+      const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+        .BundleAnalyzerPlugin
+      config.plugin('webpack-report').use(BundleAnalyzerPlugin, [
+        {
+          analyzerMode: 'static',
+        },
+      ])
+    }
+  },
   css: {
     loaderOptions: {
       sass: {

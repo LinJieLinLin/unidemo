@@ -44,6 +44,9 @@ export default {
       // res = await wxLogin({ code: res.code })
       // console.log(res)
       // #endif
+    },
+    init() {
+      console.log('init hello')
     }
   }
 }
