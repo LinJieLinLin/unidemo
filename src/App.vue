@@ -53,6 +53,13 @@ body {
   .i {
     font-size: inherit;
   }
+  /* #ifdef APP-PLUS */
+  .uni-list {
+    .uni-list-item__container {
+      border-top-width: 0;
+    }
+  }
+  /* #endif */
 }
 // icon处理 大于10K图标放static/icon下或在css中引入
 .i-del {

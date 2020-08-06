@@ -23,10 +23,6 @@ import dialogMixin from './components/lj/dialog/mixin'
 const throttle = new Throttle()
 const debounce = new Debounce()
 Vue.config.productionTip = false
-// #ifndef H5
-// 非H5使用css引入
-require('icon-rchy/iconfont.css')
-// #endif
 //  vuex
 Vue.prototype.$store = store
 Vue.prototype.$f = {

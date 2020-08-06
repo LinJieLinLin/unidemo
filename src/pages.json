@@ -52,9 +52,9 @@
       // #ifdef MP-WEIXIN
       "plugins": {
         // 腾讯云小微
-        "myPlugin": {
-          "version": "2.0.10", //此处请使用最新版本
-          "provider": "wxf69f7a93a5cabfa4"
+        "customer-service": {
+          "version": "1.1.0", //此处请使用最新版本
+          "provider": "wx7b9e5f4b4fcbc9b5"
         }
       },
       // #endif
@@ -64,8 +64,8 @@
           "style": {
             // #ifdef MP-WEIXIN
             "usingComponents": {
-              "chat-flow": "plugin://myPlugin/ChatFlow",
-              "custom": "/wxcomponents/chatflow/chatflow"
+              "chat-flow": "plugin://customer-service/ChatFlow"
+              // "custom": "/wxcomponents/chatflow/chatflow"
             },
             // #endif
             "navigationBarTitleText": "智能客服"

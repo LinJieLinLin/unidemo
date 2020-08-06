@@ -209,9 +209,10 @@ export default {
     },
     async addImg() {
       // todo
-      this.list.push('/static/img/1.jpg')
       let res = await uploadImgs()
-      console.error(res)
+      res.map(v => {
+        this.list.push(v.tempFilePath)
+      })
       // this.$emit('mixinChange', { key: this.c.listName, data: this.list })
     },
     deleteImg(argIndex) {

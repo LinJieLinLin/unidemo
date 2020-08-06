@@ -28,11 +28,7 @@ export default {
     i: {
       type: String,
       required: true
-    },
-    // c: {
-    //   type: String,
-    //   required: false
-    // },
+    }
   },
   computed: {
   }
@@ -40,6 +36,9 @@ export default {
 </script>
 
 <style>
+/* #ifndef H5 */
+@import './iconfont.css';
+/* #endif */
 .lj-icon {
   width: 1em;
   height: 1em;
