@@ -8,7 +8,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-var publicPath = '/'
+var publicPath = '/unidemo/'
 let plugins = [
   // 模板处理
   new HtmlWebpackPlugin({
@@ -56,9 +56,6 @@ if (process.env.NODE_ENV === 'production') {
 
 // console.log(cdnConfig)
 module.exports = {
-  // index.html生成名称
-  // indexPath: 'test.html',
-  // sass-loader配置
   // 基本路径
   publicPath: publicPath,
   // 输出文件目录

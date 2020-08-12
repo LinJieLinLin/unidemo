@@ -1,160 +1,160 @@
 {
-    "name" : "uni-demo",
-    "appid" : "__UNI__76A1BCF",
-    "description" : "",
-    "versionName" : "1.0.0",
-    "versionCode" : "100",
-    "transformPx" : false,
-    "app-plus" : {
-        /* 5+App特有相关 */
-        "compilerVersion" : 3,
-        "nvueLaunchMode" : "fast",
-        "uniStatistics" : {
-            "enable" : true
+  "name": "uni-demo",
+  "appid": "__UNI__76A1BCF",
+  "description": "",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "app-plus": {
+    /* 5+App特有相关 */
+    "compilerVersion": 3,
+    "nvueLaunchMode": "fast",
+    "uniStatistics": {
+      "enable": true
+    },
+    "compatible": {
+      /* 忽略不同版本弹窗 */
+      "ignoreVersion": false
+    },
+    "splashscreen": {
+      "alwaysShowBeforeRender": true,
+      "waiting": true,
+      "autoclose": true,
+      "delay": 0
+    },
+    "modules": {},
+    /* 模块配置 */
+    "distribute": {
+      /* 应用发布信息 */
+      "android": {
+        /* android打包配置 */
+        "permissions": [
+          "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+          "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+          "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+          "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+          "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+          "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+          "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+          "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+          "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+          "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+          "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+          "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+          "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+          "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+          "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+          "<uses-feature android:name=\"android.hardware.camera\"/>",
+          "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+          "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+        ],
+        "abiFilters": ["armeabi-v7a", "arm64-v8a"]
+      },
+      "ios": {
+        "idfa": false
+      },
+      /* ios打包配置 */
+      "sdkConfigs": {
+        "ad": {}
+      },
+      "icons": {
+        "android": {
+          "hdpi": "unpackage/res/icons/72x72.png",
+          "xhdpi": "unpackage/res/icons/96x96.png",
+          "xxhdpi": "unpackage/res/icons/144x144.png",
+          "xxxhdpi": "unpackage/res/icons/192x192.png"
         },
-        "compatible" : {
-            /* 忽略不同版本弹窗 */
-            "ignoreVersion" : false
-        },
-        "splashscreen" : {
-            "alwaysShowBeforeRender" : true,
-            "waiting" : true,
-            "autoclose" : true,
-            "delay" : 0
-        },
-        "modules" : {},
-        /* 模块配置 */
-        "distribute" : {
-            /* 应用发布信息 */
-            "android" : {
-                /* android打包配置 */
-                "permissions" : [
-                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
-                    "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
-                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
-                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
-                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
-                    "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
-                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
-                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
-                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
-                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
-                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
-                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
-                    "<uses-feature android:name=\"android.hardware.camera\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
-                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
-                ],
-                "abiFilters" : [ "armeabi-v7a", "arm64-v8a" ]
-            },
-            "ios" : {
-                "idfa" : false
-            },
-            /* ios打包配置 */
-            "sdkConfigs" : {
-                "ad" : {}
-            },
-            "icons" : {
-                "android" : {
-                    "hdpi" : "unpackage/res/icons/72x72.png",
-                    "xhdpi" : "unpackage/res/icons/96x96.png",
-                    "xxhdpi" : "unpackage/res/icons/144x144.png",
-                    "xxxhdpi" : "unpackage/res/icons/192x192.png"
-                },
-                "ios" : {
-                    "appstore" : "unpackage/res/icons/1024x1024.png",
-                    "ipad" : {
-                        "app" : "unpackage/res/icons/76x76.png",
-                        "app@2x" : "unpackage/res/icons/152x152.png",
-                        "notification" : "unpackage/res/icons/20x20.png",
-                        "notification@2x" : "unpackage/res/icons/40x40.png",
-                        "proapp@2x" : "unpackage/res/icons/167x167.png",
-                        "settings" : "unpackage/res/icons/29x29.png",
-                        "settings@2x" : "unpackage/res/icons/58x58.png",
-                        "spotlight" : "unpackage/res/icons/40x40.png",
-                        "spotlight@2x" : "unpackage/res/icons/80x80.png"
-                    },
-                    "iphone" : {
-                        "app@2x" : "unpackage/res/icons/120x120.png",
-                        "app@3x" : "unpackage/res/icons/180x180.png",
-                        "notification@2x" : "unpackage/res/icons/40x40.png",
-                        "notification@3x" : "unpackage/res/icons/60x60.png",
-                        "settings@2x" : "unpackage/res/icons/58x58.png",
-                        "settings@3x" : "unpackage/res/icons/87x87.png",
-                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
-                        "spotlight@3x" : "unpackage/res/icons/120x120.png"
-                    }
-                }
-            }
-        },
-        "nativePlugins" : {}
-    },
-    /* SDK配置 */
-    "quickapp" : {},
-    /* 快应用特有相关 */
-    "h5" : {
-        "publicPath" : "/",
-        "router" : {
-            "mode" : "hash",
-            "base" : "/"
-        },
-        "uniStatistics" : {
-            "enable" : true
+        "ios": {
+          "appstore": "unpackage/res/icons/1024x1024.png",
+          "ipad": {
+            "app": "unpackage/res/icons/76x76.png",
+            "app@2x": "unpackage/res/icons/152x152.png",
+            "notification": "unpackage/res/icons/20x20.png",
+            "notification@2x": "unpackage/res/icons/40x40.png",
+            "proapp@2x": "unpackage/res/icons/167x167.png",
+            "settings": "unpackage/res/icons/29x29.png",
+            "settings@2x": "unpackage/res/icons/58x58.png",
+            "spotlight": "unpackage/res/icons/40x40.png",
+            "spotlight@2x": "unpackage/res/icons/80x80.png"
+          },
+          "iphone": {
+            "app@2x": "unpackage/res/icons/120x120.png",
+            "app@3x": "unpackage/res/icons/180x180.png",
+            "notification@2x": "unpackage/res/icons/40x40.png",
+            "notification@3x": "unpackage/res/icons/60x60.png",
+            "settings@2x": "unpackage/res/icons/58x58.png",
+            "settings@3x": "unpackage/res/icons/87x87.png",
+            "spotlight@2x": "unpackage/res/icons/80x80.png",
+            "spotlight@3x": "unpackage/res/icons/120x120.png"
+          }
         }
+      }
     },
-    // "optimization": {
-    //   "preload": true,
-    //   "treeShaking": {
-    //     "enable": false
-    //   }
-    // }
-    "mp-weixin" : {
-        /* 微信小程序特有相关 */
-        "appid" : "wx33995fbd9bce3af7",
-        "setting" : {
-            "urlCheck" : false
-        },
-        "usingComponents" : true,
-        // 需要在后台使用的能力，如「音乐播放」
-        "requiredBackgroundModes" : [ "audio" ],
-        "uniStatistics" : {
-            "enable" : true
-        }
+    "nativePlugins": {}
+  },
+  /* SDK配置 */
+  "quickapp": {},
+  /* 快应用特有相关 */
+  "h5": {
+    "publicPath": "/unidemo/",
+    "router": {
+      "mode": "hash",
+      "base": "/unidemo/"
     },
-    // 跳其它小程序页面 已弃用
-    // "navigateToMiniProgramAppIdList": ["wxb1070eabc6f9107e"]
-    "mp-alipay" : {
-        "usingComponents" : true,
-        "uniStatistics" : {
-            "enable" : true
-        }
-    },
-    "mp-baidu" : {
-        "usingComponents" : true,
-        "uniStatistics" : {
-            "enable" : true
-        }
-    },
-    "mp-toutiao" : {
-        "usingComponents" : true,
-        "uniStatistics" : {
-            "enable" : true
-        }
-    },
-    "mp-qq" : {
-        "usingComponents" : true,
-        "uniStatistics" : {
-            "enable" : true
-        }
-    },
-    "uniStatistics" : {
-        "enable" : true
+    "uniStatistics": {
+      "enable": true
     }
+  },
+  // "optimization": {
+  //   "preload": true,
+  //   "treeShaking": {
+  //     "enable": false
+  //   }
+  // }
+  "mp-weixin": {
+    /* 微信小程序特有相关 */
+    "appid": "wxe9325fc086c92cc5",
+    "setting": {
+      "urlCheck": false
+    },
+    "usingComponents": true,
+    // 需要在后台使用的能力，如「音乐播放」
+    "requiredBackgroundModes": ["audio"],
+    "uniStatistics": {
+      "enable": true
+    }
+  },
+  // 跳其它小程序页面 已弃用
+  // "navigateToMiniProgramAppIdList": ["wxb1070eabc6f9107e"]
+  "mp-alipay": {
+    "usingComponents": true,
+    "uniStatistics": {
+      "enable": true
+    }
+  },
+  "mp-baidu": {
+    "usingComponents": true,
+    "uniStatistics": {
+      "enable": true
+    }
+  },
+  "mp-toutiao": {
+    "usingComponents": true,
+    "uniStatistics": {
+      "enable": true
+    }
+  },
+  "mp-qq": {
+    "usingComponents": true,
+    "uniStatistics": {
+      "enable": true
+    }
+  },
+  "uniStatistics": {
+    "enable": true
+  }
 }

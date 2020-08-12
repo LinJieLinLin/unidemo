@@ -29,7 +29,6 @@ export default {
   },
   computed: {},
   onLoad(argOption) {
-    // console.log(argOption)
     temSrc = decodeURIComponent(argOption.url) || ''
     this.init()
   },
