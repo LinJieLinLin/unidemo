@@ -4,7 +4,314 @@ import { getRegexp, safeData, isJson, hideInfo, toFixed } from './j'
 import { toast, getStorageSync, setStorage, hideLoading } from './microApi'
 import md5 from 'md5'
 import { enBase64, deBase64 } from './encrypt/base64'
+/**
+ * 数据变更时
+ * @date 2019-10-16
+ * @param {any} argItem 要编辑的item
+ * @param {any} argData 获取到的值 item
+ * @returns {any} argItem 返回处理完的obj
+ */
+export const checkInput = (argItem, argData) => {
+  try {
+    if (typeof argData.value === 'string' && argItem.type !== 'textarea') {
+      argData.value = argData.value.trim()
+    }
+    // 默认赋值
+    argItem.value = argData.value
+    argItem.showValue = argData.value
 
+    // 根据类型做处理
+    switch (argItem.type) {
+      // case 'phoneCode':
+      //   break
+      // case 'date':
+      //   break
+      // case 'selector':
+      //   break
+      // case 'multiSelector':
+      //   break
+      case 'digit':
+        if (!argItem.value) {
+          if (argItem.require) {
+            argItem.isFail = true
+          }
+          argItem.isFail = false
+          break
+        }
+        argItem.value = +argItem.value
+        argItem.showValue = +argItem.value + ''
+        // 判断最小值
+        if (argItem.min >= 0 && +argItem.value < argItem.min) {
+          toast(argItem.name + '最小值为：' + argItem.min)
+          argItem.value = argItem.min
+          argItem.showValue = argItem.min + ''
+        }
+        // 判断最大值
+        if (argItem.max && +argItem.value > argItem.max) {
+          toast(argItem.name + '最大值为：' + argItem.max)
+          argItem.value = argItem.max
+          argItem.showValue = argItem.max + ''
+        }
+        // 判断保留位数
+        let temDotData = argItem.showValue.split('.')
+        if (temDotData.length > 1) {
+          let temLen = argItem.fixed
+          if (temLen < temDotData[1].length) {
+            toast('最多保留' + temLen + '位小数')
+            argItem.value = toFixed(argItem.value)
+            argItem.showValue = argItem.value
+          }
+        }
+        break
+      case 'number':
+        if (!argItem.value) {
+          if (argItem.require) {
+            argItem.isFail = true
+          }
+          argItem.isFail = false
+          break
+        }
+        argItem.value = +argItem.value
+        argItem.showValue = +argItem.value + ''
+        // 判断最小值
+        if (
+          (argItem.min || argItem.min === 0) &&
+          +argItem.value < argItem.min
+        ) {
+          argItem.min = argItem.min || 0
+          toast(argItem.name + '最小值为：' + argItem.min)
+          argItem.value = argItem.min
+          argItem.showValue = argItem.min + ''
+        }
+        // 判断最大值
+        if (
+          (argItem.max || argItem.max === 0) &&
+          +argItem.value > argItem.max
+        ) {
+          toast(argItem.name + '最大值为：' + argItem.max)
+          argItem.value = argItem.max
+          argItem.showValue = argItem.value + ''
+        }
+        break
+      case 'password':
+        if (!argItem.value) {
+          if (argItem.require) {
+            argItem.isFail = true
+          }
+          argItem.isFail = false
+          break
+        }
+        if (argItem.value) {
+          let isNumber = regRule.number.test(argItem.value)
+          if (!isNumber) {
+            argItem.value = ''
+            argItem.showValue = ''
+            argItem.isFail = true
+            toast('请输入6位数字组合')
+          } else {
+            argItem.isFail = false
+          }
+        }
+        break
+      case 'idcard':
+        if (!argItem.value) {
+          if (argItem.require) {
+            argItem.isFail = true
+          }
+          argItem.isFail = false
+          break
+        }
+        argItem.value = argItem.value.toUpperCase()
+        argItem.showValue = argItem.value.toUpperCase()
+        break
+      case 'text':
+        if (!argItem.value) {
+          if (argItem.require) {
+            argItem.isFail = true
+          }
+          argItem.isFail = false
+        }
+        break
+      case 'textarea':
+        break
+      case 'phoneCode':
+        if (
+          argItem.value &&
+          argItem.value ===
+            hideInfo(safeData(getStorageSync('UserInfo'), 'sjhm', ''), 3, 4)
+        ) {
+          argItem.showValue = safeData(getStorageSync('UserInfo'), 'sjhm', '')
+        }
+        argItem.isFail = !regRule.phone.test(argItem.showValue)
+        break
+      case 'imgCode':
+        argItem.isFail = argItem.value && argItem.value.length < 4
+        break
+
+      // 证件号码处理 数字+字母 30位以内，具体读取maxlength字段
+      case 'zjhm':
+        if (argItem.value.length) {
+          argItem.showValue = argItem.value
+          argItem.isFail = !regRule.zjhm.test(argItem.showValue)
+        }
+        break
+      case 'select':
+        break
+      case 'switch':
+        break
+      case 'dateRange':
+        // 处理年
+        if (argItem.value && argItem.fields === 'year') {
+          argItem.value[0] = argItem.value[0].slice(0, 7)
+          argItem.value[1] = argItem.value[1].slice(0, 7)
+        } else if (argItem.value && argItem.fields === 'month') {
+          // 处理月
+          argItem.value[0] = argItem.value[0].slice(0, 7)
+          argItem.value[1] = argItem.value[1].slice(0, 7)
+        }
+        argItem.showValue = argItem.value
+        break
+      case 'date':
+        // 处理年
+        if (argItem.value && argItem.fields === 'year') {
+          argItem.value = argItem.value.slice(0, 7)
+        } else if (argItem.value && argItem.fields === 'month') {
+          // 处理月
+          argItem.value = argItem.value.slice(0, 7)
+        }
+        argItem.showValue = argItem.value.replace(/-/g, '')
+        argItem.isFail = false
+        break
+      case 'selector':
+        if (argItem.value === '') {
+          argItem.value = -1
+          argItem.showValue = ''
+          return argItem
+        }
+        argItem.value = argItem.value === -1 ? 0 : argItem.value
+        argItem.showValue = safeData(
+          argItem,
+          'range.' + argItem.value + '.value'
+        )
+        break
+      case 'multiSelector':
+        argItem.range.map((v, k) => {
+          argItem.value[k] = argItem.value[k] === -1 ? 0 : argItem.value[k]
+        })
+        break
+      default:
+        break
+    }
+    // 最小长度判断
+    if (argItem.minlength) {
+      argItem.isFail = ('' + argItem.value).length < argItem.minlength
+    }
+    // 正则表达式判断
+    if (argItem.pattern) {
+      argItem.isFail = !argItem.pattern.test(argItem.value)
+      if (argItem.isFail && argItem.errMsg && argItem.value !== '') {
+        toast(argItem.errMsg)
+      }
+    }
+    return argItem
+  } catch (error) {
+    console.error(error)
+    return argItem
+  }
+}
+
+/**
+ * @function
+ * @description 数据提交前检查
+ * @date 2019-10-16
+ * @param {any} argItem 要编辑的item
+ * @param {any} argData 获取到的值 item
+ * @returns {any} argItem 返回处理完的obj
+ */
+export const formCheck = (argList, argToast) => {
+  let fail = false
+  let temLen = argList.length
+  for (let i = 0; i < temLen; i++) {
+    let v = argList[i]
+    if (v.isFail) {
+      fail = true
+      if (argToast) {
+        toast('请正确填写' + v.name)
+        console.error(v.name, v)
+        return fail
+      }
+    }
+    if (!v.value && v.value !== 0 && v.require) {
+      fail = true
+      if (argToast) {
+        if (v.type === 'date' || v.type === 'select' || v.type === 'switch') {
+          toast('请先选择' + v.name)
+        } else {
+          toast('请正确填写' + v.name)
+          v.isFail = true
+        }
+        return fail
+      }
+    }
+    let temFail = false
+    switch (v.type) {
+      case 'switch':
+        console.error(v)
+        if ((v.value === -1 || v.value === '') && v.require) {
+          fail = true
+          if (argToast) {
+            toast('请先选择' + v.name)
+            return fail
+          }
+        }
+        break
+      case 'select':
+        break
+      case 'selector':
+        if (v.require && +v.value === -1) {
+          fail = true
+          if (argToast) {
+            toast('请先选择' + v.name)
+            return fail
+          }
+        }
+        break
+      case 'checkboxGroup':
+        if (v.value.length <= 0) {
+          fail = true
+          if (argToast) {
+            toast('请正确填写' + v.name)
+            return fail
+          }
+        }
+        break
+      case 'multiSelector':
+        v.value.map((v1) => {
+          if (+v1 === -1) {
+            temFail = true
+          }
+        })
+        fail = temFail
+        if (argToast && temFail) {
+          toast('请先选择' + v.name)
+          return fail
+        }
+        break
+      case 'date':
+        break
+      case 'phoneCode':
+        // if (v.disabled && !v.showValue) {
+        //   v.isFail = true
+        //   toast('请先在个人设置中绑定手机号码！')
+        // }
+        break
+      default:
+        break
+    }
+  }
+  return fail
+}
+// old
 export const clearParams = (argData = {}) => {
   const isFormData =
     Object.prototype.toString.call(argData) === '[object FormData]'
@@ -219,232 +526,6 @@ export const response = (argData = { config: {} }) => {
 }
 
 const regRule = getRegexp()
-/**
- * 数据变更时
- * @date 2019-10-16
- * @param {any} argItem 要编辑的item
- * @param {any} argData 获取到的值 item
- * @returns {any} argItem 返回处理完的obj
- */
-export const checkInput = (argItem, argData) => {
-  try {
-    if (typeof argData.value === 'string') {
-      argData.value = argData.value.trim()
-    }
-    argItem.value = argData.value
-    argItem.saveValue = argData.value
-    // 根据类型做处理
-    switch (argItem.type) {
-      case 'imgUploader':
-      case 'IDCardUploader':
-        argItem.saveValue = argData.saveValue
-        break
-      case 'digit':
-        if (argItem.value !== '') {
-          if (argItem.min >= 0 && +argItem.value < argItem.min) {
-            argItem.min = argItem.min || 0
-            toast(argItem.name + '最小值为：' + argItem.min)
-            argItem.value = argItem.min
-            argItem.saveValue = argItem.min
-          }
-          if (argItem.max && +argItem.value > argItem.max) {
-            toast(argItem.name + '最大值为：' + argItem.max)
-            argItem.value = argItem.max
-            argItem.saveValue = argItem.max
-          }
-        }
-        // eslint-disable-next-line no-case-declarations
-        let temDotData = ('' + argItem.value).split('.')
-        if (temDotData.length > 1) {
-          let temLen = argItem.dotLength || 2
-          if (temLen < temDotData[1].length) {
-            toast('最多保留' + temLen + '位小数')
-            argItem.value = toFixed(+argItem.value)
-            argItem.saveValue = argItem.value
-          }
-        }
-        if (argItem.saveValue) {
-          argItem.isFail = !regRule.score2.test(argItem.saveValue)
-        }
-        break
-      case 'number':
-        if (argItem.value === '') {
-          break
-        }
-        if (argItem.min >= 0) {
-          argItem.min = argItem.min || 0
-          argItem.isFail = argItem.min > +argItem.value
-        }
-        if (argItem.min >= 0 && +argItem.value < argItem.min) {
-          argItem.min = argItem.min || 0
-          toast(argItem.name + '最小值为：' + argItem.min)
-          argItem.value = argItem.min
-          argItem.saveValue = argItem.min
-        }
-        if (argItem.max && +argItem.value > argItem.max) {
-          toast(argItem.name + '最大值为：' + argItem.max)
-          argItem.value = argItem.max
-          argItem.saveValue = argItem.value
-        }
-        break
-      case 'phoneCode':
-        if (
-          argItem.value &&
-          argItem.value ===
-            hideInfo(safeData(getStorageSync('UserInfo'), 'sjhm', ''))
-        ) {
-          argItem.saveValue = safeData(getStorageSync('UserInfo'), 'sjhm', '')
-        }
-        argItem.isFail = !regRule.phone.test(argItem.saveValue)
-        break
-      case 'imgCode':
-        argItem.isFail = argItem.value.length < 4
-        break
-      case 'password':
-        if (argItem.value) {
-          let isNumber = regRule.number.test(argItem.value)
-          if (!isNumber) {
-            argItem.value = ''
-            argItem.saveValue = ''
-            toast('请输入6位数字组合')
-          }
-        }
-        break
-      case 'idcard':
-        // argItem.isFail = !argItem.value
-        argItem.saveValue = argItem.value.toUpperCase()
-        argItem.isFail = !regRule.idCardNormal.test(argItem.saveValue)
-        break
-      case 'select':
-        break
-      case 'switch':
-        break
-      case 'dateRange':
-        // 处理年
-        if (argItem.value && argItem.fields === 'year') {
-          argItem.value[0] = argItem.value[0].slice(0, 7)
-          argItem.value[1] = argItem.value[1].slice(0, 7)
-        } else if (argItem.value && argItem.fields === 'month') {
-          // 处理月
-          argItem.value[0] = argItem.value[0].slice(0, 7)
-          argItem.value[1] = argItem.value[1].slice(0, 7)
-        }
-        argItem.saveValue = argItem.value
-        break
-      case 'date':
-        // 处理年
-        if (argItem.value && argItem.fields === 'year') {
-          argItem.value = argItem.value.slice(0, 7)
-        } else if (argItem.value && argItem.fields === 'month') {
-          // 处理月
-          argItem.value = argItem.value.slice(0, 7)
-        }
-        argItem.saveValue = argItem.value.replace(/-/g, '')
-        argItem.isFail = false
-        break
-      case 'selector':
-        if (argItem.value === '') {
-          argItem.value = -1
-          argItem.saveValue = ''
-          return argItem
-        }
-        argItem.value = argItem.value === -1 ? 0 : argItem.value
-        argItem.saveValue = safeData(
-          argItem,
-          'range.' + argItem.value + '.value'
-        )
-        break
-      case 'multiSelector':
-        argItem.range.map((v, k) => {
-          argItem.value[k] = argItem.value[k] === -1 ? 0 : argItem.value[k]
-        })
-        break
-      case 'text':
-        if (!argItem.value && argItem.require) {
-          argItem.isFail = true
-        } else {
-          argItem.isFail = false
-        }
-        break
-      default:
-        break
-    }
-    // 最小长度判断
-    if (argItem.minlength) {
-      argItem.isFail = ('' + argItem.value).length < argItem.minlength
-    }
-    // 正则表达式判断
-    if (argItem.pattern) {
-      argItem.isFail = !argItem.pattern.test(argItem.value)
-      if (argItem.isFail && argItem.errMsg && argItem.value !== '') {
-        toast(argItem.errMsg)
-      }
-      // console.log('判断正则：true为不通过', argItem.isFail)
-    }
-    return argItem
-  } catch (error) {
-    console.error(error)
-    return argItem
-  }
-}
-// 表单检查
-export const formCheck = (argList) => {
-  let fail = false
-  // 遇到错误返回
-  // let temLen = argList.length
-  // for (let i = 0; i < temLen; i++) {
-  //   if (argList[i].isFail) {
-  //     fail = true
-  //   }
-  //   if (!argList[i].value && argList[i].require) {
-  //     argList[i].isFail = true
-  //     fail = true
-  //     return
-  //   }
-  // }
-  argList.map((v) => {
-    if (v.isFail) {
-      fail = true
-    }
-    if (v.value === '' && v.require) {
-      fail = true
-    }
-    let temFail = false
-    switch (v.type) {
-      case 'select':
-        break
-      case 'selector':
-        if (v.require && +v.value === -1) {
-          fail = true
-        }
-        break
-      case 'checkboxGroup':
-        if (v.value.length <= 0) {
-          fail = true
-        }
-        break
-      case 'multiSelector':
-        v.value.map((v1) => {
-          if (+v1 === -1) {
-            temFail = true
-          }
-        })
-        fail = temFail
-        break
-      case 'date':
-        break
-      case 'phoneCode':
-        // if (v.disabled && !v.saveValue) {
-        //   v.isFail = true
-        //   toast('请先在个人设置中绑定手机号码！')
-        // }
-        break
-      default:
-        break
-    }
-  })
-  return fail
-}
 // 接口日期转换前端格式
 export const dateCodeToText = (dateCode = '') => {
   if (!dateCode) {

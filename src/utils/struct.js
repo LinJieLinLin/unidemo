@@ -1,3 +1,4 @@
+/* eslint-disable no-fallthrough */
 import { safeData } from './j'
 
 export const getObj = (argKey, argData = {}) => {
@@ -67,6 +68,76 @@ export const getObj = (argKey, argData = {}) => {
         type: 'tip',
       },
     },
+    inputObj: {
+      // 显示名称
+      name: '',
+      // 字段名
+      key: '',
+      // 保存值
+      value: '',
+      // 显示值
+      showValue: '',
+      // 表单类型 text，number，phoneCode,imgCode，digit，idcard，password，date，selector，multiSelector, textarea
+      type: 'text',
+      // 要添加的class
+      class: '',
+      // 正则表达式
+      pattern: '',
+      // placeholder
+      placeholder: '',
+      // 是否校验不通过
+      isFail: false,
+      // 是否必填
+      require: false,
+      // 是否禁用
+      disabled: false,
+      // 显示在showValue后面的单位
+      unit: '',
+      // 额外细分类型
+      extType: '',
+      // multiSelector 特有
+      // joinText: '',
+      // date
+      // 开始日期
+      // startDate: '',
+      // 结束日期
+      // endDate: '',
+      // 日期类型 year month day
+      // fields: 'day',
+    },
+  }
+  if (argKey === 'inputObj') {
+    obj.inputObj.placeholder = '请输入' + argData.name
+    switch (argData.type) {
+      // case 'phoneCode':
+      //   break
+      // case 'date':
+      //   break
+      // case 'selector':
+      //   break
+      // case 'multiSelector':
+      //   break
+      case 'digit':
+        // 保留小数点位数默认2位
+        obj.inputObj.fixed = 2
+      case 'number':
+      case 'password':
+      case 'text':
+      case 'textarea':
+        // 最大长度，不填默认100
+        obj.inputObj.maxlength = 100
+        // 最小长度
+        obj.inputObj.minlength = 0
+        // 最大值
+        obj.inputObj.max = 100000000
+        // 最小值
+        obj.inputObj.min = 0
+        // 设置键盘右下角按钮的文字，仅在 type="text" 时生效。
+        // obj.inputObj.confirmType = ''
+        break
+      default:
+        break
+    }
   }
   return Object.assign(safeData(obj, argKey, {}), argData)
 }

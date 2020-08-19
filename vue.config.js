@@ -86,6 +86,7 @@ module.exports = {
     resolve: {
       alias: {
         '@static': path.join(__dirname, 'src/static'),
+        '@components': path.join(__dirname, 'src/components'),
         '@assets': path.join(__dirname, 'src/assets'),
         '@utils': path.join(__dirname, 'src/utils'),
         '@store': path.join(__dirname, 'src/store'),

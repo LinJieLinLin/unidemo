@@ -13,7 +13,7 @@ import {
   P,
   toast,
 } from './utils/microApi'
-import { request, response } from './utils/project'
+import { request, response, checkInput } from './utils/project'
 import { safeData, hideInfo, getRegexp, sleep, loadFile } from './utils/j'
 import comMixin from './utils/mixins/common'
 import Throttle from './utils/class/Throttle'
@@ -49,13 +49,14 @@ Vue.prototype.$f = {
   // promise
   P,
   getObj,
+  checkInput,
 }
 App.mpType = 'app'
 // 设置请求拦截
 setRequest(request, response)
 // h5加载图标
 // #ifdef H5
-loadFile('https://at.alicdn.com/t/font_717995_m4x3tvsl73.js')
+loadFile('https://at.alicdn.com/t/font_717995_c6g7bmtm1v7.js')
 // #endif
 // 加载mixins
 Vue.mixin(comMixin.mixin)

@@ -54,6 +54,10 @@ export default {
         url: 'com/svgIcon'
       },
       {
+        name: 'form',
+        url: 'com/form'
+      },
+      {
         name: 'demo',
         url: 'index'
       },

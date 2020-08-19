@@ -1,0 +1,65 @@
+{
+  "id": "717995",
+  "name": "rcpc",
+  "font_family": "i",
+  "css_prefix_text": "i-",
+  "description": "拼车",
+  "glyphs": [
+    {
+      "icon_id": "4936481",
+      "name": "minus-circle-fill",
+      "font_class": "minus-circle-fill",
+      "unicode": "e844",
+      "unicode_decimal": 59460
+    },
+    {
+      "icon_id": "4936486",
+      "name": "plus-circle-fill",
+      "font_class": "plus-circle-fill",
+      "unicode": "e845",
+      "unicode_decimal": 59461
+    },
+    {
+      "icon_id": "4765732",
+      "name": "minus-circle",
+      "font_class": "minus-circle",
+      "unicode": "e780",
+      "unicode_decimal": 59264
+    },
+    {
+      "icon_id": "4765734",
+      "name": "plus-circle",
+      "font_class": "plus-circle",
+      "unicode": "e781",
+      "unicode_decimal": 59265
+    },
+    {
+      "icon_id": "702562",
+      "name": "forum",
+      "font_class": "forum",
+      "unicode": "e881",
+      "unicode_decimal": 59521
+    },
+    {
+      "icon_id": "122721",
+      "name": "account",
+      "font_class": "account",
+      "unicode": "e6b8",
+      "unicode_decimal": 59064
+    },
+    {
+      "icon_id": "1061332",
+      "name": "set",
+      "font_class": "set",
+      "unicode": "e689",
+      "unicode_decimal": 59017
+    },
+    {
+      "icon_id": "1150878",
+      "name": "car",
+      "font_class": "car",
+      "unicode": "eb76",
+      "unicode_decimal": 60278
+    }
+  ]
+}
