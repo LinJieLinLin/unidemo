@@ -24,7 +24,7 @@
       <block v-else>
         <lj-form :item="item"
           :c="formC"
-          @formChange="formChange($event,'formList.'+index)"></lj-form>
+          @mixinChange="ComChange($event,'formList.'+index)"></lj-form>
       </block>
     </div>
     <uni-section title="查看模式"
@@ -47,28 +47,78 @@
           :c="formViewC"></lj-form>
       </block>
     </div>
+    <lj-dialog :c="DialogC"
+      @mixinChange="ComChange">
+    </lj-dialog>
   </view>
 </template>
 
 <script>
 import { px2vw } from '../../../utils/j'
+import { RegexpObj } from '@/utils/project.js'
 let formList = [{
+  name: '我是隐藏的',
+  key: 'hide',
+  type: 'text',
+  require: true,
+  isHide: true,
+  tips: '请输入用户名，规则如下：',
+}, {
   name: '用户名',
   key: 'username',
   type: 'text',
-  isFail: true,
+  require: true,
+  tips: '请输入用户名，规则如下：',
 }, {
   name: '密码',
   key: 'password',
   type: 'password',
-  hideReset: true,
   require: true,
   class: '',
 }, {
+  name: '年龄',
+  key: 'age',
+  type: 'number',
+  require: true,
+  class: '',
+}, {
+  name: '身高',
+  key: 'height',
+  type: 'digit',
+  require: true,
+  placeholder: '请输入身高,单位cm',
+  max: 300,
+  min: 10,
+  unit: 'cm'
+}, {
+  name: '身份证',
+  key: 'idcard',
+  type: 'idcard',
+  require: true,
+}, {
+  name: '银行卡号',
+  key: 'bank',
+  type: 'text',
+  maxlength: 20,
+  trim: true,
+  pattern: RegexpObj.number,
+  require: true,
+}, {
   name: '验证码',
-  key: 'code',
-  type: 'code',
-  class: 'mg-t10',
+  key: 'imgCode',
+  type: 'text',
+  extType: 'imgCode',
+  img: 'https://img.lj4.top/test/1.jpg',
+  pattern: RegexpObj.letterNumber,
+  maxlength: 6,
+  require: true,
+}, {
+  name: '手机号',
+  key: 'phone',
+  type: 'text',
+  pattern: RegexpObj.phone,
+  maxlength: 11,
+  require: true,
 }, {
   name: '成员',
   key: 'manList',
@@ -77,9 +127,10 @@ let formList = [{
   range: [
     [
       {
-        name: '用户名',
+        name: '姓名',
         key: 'username',
         type: 'text',
+        maxlength: 5
       },
       {
         name: '年龄',
@@ -90,10 +141,12 @@ let formList = [{
         name: '身高',
         key: 'height',
         type: 'digit',
+        placeholder: '请输入身高,单位cm',
+        unit: 'cm'
       },
     ], [
       {
-        name: '用户名',
+        name: '姓名',
         key: 'username',
         type: 'text',
       },
@@ -142,8 +195,13 @@ export default {
     return {
       formC: {
         changeFn: 'onChange',
+        // hideLeft: true,
+        fn: {
+          formChange: 'formChange',
+          showTip: 'showTip'
+        },
         titleStyle: {
-          width: px2vw(50),
+          width: px2vw(60),
           height: 'auto'
         },
       },
@@ -151,7 +209,7 @@ export default {
         isView: true,
         changeFn: 'onChange',
         titleStyle: {
-          width: px2vw(50)
+          width: px2vw(60)
         },
       },
       formList: [],
@@ -162,10 +220,15 @@ export default {
     formChange(argData, argKey) {
       let nowItem = this.$f.safeData(this, argKey)
       if (nowItem) {
-        this.$f.checkInput(nowItem, argData)
+        nowItem = this.$f.checkInput(nowItem, argData)
       } else {
         console.error(argKey + '不存在')
       }
+      // 额外处理
+      console.log('当前item', nowItem)
+    },
+    showTip(argMsg) {
+      this.DialogShow({ msg: argMsg }, { type: 'info' })
     },
     getInputList() {
       let temArr = []
@@ -174,7 +237,9 @@ export default {
         if (v.type === 'itemList') {
           v.range.map((v1, k1) => {
             return v1.map((v2, k2) => {
-              v.range[k1][k2] = this.$f.getObj('inputObj', v2)
+              temItem = this.$f.getObj('inputObj', v2)
+              this.formObj[v.key + '-range-' + k1 + '-' + k2 + '-' + v2.key] = temItem
+              v.range[k1][k2] = temItem
             })
           })
           temItem = v
@@ -185,6 +250,7 @@ export default {
         temArr.push(temItem)
       })
       this.formList = temArr
+      console.warn(this.formObj)
     },
     init() {
       this.getInputList()

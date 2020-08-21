@@ -7,18 +7,21 @@
 -->
 <template>
   <div class="lj-form"
+    v-if="!item.isHide"
     :class="item.class">
-    <!-- 必填显示星星 -->
-    <view class="i-require"
-      v-show="item.require&&!c.isView">
-      *
-    </view>
-    <!-- 左侧信息 -->
-    <div v-show="item.name"
-      class="mg-r8 f-title flex0"
-      :style="titleStyle">
-      {{ item.name }}
-    </div>
+    <block v-if="!c.hideLeft">
+      <!-- 必填显示星星 -->
+      <view class="i-require"
+        v-show="item.require&&!c.isView">
+        *
+      </view>
+      <!-- 左侧信息 -->
+      <div v-show="item.name"
+        class="mg-r8 f-title flex0"
+        :style="titleStyle">
+        {{ item.name }}
+      </div>
+    </block>
     <view class="flex1">
       <!-- 中间表单 -->
       <lj-item-input :item="item"
@@ -26,7 +29,21 @@
         @change="formChange($event,item)"></lj-item-input>
     </view>
     <!-- 右边功能 -->
-    <view class="flex0">
+    <view class="flex0"
+      v-if="!c.isView">
+      <view class=""
+        v-if="item.extType==='imgCode'">
+        <div class="img-code flex-center">
+          <image :src="item.img"
+            @click="imgCodeClick"
+            alt=""></image>
+        </div>
+      </view>
+      <view class="flex0 pd-tb8 pd-l4 c-warn"
+        @click="showTip(item)"
+        v-if="item.tips">
+        <lj-icon i="i-help"></lj-icon>
+      </view>
     </view>
     <div class="t-line"></div>
   </div>
@@ -51,7 +68,12 @@ export default {
   components: {
   },
   mounted() {
-
+    if (this.$f.safeData(this.item, 'extType')) {
+      switch (this.item.extType) {
+        case 'imgCode':
+          break
+      }
+    }
   },
   computed: {
     titleStyle() {
@@ -74,8 +96,18 @@ export default {
   methods: {
     // 重置数据
     formChange(argData, argItem) {
-      this.$emit('formChange', argData)
-    }
+      // this.$emit('formChange', argData)
+      this.$emit('mixinChange', { fn: this.$f.safeData(this.c, 'fn.formChange', 'formChange'), data: argData })
+    },
+    // 显示提示
+    showTip(argItem) {
+      this.$emit('mixinChange', { fn: this.$f.safeData(this.c, 'fn.showTip', 'showTip'), data: argItem.tips })
+    },
+    // 图片验证码点击切换
+    imgCodeClick() {
+      this.$emit('mixinChange', { fn: this.$f.safeData(this.c, 'fn.imgCodeClick', 'imgCodeClick') })
+      this.$emit('mixinChange', { fn: this.$f.safeData(this.c, 'fn.formChange', 'formChange'), data: { value: '' } })
+    },
   },
 }
 </script>
@@ -113,6 +145,21 @@ $pdlr: 18px;
     min-width: 30px;
     max-width: 50%;
     font-size: 14px;
+  }
+  // input组件图片验证码样式
+  .img-code {
+    margin-left: 8px;
+    width: 120px;
+    height: 40px;
+    border-radius: 4px;
+    overflow: hidden;
+    img,
+    image {
+      min-height: 34px;
+      width: 120px;
+      height: 40px;
+      border-radius: 4px;
+    }
   }
 }
 </style>

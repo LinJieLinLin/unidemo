@@ -17,7 +17,7 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
-import { getRegexp } from '@/utils/j.js'
+import { RegexpObj } from '@/utils/project.js'
 let temSrc = ''
 export default {
   components: {},
@@ -46,7 +46,7 @@ export default {
         this.$f.toast('url有误！')
       }
       console.error(temSrc)
-      if (!getRegexp().http.test(temSrc)) {
+      if (!RegexpObj.http.test(temSrc)) {
         temSrc = 'https://' + temSrc
       }
       this.src = temSrc

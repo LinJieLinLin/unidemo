@@ -1,6 +1,7 @@
 /* eslint-disable no-fallthrough */
-import { safeData } from './j'
+import { safeData, getRegexp } from './j'
 
+let RegexpObj = getRegexp()
 export const getObj = (argKey, argData = {}) => {
   let obj = {
     // 配置
@@ -77,7 +78,7 @@ export const getObj = (argKey, argData = {}) => {
       value: '',
       // 显示值
       showValue: '',
-      // 表单类型 text，number，phoneCode,imgCode，digit，idcard，password，date，selector，multiSelector, textarea
+      // 表单类型 text,number,digit,idcard,password,phoneCode,,date,selector,multiSelector, textarea
       type: 'text',
       // 要添加的class
       class: '',
@@ -91,9 +92,10 @@ export const getObj = (argKey, argData = {}) => {
       require: false,
       // 是否禁用
       disabled: false,
+      isHide: false,
       // 显示在showValue后面的单位
       unit: '',
-      // 额外细分类型
+      // 额外细分类型 imgCode：图片验证码
       extType: '',
       // multiSelector 特有
       // joinText: '',
@@ -120,9 +122,56 @@ export const getObj = (argKey, argData = {}) => {
       case 'digit':
         // 保留小数点位数默认2位
         obj.inputObj.fixed = 2
+        // 最大长度,不填默认100
+        obj.inputObj.maxlength = 100
+        // 最小长度
+        obj.inputObj.minlength = 0
+        // 最大值
+        obj.inputObj.max = 100000000
+        // 最小值
+        obj.inputObj.min = 0
+        break
       case 'number':
+        // 最大长度，不填默认100
+        obj.inputObj.maxlength = 100
+        // 最小长度
+        obj.inputObj.minlength = 0
+        // 最大值
+        obj.inputObj.max = 100000000
+        // 最小值
+        obj.inputObj.min = 0
+        break
+      case 'idcard':
+        // 最大长度，不填默认100
+        obj.inputObj.maxlength = 18
+        // 最小长度
+        obj.inputObj.minlength = 0
+        // 最大值
+        obj.inputObj.max = 100000000
+        // 最小值
+        obj.inputObj.min = 0
+        obj.inputObj.pattern = RegexpObj.idCard
+        break
       case 'password':
+        // 最大长度，不填默认100
+        obj.inputObj.maxlength = 30
+        // 最小长度
+        obj.inputObj.minlength = 6
+        // 最大值
+        obj.inputObj.max = 100000000
+        // 最小值
+        obj.inputObj.min = 0
+        obj.inputObj.hideReset = true
+        obj.inputObj.placeholder += ',长度6~30位'
+        break
       case 'text':
+        // trim为true时，清空所有空格
+        // obj.inputObj.trim = false
+        // 最大长度，不填默认100
+        obj.inputObj.maxlength = 100
+        // 最小长度
+        obj.inputObj.minlength = 0
+        break
       case 'textarea':
         // 最大长度，不填默认100
         obj.inputObj.maxlength = 100

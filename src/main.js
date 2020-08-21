@@ -14,7 +14,7 @@ import {
   toast,
 } from './utils/microApi'
 import { request, response, checkInput } from './utils/project'
-import { safeData, hideInfo, getRegexp, sleep, loadFile } from './utils/j'
+import { safeData, hideInfo, sleep, loadFile } from './utils/j'
 import comMixin from './utils/mixins/common'
 import Throttle from './utils/class/Throttle'
 import Debounce from './utils/class/Debounce'
@@ -41,7 +41,6 @@ Vue.prototype.$f = {
   toast,
   safeData,
   hideInfo,
-  getRegexp,
   sleep,
   getStorageSync,
   setStorage,

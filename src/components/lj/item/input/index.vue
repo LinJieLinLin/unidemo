@@ -60,7 +60,7 @@
         :maxlength="item.maxlength||100">
       <view class="flex0 pd-tb8 pd-l4 c-info"
         @click="reset(item)"
-        v-if="!item.hideReset">
+        v-if="!item.hideReset&&item.value">
         <lj-icon i="i-error"></lj-icon>
       </view>
       <view class="flex0 pd-tb8 pd-l4 c-info"
@@ -144,6 +144,7 @@ export default {
   @include iFlex(flex-middle);
   .input {
     min-height: 40px;
+    font-size: inherit;
   }
   &.i-error {
     position: relative;

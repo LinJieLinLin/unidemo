@@ -4,6 +4,8 @@ import { getRegexp, safeData, isJson, hideInfo, toFixed } from './j'
 import { toast, getStorageSync, setStorage, hideLoading } from './microApi'
 import md5 from 'md5'
 import { enBase64, deBase64 } from './encrypt/base64'
+
+export const RegexpObj = getRegexp()
 /**
  * 数据变更时
  * @date 2019-10-16
@@ -16,11 +18,22 @@ export const checkInput = (argItem, argData) => {
     if (typeof argData.value === 'string' && argItem.type !== 'textarea') {
       argData.value = argData.value.trim()
     }
+    // 清空全部空格
+    if (argItem.trim) {
+      argData.value = argData.value.replace(/\s/g, '')
+    }
     // 默认赋值
     argItem.value = argData.value
     argItem.showValue = argData.value
-
+    argItem.isFail = false
     // 根据类型做处理
+    if (!argItem.value && argItem.value !== 0) {
+      if (argItem.require) {
+        argItem.isFail = true
+      }
+      argItem.isFail = false
+      return
+    }
     switch (argItem.type) {
       // case 'phoneCode':
       //   break
@@ -31,13 +44,6 @@ export const checkInput = (argItem, argData) => {
       // case 'multiSelector':
       //   break
       case 'digit':
-        if (!argItem.value) {
-          if (argItem.require) {
-            argItem.isFail = true
-          }
-          argItem.isFail = false
-          break
-        }
         argItem.value = +argItem.value
         argItem.showValue = +argItem.value + ''
         // 判断最小值
@@ -58,19 +64,12 @@ export const checkInput = (argItem, argData) => {
           let temLen = argItem.fixed
           if (temLen < temDotData[1].length) {
             toast('最多保留' + temLen + '位小数')
-            argItem.value = toFixed(argItem.value)
+            argItem.value = +toFixed(argItem.value, temLen)
             argItem.showValue = argItem.value
           }
         }
         break
       case 'number':
-        if (!argItem.value) {
-          if (argItem.require) {
-            argItem.isFail = true
-          }
-          argItem.isFail = false
-          break
-        }
         argItem.value = +argItem.value
         argItem.showValue = +argItem.value + ''
         // 判断最小值
@@ -94,43 +93,12 @@ export const checkInput = (argItem, argData) => {
         }
         break
       case 'password':
-        if (!argItem.value) {
-          if (argItem.require) {
-            argItem.isFail = true
-          }
-          argItem.isFail = false
-          break
-        }
-        if (argItem.value) {
-          let isNumber = regRule.number.test(argItem.value)
-          if (!isNumber) {
-            argItem.value = ''
-            argItem.showValue = ''
-            argItem.isFail = true
-            toast('请输入6位数字组合')
-          } else {
-            argItem.isFail = false
-          }
-        }
         break
       case 'idcard':
-        if (!argItem.value) {
-          if (argItem.require) {
-            argItem.isFail = true
-          }
-          argItem.isFail = false
-          break
-        }
         argItem.value = argItem.value.toUpperCase()
         argItem.showValue = argItem.value.toUpperCase()
         break
       case 'text':
-        if (!argItem.value) {
-          if (argItem.require) {
-            argItem.isFail = true
-          }
-          argItem.isFail = false
-        }
         break
       case 'textarea':
         break
@@ -147,13 +115,8 @@ export const checkInput = (argItem, argData) => {
       case 'imgCode':
         argItem.isFail = argItem.value && argItem.value.length < 4
         break
-
       // 证件号码处理 数字+字母 30位以内，具体读取maxlength字段
       case 'zjhm':
-        if (argItem.value.length) {
-          argItem.showValue = argItem.value
-          argItem.isFail = !regRule.zjhm.test(argItem.showValue)
-        }
         break
       case 'select':
         break
@@ -202,15 +165,17 @@ export const checkInput = (argItem, argData) => {
       default:
         break
     }
-    // 最小长度判断
-    if (argItem.minlength) {
-      argItem.isFail = ('' + argItem.value).length < argItem.minlength
-    }
-    // 正则表达式判断
-    if (argItem.pattern) {
-      argItem.isFail = !argItem.pattern.test(argItem.value)
-      if (argItem.isFail && argItem.errMsg && argItem.value !== '') {
-        toast(argItem.errMsg)
+    if (argItem.value) {
+      // 最小长度判断
+      if (argItem.minlength) {
+        argItem.isFail = ('' + argItem.value).length < argItem.minlength
+      }
+      // 正则表达式判断
+      if (argItem.pattern) {
+        argItem.isFail = !argItem.pattern.test(argItem.value)
+        if (argItem.isFail && argItem.errMsg && argItem.value !== '') {
+          toast(argItem.errMsg)
+        }
       }
     }
     return argItem
@@ -311,7 +276,25 @@ export const formCheck = (argList, argToast) => {
   }
   return fail
 }
-// old
+
+// old----------------------------------------------
+// old----------------------------------------------
+// old----------------------------------------------
+// old----------------------------------------------
+// old----------------------------------------------
+// old----------------------------------------------
+// old----------------------------------------------
+// old----------------------------------------------
+// old----------------------------------------------
+// old----------------------------------------------
+// old----------------------------------------------
+// old----------------------------------------------
+// old----------------------------------------------
+// old----------------------------------------------
+// old----------------------------------------------
+// old----------------------------------------------
+// old----------------------------------------------
+// old----------------------------------------------
 export const clearParams = (argData = {}) => {
   const isFormData =
     Object.prototype.toString.call(argData) === '[object FormData]'
