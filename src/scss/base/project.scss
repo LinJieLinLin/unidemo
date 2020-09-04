@@ -9,6 +9,17 @@ image {
   max-width: 100%;
   object-fit: cover;
 }
+// h5下,image标签自适应
+/*  #ifdef  H5  */
+image {
+  width: auto;
+  height: auto;
+  img {
+    position: relative;
+    opacity: 1;
+  }
+}
+/*  #endif  */
 input,
 textarea {
   word-wrap: break-word;

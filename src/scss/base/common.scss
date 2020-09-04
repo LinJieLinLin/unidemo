@@ -174,9 +174,6 @@ body {
   }
 }
 // 清除btn样式
-button::after {
-  border: none;
-}
 .btn-none {
   margin: 0;
   padding: 0;
@@ -190,8 +187,18 @@ button::after {
     color: unset;
     background-color: transparent;
   }
+  &::after {
+    border: none;
+  }
 }
 // uniui
 .uni-section__content {
   display: flex;
+}
+// checkbox选中样式
+uni-checkbox:not([disabled]) .uni-checkbox-input:hover {
+  border-color: $theme;
+}
+uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
+  color: $theme;
 }

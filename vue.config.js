@@ -4,27 +4,15 @@ const path = require('path')
 const TerserPlugin = require('terser-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const cdnConfig = require('./cdnConfig')
+const useCdn = false
+// console.log(process.argv, process.env)
+// 设置路径
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-var publicPath = '/unidemo/'
+const publicPath = '/unidemo/'
 let plugins = [
-  // 模板处理
-  new HtmlWebpackPlugin({
-    title: '',
-    template: resolve('public/index.html'),
-    cdn: cdnConfig,
-    baseUrl: publicPath,
-    minify: {
-      // 压缩 HTML 中出现的 CSS 代码
-      minifyCSS: true,
-      // 压缩 HTML 中出现的 JS 代码
-      minifyJS: true,
-      // 删除双引号
-      removeAttributeQuotes: false,
-    },
-  }),
   // 复制文件到根目录
   // new CopyWebpackPlugin([
   //   {
@@ -33,6 +21,25 @@ let plugins = [
   //   }
   // ])
 ]
+if (process.env.UNI_PLATFORM === 'H5' && useCdn) {
+  plugins.push(
+    // 模板处理
+    new HtmlWebpackPlugin({
+      title: '',
+      template: resolve('public/index.html'),
+      cdn: cdnConfig,
+      baseUrl: publicPath,
+      minify: {
+        // 压缩 HTML 中出现的 CSS 代码
+        minifyCSS: true,
+        // 压缩 HTML 中出现的 JS 代码
+        minifyJS: true,
+        // 删除双引号
+        removeAttributeQuotes: false,
+      },
+    })
+  )
+}
 if (process.env.NODE_ENV === 'production') {
   plugins.push(
     // 去除console
@@ -56,9 +63,9 @@ if (process.env.NODE_ENV === 'production') {
 
 // console.log(cdnConfig)
 module.exports = {
-  // 基本路径
+  // 基本路径（uni还需要改manifest.json）
   publicPath: publicPath,
-  // 输出文件目录
+  // 输出文件目录(uni不支持)
   // outputDir: 'dist',
   // html生成别名
   // indexPath: 'coco.html',
