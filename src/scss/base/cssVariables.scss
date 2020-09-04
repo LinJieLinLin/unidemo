@@ -3,7 +3,23 @@
   --theme: #2979ff;
   // 成功颜色
   --success: #2979ff;
+  --error: #fa3534;
+  --warn: #ff9900;
+  --info: #909399;
 }
+// 颜色class
 .c-theme {
   color: c(theme);
+}
+.c-success {
+  color: c(success);
+}
+.c-error {
+  color: c(error);
+}
+.c-warn {
+  color: c(warn);
+}
+.c-info {
+  color: c(info);
 }
