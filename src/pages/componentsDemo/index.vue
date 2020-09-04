@@ -8,7 +8,7 @@
         <uni-list-item v-for="(item,index) in lists"
           :key="index"
           :title="item.name"
-          @click="toComponents(item)" />
+          @click.native="toComponents(item)" />
         <uni-list-item :disabled="true"
           :show-arrow="false"
           title="列表禁用状态" />

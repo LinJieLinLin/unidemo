@@ -108,6 +108,6 @@ export default {
   box-sizing: unset;
 }
 .lg-bg {
-  background-color: $theme;
+  background-color: c(theme);
 }
 </style>

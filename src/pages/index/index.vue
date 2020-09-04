@@ -1,5 +1,5 @@
 <template>
-  <div class="index">
+  <div class="index bg-w-full">
     <view class="uni-margin-wrap">
       <swiper class="swiper"
         circular
@@ -37,6 +37,11 @@
       <button @click="$f.toPage('testPackage/customer')">腾讯云小微</button>
       <!-- #endif -->
       <button @click="$f.toPage('my','','switchTab')">我的</button>
+      <label>
+        <checkbox value="cb"
+          color=""
+          checked="true" />选中
+      </label>
     </view>
     <lj-dialog :c="DialogC"
       @mixinChange="ComChange"></lj-dialog>

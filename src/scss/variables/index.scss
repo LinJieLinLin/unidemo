@@ -1,16 +1,15 @@
+// sass全局变量 颜色变量需要同时维护cssVariables.scss
 // 根目录改变需要修改baseUrl，默认/
 $baseUrl: '/';
 $static: $baseUrl + 'static';
 // 颜色
 $theme: #2979ff;
-$success: #fff;
+$success: #2979ff;
 $error: #fa3534;
 $warn: #ff9900;
 $info: #909399;
 
 $link: #0000ff;
-$black: #000;
-$white: #fff;
 $grey-darker: #111;
 $grey-dark: #333;
 $grey: #999;

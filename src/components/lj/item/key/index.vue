@@ -50,7 +50,7 @@ export default {
   text-align: center;
   box-sizing: border-box;
   &.active {
-    background-color: $theme;
+    background-color: c(theme);
     color: #fff;
   }
 }

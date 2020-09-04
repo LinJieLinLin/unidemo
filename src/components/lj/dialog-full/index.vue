@@ -181,7 +181,7 @@ export default {
     justify-content: center;
     align-content: center;
     align-items: center;
-    color: $theme;
+    color: c(theme);
     @include iBtnBgColor(#f1f1f1);
   }
   .item {

@@ -1,4 +1,4 @@
-// Create border
-@function border($width: 2px, $color: red) {
-  @return $width solid $color;
+// 返回css颜色变量
+@function c($name) {
+  @return var(--$name);
 }

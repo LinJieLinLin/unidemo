@@ -7,7 +7,7 @@ export const getObj = (argKey, argData = {}) => {
     // 配置
     config: {
       // 本地缓存加密
-      localEncrypt: true,
+      localEncrypt: false,
       uniCloud: {
         provider: 'aliyun',
         spaceId: '5bd69b81-b875-4ce7-9b9a-9832134deda8',

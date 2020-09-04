@@ -13,6 +13,7 @@
 // 超过n行后显示... eg:text-line-1 2 3
 @include oTextLine(3);
 @include oBorder1px(#ececec);
+// 点击背景
 body {
   -webkit-tap-highlight-color: transparent;
 }
@@ -21,6 +22,10 @@ body {
 }
 .f-r {
   float: right;
+}
+// 清除浮动
+.c-b {
+  @include iCB();
 }
 .show {
   display: block;
@@ -40,16 +45,6 @@ body {
 }
 .d-b {
   display: block;
-}
-// 清除浮动
-.c-b {
-  @include iCB();
-}
-.f-l {
-  float: left;
-}
-.f-r {
-  float: right;
 }
 // vertical-align
 .va-m {
@@ -71,6 +66,10 @@ body {
 .of-s {
   overflow: scroll;
 }
+.of-h {
+  overflow: hidden;
+}
+
 .page {
   position: absolute;
   top: 0;
@@ -80,16 +79,13 @@ body {
   overflow: hidden;
 }
 
-.of-h {
-  overflow: hidden;
-}
 // 白色背景
+%bg-w,
 .bg-w {
   background-color: #fff;
 }
 .bg-w-full {
-  min-height: 100vh;
-  position: relative;
+  @extend %bg-w;
   &::before {
     position: absolute;
     top: 0;
@@ -97,16 +93,16 @@ body {
     left: 0;
     bottom: 0;
     z-index: -1;
-    background-color: #fff;
+    @extend %bg-w;
     content: '';
   }
 }
+%bg-grey,
 .bg-grey {
   background-color: $grey-lighter;
 }
 .bg-grey-full {
-  min-height: 100vh;
-  position: relative;
+  @extend %bg-grey;
   &::before {
     position: absolute;
     top: 0;
@@ -114,7 +110,7 @@ body {
     left: 0;
     bottom: 0;
     z-index: -1;
-    background-color: $grey-lighter;
+    @extend %bg-grey;
     content: '';
   }
 }
@@ -132,11 +128,9 @@ body {
 .ta-c {
   text-align: center;
 }
-
 .ta-l {
   text-align: left;
 }
-
 .ta-r {
   text-align: right;
 }
@@ -151,11 +145,9 @@ body {
 .p-r {
   position: relative;
 }
-
 .p-a {
   position: absolute;
 }
-
 .p-f {
   position: fixed;
 }
@@ -191,14 +183,15 @@ body {
     border: none;
   }
 }
+
 // uniui
 .uni-section__content {
   display: flex;
 }
 // checkbox选中样式
 uni-checkbox:not([disabled]) .uni-checkbox-input:hover {
-  border-color: $theme;
+  border-color: c(theme);
 }
 uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
-  color: $theme;
+  color: c(theme);
 }
