@@ -1,0 +1,9 @@
+:root {
+  // 主题色
+  --theme: #2979ff;
+  // 成功颜色
+  --success: #2979ff;
+}
+.c-theme {
+  color: c(theme);
+}
