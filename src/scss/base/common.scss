@@ -2,8 +2,8 @@
 // mixin 详见 ../mixins/index.scss
 // reset样式
 // @include oReset();
-// fs 12 to 40px; eg: fs-12 fs-16
-@include oFsSet($l: 14, $mul: 4, $unit: px, $d: 24);
+// fs 12 to 64px; eg: fs-12 fs-16
+@include oFsSet(26);
 @include oPdMgSet(12, 10);
 @include oPdMgSet(16, 4);
 // rate:15 rotate 0 to 360 eg: rot-90
@@ -135,10 +135,19 @@ body {
   text-align: right;
 }
 
+// 圆
+.round {
+  border-radius: 1000px;
+}
+
 // 换行
-.w-b {
+%w-b .w-b {
   word-wrap: break-word;
   word-break: break-all;
+}
+input,
+textarea {
+  @extend %w-b;
 }
 
 // position
@@ -195,3 +204,16 @@ uni-checkbox:not([disabled]) .uni-checkbox-input:hover {
 uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
   color: c(theme);
 }
+// h5下,image标签自适应
+/*  #ifdef  H5  */
+image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+  img {
+    position: relative;
+    opacity: 1;
+  }
+}
+/*  #endif  */
