@@ -92,7 +92,6 @@ export default {
       this.DialogShow({ msg: 'test' })
     },
     async init() {
-      console.warn('我是debug')
     }
   }
 }

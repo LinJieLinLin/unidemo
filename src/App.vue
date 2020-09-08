@@ -7,7 +7,8 @@ export default {
     this.$f.log(err)
   },
   onLaunch(argData) {
-    console.log('onLaunch', process.env)
+    console.warn('version:', this.$store.state.Version)
+    console.info('env:', process.env)
     console.log('params:', argData)
     // #ifdef  MP-WEIXIN
     try {

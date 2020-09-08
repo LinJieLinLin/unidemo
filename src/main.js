@@ -33,7 +33,7 @@ Vue.prototype.$f = {
   te: throttle,
   // 抖动 * .debounce(回调函数,等待时间,...回调函数的参数)
   db: debounce,
-  // 全局倒计时对像 开始.start() 结束.stop()
+  // 全局倒计时对像 开始.setCount(60).start(num=>console.log(num)) 结束.stop()
   counter: GlobalCounter,
   toPage,
   // 云函数记录日志
