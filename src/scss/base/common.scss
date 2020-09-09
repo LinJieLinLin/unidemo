@@ -141,7 +141,8 @@ body {
 }
 
 // 换行
-%w-b .w-b {
+%w-b,
+.w-b {
   word-wrap: break-word;
   word-break: break-all;
 }
