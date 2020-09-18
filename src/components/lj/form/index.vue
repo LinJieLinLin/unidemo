@@ -128,7 +128,7 @@ $pdlr: 18px;
     right: 0;
     left: $pdlr;
     right: $pdlr;
-    top: -1px;
+    bottom: 0px;
     background-color: #eeebeb;
   }
   .i-require {
@@ -136,7 +136,6 @@ $pdlr: 18px;
     left: 8px;
     top: 50%;
     transform: translate(0, -50%);
-    font-size: 16px;
     color: $error;
     height: 10px;
     line-height: 1;
@@ -144,7 +143,6 @@ $pdlr: 18px;
   .f-title {
     min-width: 30px;
     max-width: 50%;
-    font-size: 14px;
   }
   // input组件图片验证码样式
   .img-code {
