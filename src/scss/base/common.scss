@@ -204,6 +204,7 @@ uni-checkbox:not([disabled]) .uni-checkbox-input:hover {
 }
 uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
   color: c(theme);
+  border-color: c(theme);
 }
 // h5下,image标签自适应
 /*  #ifdef  H5  */

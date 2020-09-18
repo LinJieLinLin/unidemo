@@ -197,8 +197,7 @@ export default {
         changeFn: 'onChange',
         // hideLeft: true,
         fn: {
-          formChange: 'formChange',
-          showTip: 'showTip'
+          formChange: 'formChange'
         },
         titleStyle: {
           width: px2vw(60),
@@ -226,9 +225,6 @@ export default {
       }
       // 额外处理
       console.log('当前item', nowItem)
-    },
-    showTip(argMsg) {
-      this.DialogShow({ msg: argMsg }, { type: 'info' })
     },
     getInputList() {
       let temArr = []

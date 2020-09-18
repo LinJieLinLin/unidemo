@@ -1,5 +1,6 @@
 // fade 渐变
 .fade {
+  animation: 0.5s fade-in;
   &-enter-active {
     animation: 0.5s fade-in;
   }

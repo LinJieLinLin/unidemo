@@ -58,8 +58,8 @@ export default {
         url: 'com/form'
       },
       {
-        name: 'demo',
-        url: 'index'
+        name: 'transition',
+        url: 'com/transition'
       },
       ]
     }

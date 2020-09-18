@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   props: {
     item: {
@@ -94,6 +95,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['OpenDialog']),
     // 重置数据
     formChange(argData, argItem) {
       // this.$emit('formChange', argData)
@@ -101,7 +103,10 @@ export default {
     },
     // 显示提示
     showTip(argItem) {
-      this.$emit('mixinChange', { fn: this.$f.safeData(this.c, 'fn.showTip', 'showTip'), data: argItem.tips })
+      this.OpenDialog({
+        data: { msg: argItem.tips },
+        options: { type: 'tip' }
+      })
     },
     // 图片验证码点击切换
     imgCodeClick() {

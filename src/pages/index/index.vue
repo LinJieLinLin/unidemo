@@ -31,17 +31,24 @@
     </view>
     <!-- <div @click="$f.toPage('p1/demo')">to分包</div> -->
     <view class="pd-lr20">
-      <button @click="login">登录</button>
-      <button @click="toWebview">打开webview</button>
+      <button class="mg-t20"
+        @click="login">
+        登录
+      </button>
+      <button class="mg-t20"
+        @click="toWebview">
+        打开webview
+      </button>
       <!-- #ifdef MP-WEIXIN -->
-      <button @click="$f.toPage('testPackage/customer')">腾讯云小微</button>
+      <button class="mg-t20"
+        @click="$f.toPage('testPackage/customer')">
+        腾讯云小微
+      </button>
       <!-- #endif -->
-      <button @click="$f.toPage('my','','switchTab')">我的</button>
-      <label>
-        <checkbox value="cb"
-          color=""
-          checked="true" />选中
-      </label>
+      <button class="mg-t20"
+        @click="$f.toPage('my','','switchTab')">
+        我的
+      </button>
     </view>
     <lj-dialog :c="DialogC"
       @mixinChange="ComChange"></lj-dialog>
@@ -79,7 +86,7 @@ export default {
   computed: {},
   methods: {
     toWebview() {
-      this.$f.toPage('webview', { url: ('https://mp.weixin.qq.com/s/pBT383HTpQ-DDrlWL0h_kA') })
+      this.$f.toPage('webview', { url: ('https://www.baidu.com') })
     },
     // #ifdef MP-WEIXIN
     jumpPlugin(argUrl) {
