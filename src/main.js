@@ -14,7 +14,7 @@ import {
   toast,
 } from './utils/microApi'
 import { request, response, checkInput } from './utils/project'
-import { safeData, hideInfo, sleep, loadFile } from './utils/j'
+import { safeData, hideInfo, sleep, loadFile, remInit } from './utils/j'
 import comMixin from './utils/mixins/common'
 import Throttle from './utils/class/Throttle'
 import Debounce from './utils/class/Debounce'
@@ -49,6 +49,10 @@ Vue.prototype.$f = {
   P,
   getObj,
   checkInput,
+}
+// 设置rem
+if (process.env.VUE_APP_FONTREM) {
+  remInit()
 }
 App.mpType = 'app'
 // 设置请求拦截

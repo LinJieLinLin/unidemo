@@ -5,7 +5,8 @@ const TerserPlugin = require('terser-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const cdnConfig = require('./cdnConfig')
 const useCdn = false
-// console.log(process.argv, process.env)
+// console.log(process.argv)
+// console.log(process.env)
 // 设置路径
 function resolve(dir) {
   return path.join(__dirname, dir)

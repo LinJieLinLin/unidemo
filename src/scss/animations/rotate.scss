@@ -1,4 +1,5 @@
 .rotate {
+  animation: 3s rotate;
   &-enter-active {
     animation: 0.3s rotate;
   }
@@ -8,11 +9,10 @@
   }
 }
 @keyframes rotate {
-  from {
+  0% {
     transform: rotate(0deg);
   }
-
-  to {
+  100% {
     transform: rotate(360deg);
   }
 }

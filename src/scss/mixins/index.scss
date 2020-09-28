@@ -1,3 +1,8 @@
+@import './transitionMixin.scss';
+
+/**
+* 设置n行，超出显示...
+**/
 @mixin oTextLine($num: 3) {
   @for $n from 1 through $num {
     .text-line-#{$n} {

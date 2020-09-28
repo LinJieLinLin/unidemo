@@ -1,22 +1,20 @@
 .slide-up {
-  &-enter-active {
-    animation: slide-up-enter 0.3s both ease-in;
+  animation: 0.5s slide-up;
+  &-enter,
+  &-leave-to {
+    transform: translateY(50%);
+    opacity: 0;
   }
-
+  &-enter-active,
   &-leave-active {
-    animation: slide-up-leave 0.3s both ease-out;
+    transition: all 0.3s ease;
   }
 }
-@keyframes slide-up-enter {
-  from {
-    transform: translate3d(0, 100%, 0);
-    opacity: 0;
+@keyframes slide-up {
+  0% {
+    transform: translateY(50%);
   }
-}
-
-@keyframes slide-up-leave {
-  to {
-    transform: translate3d(0, 100%, 0);
-    opacity: 0;
+  100% {
+    transform: translateY(0);
   }
 }

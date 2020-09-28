@@ -13,9 +13,15 @@
 // 超过n行后显示... eg:text-line-1 2 3
 @include oTextLine(3);
 @include oBorder1px(#ececec);
+html {
+  /* prettier-ignore */
+  font-size: 16PX;
+}
 // 点击背景
 body {
   -webkit-tap-highlight-color: transparent;
+  /* px-to-viewport-ignore-next */
+  font-size: 12px; /* px-to-viewport-ignore */
 }
 .f-l {
   float: left;

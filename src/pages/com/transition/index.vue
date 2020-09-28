@@ -1,22 +1,22 @@
 <template>
   <div>
-    <div class="demo">
-      <button class="mg-t20 mg-lr20 amimated fade"
+    <div class="pd-lr20">
+      <transition-group name="list-fade"
+        tag="p">
+        <div v-for="item in items"
+          :key="item"
+          class="list-fade-item">
+          {{ item }}
+        </div>
+      </transition-group>
+      <button class="mg-t20 amimated fade"
         @click="add">
         Add
       </button>
-      <button class="mg-t20 mg-lr20"
+      <button class="mg-t20"
         @click="remove">
         Remove
       </button>
-      <transition-group name="list-complete"
-        tag="p">
-        <span v-for="item in items"
-          :key="item"
-          class="list-complete-item">
-          {{ item }}
-        </span>
-      </transition-group>
     </div>
   </div>
 </template>
@@ -63,6 +63,7 @@ export default {
     },
     add: function () {
       this.items.splice(this.randomIndex(), 0, this.nextNum++)
+      this.items.splice(this.randomIndex(), 0, this.nextNum++)
     },
     remove: function () {
       this.items.splice(this.randomIndex(), 1)
@@ -72,17 +73,18 @@ export default {
 </script>
 
 <style lang="scss">
-.list-complete-item {
+.list-fade-item {
   transition: all 1s;
-  display: inline-block;
+  // display: inline-block;
+  display: block;
   margin-right: 10px;
 }
-.list-complete-enter,
-.list-complete-leave-to {
+.list-fade-enter,
+.list-fade-leave-to {
   opacity: 0;
   transform: translateY(-10px);
 }
-.list-complete-leave-active {
+.list-fade-leave-active {
   position: absolute;
 }
 </style>

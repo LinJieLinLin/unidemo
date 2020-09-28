@@ -1,3 +1,15 @@
+/*
+ * @Author: linj
+ * @Email: 993353454@qq.com
+ * @Date: 2020-01-14 17:45:06
+ * @Description:
+ */
+
+//  /* prettier-ignore */ 不使用prettier格式化代码 css PX 处理
+// eslint
+// // eslint-disable-line 关闭当前行
+// // eslint-disable-next-line 关闭下一行
+// /* eslint-disable */ 关闭当前文件
 module.exports = {
   root: true,
   env: {

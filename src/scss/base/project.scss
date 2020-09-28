@@ -5,7 +5,6 @@ page {
   color: #333;
   line-height: 1.4;
 }
-
 button[type='theme'] {
   color: #fff;
   @include iBtnBgColor($theme);
