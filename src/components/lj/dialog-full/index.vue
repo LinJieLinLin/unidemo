@@ -169,7 +169,6 @@ export default {
   }
 
   .m-footer {
-    margin-top: 10px;
     height: 40px;
     display: flex;
     overflow: hidden;

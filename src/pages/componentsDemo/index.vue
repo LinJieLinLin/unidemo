@@ -1,17 +1,37 @@
 <template>
   <view class="uni-container">
-    <!-- #ifdef H5||APP-PLUS -->
-    <view class="mg-t50"></view>
-    <!-- #endif -->
-    <view class="uni-hello-text">
+    <view class="uni-margin-wrap">
+      <swiper class="swiper"
+        circular
+        indicator-dots
+        :autoplay="swiperC.autoplay"
+        :interval="swiperC.interval"
+        :duration="swiperC.duration">
+        <swiper-item>
+          <image class="image"
+            mode="aspectFill"
+            src="https://img.lj4.top/test/1.jpg" />
+        </swiper-item>
+        <swiper-item>
+          <image class="image"
+            mode="aspectFill"
+            src="https://img.lj4.top/test/2.jpg" />
+        </swiper-item>
+        <swiper-item>
+          <image class="image"
+            mode="aspectFill"
+            src="https://img.lj4.top/test/3.jpg" />
+        </swiper-item>
+      </swiper>
+    </view>
+    <view class="uni-hello-text mg-t10">
       <uni-list>
         <uni-list-item v-for="(item,index) in lists"
           :key="index"
           :title="item.name"
+          :disabled="item.disabled"
+          :show-arrow="true"
           @click.native="toComponents(item)" />
-        <uni-list-item :disabled="true"
-          :show-arrow="false"
-          title="列表禁用状态" />
       </uni-list>
     </view>
   </view>
@@ -24,6 +44,11 @@ export default {
   },
   data() {
     return {
+      swiperC: {
+        autoplay: true,
+        interval: 3000,
+        duration: 3000
+      },
       navigateFlag: false,
       lists: [{
         name: '弹窗',
@@ -54,6 +79,11 @@ export default {
         url: 'com/svgIcon'
       },
       {
+        name: '实验室',
+        url: '',
+        disabled: true
+      },
+      {
         name: 'form',
         url: 'com/form'
       },
@@ -81,6 +111,9 @@ export default {
   },
   methods: {
     toComponents(argData) {
+      if (argData.disabled) {
+        return
+      }
       this.$f.toPage(argData.url)
     },
     init() {
@@ -90,5 +123,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.swiper {
+  height: 200px;
+  image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+}
 </style>

@@ -6,25 +6,8 @@
 -->
 <template>
   <view class="pd-lr10">
-    <block v-if="useDom">
-      <view class="pd-lr10">
-        <input id="title"
-          class="pd-tb10 mg-b10"
-          maxlength="100"
-          v-model="data.title"
-          confirm-type="done"
-          placeholder="请输入标题" />
-        <editor :style="{height:editorHeight+'px'}"
-          class="flex11 ql-editor"
-          id="editor"
-          placeholder="请输入内容"
-          @ready="eReady"
-          show-img-toolbar></editor>
-      </view>
-    </block>
-    <view v-else
-      class="page flex-column pd-lr10">
-      <input class="pd-tb10 mg-b10 flex0"
+    <view class="page flex-column pd-lr10">
+      <input class="pd-f10 mg-tb10 flex0 bg-w"
         maxlength="100"
         v-model="data.title"
         confirm-type="done"
@@ -34,21 +17,29 @@
         placeholder="请输入内容"
         @ready="eReady"
         show-img-toolbar></editor>
-      <view class="tool-bar flex flex0 mg-t10">
+      <view class="tool-bar flex flex0 mg-b10 c-theme">
         <div class="item"
           @click="addImg">
+          <lj-icon i="i-img"
+            class="fs-18"></lj-icon>
           图片
         </div>
         <div class="item"
           @click="undo">
+          <lj-icon i="i-redo"
+            class="fs-18 undo"></lj-icon>
           撤销
         </div>
         <div class="item"
           @click="redo">
+          <lj-icon i="i-redo"
+            class="fs-18"></lj-icon>
           重做
         </div>
         <div class="item"
           @click="submit">
+          <lj-icon i="i-save"
+            class="fs-18"></lj-icon>
           保存
         </div>
         <div class="item">要改为组件</div>
@@ -137,10 +128,6 @@ export default {
       })
     },
     async init() {
-      console.log('init')
-      let res = await this.$f.P('getSystemInfo')
-      let titleDom = await this.GetDom('#title')
-      this.editorHeight = res.windowHeight - titleDom.height
     }
   },
 }
@@ -148,14 +135,20 @@ export default {
 
 <style lang="scss">
 .ql-editor {
+  padding: 10px 8px;
   background-color: #c0c0c0;
 }
 .tool-bar {
+  background-color: #fff;
   .item {
-    height: 30px;
+    height: 40px;
     padding: 10px;
     box-sizing: border-box;
+    @include iBtnBgColor(#fff);
     @include iFlex('flex-center');
+  }
+  .undo {
+    transform: rotateY(180deg);
   }
 }
 </style>
