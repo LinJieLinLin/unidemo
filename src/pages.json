@@ -121,6 +121,10 @@
           "style": {}
         },
         {
+          "path": "poster/index",
+          "style": {}
+        },
+        {
           "path": "form/index",
           "style": {}
         },

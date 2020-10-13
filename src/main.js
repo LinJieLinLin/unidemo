@@ -59,7 +59,7 @@ App.mpType = 'app'
 setRequest(request, response)
 // h5加载图标
 // #ifdef H5
-loadFile('https://at.alicdn.com/t/font_717995_dw1183w7ojp.js')
+loadFile('https://at.alicdn.com/t/font_2120237_w05xu490np.js')
 // #endif
 // 加载mixins
 Vue.mixin(comMixin.mixin)

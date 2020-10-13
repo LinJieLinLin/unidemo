@@ -2,6 +2,10 @@
 <script>
 import { setStorage } from './utils/microApi'
 export default {
+  // 全局数据 eg:getApp().globalData.text
+  globalData: {
+    text: 'text'
+  },
   onError(err) {
     console.log('捕捉错误：', err)
     this.$f.log(err)

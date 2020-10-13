@@ -79,6 +79,10 @@ export default {
         url: 'com/svgIcon'
       },
       {
+        name: 'poster',
+        url: 'com/poster'
+      },
+      {
         name: '实验室',
         url: '',
         disabled: true

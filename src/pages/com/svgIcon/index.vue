@@ -5,9 +5,8 @@
  * @Description:
 -->
 <template>
-  <div class="svg-icon"
-    :style="{backgroundImage:'url('+imgs.noData+')'}">
-    <view class="flex">
+  <div class="svg-icon">
+    <view class="flex pd-t20">
       <div class="item flex-column flex-y-center"
         :style="{color: item.color}"
         v-for="(item,index) in list"
@@ -21,9 +20,7 @@
 </template>
 
 <script>
-var getRandomColor = function () {
-  return '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6)
-}
+import { getRandomColor } from '../../../utils/j'
 export default {
   props: {
 
@@ -60,13 +57,22 @@ export default {
       },
       list: [{
         icon: 'i-car',
-        name: '拼车'
+        name: 'car'
       }, {
-        icon: 'i-account',
-        name: '拼车'
+        icon: 'i-home',
+        name: 'home'
+      }, {
+        icon: 'i-search',
+        name: 'search'
+      }, {
+        icon: 'i-add',
+        name: 'add'
+      }, {
+        icon: 'i-all',
+        name: 'all'
       }, {
         icon: 'i-del',
-        name: '拼车'
+        name: 'del'
       }]
     }
   },

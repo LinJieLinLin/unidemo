@@ -47,7 +47,6 @@
     "icon-rchy": "^1.0.0",
     "js-base64": "^3.4.1",
     "md5": "^2.2.1",
-    "secure-ls": "^1.2.6",
     "vconsole": "^3.3.4",
     "vuex": "^3.5.1",
     "weixin-js-sdk": "^1.4.0-test"

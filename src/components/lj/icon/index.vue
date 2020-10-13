@@ -23,6 +23,11 @@ eg: <lj-icon i="i-maoshan"></lj-icon>
 </template>
 
 <script>
+if (process.env.NODE_ENV === 'development') {
+  // #ifdef H5
+  require('./iconfont')
+  // #endif
+}
 export default {
   props: {
     i: {
