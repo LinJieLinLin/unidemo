@@ -292,10 +292,10 @@
     align-items: stretch;
   }
   .flex-y-end {
-    align-items: flex-end;
+    align-self: flex-end;
   }
   .flex-y-start {
-    align-items: flex-start;
+    align-self: flex-start;
   }
   .flex-x-center {
     justify-content: center;
@@ -672,7 +672,7 @@ eg: @include iIcon(close,16)
   $path: './assets/icon/',
   $suffix: '.png'
 ) {
-  background-image: url($path + $name + $suffix);
+  background-image: url($path+$name+$suffix);
   background-size: $sw + px $sh + px;
   background-repeat: no-repeat;
   background-position: center;
