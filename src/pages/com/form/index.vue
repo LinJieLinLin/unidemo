@@ -27,8 +27,7 @@
           @mixinChange="ComChange($event,'formList.'+index)"></lj-form>
       </block>
     </div>
-    <uni-section title="查看模式"
-      type="line"></uni-section>
+    <div class="b fs-18 pd-tb8">查看模式</div>
     <div v-for="(item,index) in formList"
       :key="'view'+index">
       <block v-if="item.type==='itemList'">

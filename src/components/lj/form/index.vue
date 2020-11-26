@@ -79,14 +79,17 @@ export default {
   computed: {
     titleStyle() {
       let temStyle = ''
-      // #ifdef MP
-      for (let k in this.c.titleStyle) {
-        temStyle += k + ':' + this.c.titleStyle[k] + ';'
-      }
-      // #endif
+      let isH5
       // #ifndef MP
-      temStyle = this.c.titleStyle
+      isH5 = true
       // #endif
+      if (!isH5) {
+        for (let k in this.c.titleStyle) {
+          temStyle += k + ':' + this.c.titleStyle[k] + ';'
+        }
+      } else {
+        temStyle = this.c.titleStyle
+      }
       return temStyle
     }
   },

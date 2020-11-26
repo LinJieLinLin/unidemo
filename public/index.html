@@ -2,15 +2,31 @@
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="format-detection"
+      content="telephone=yes,email=no,date=no,address=no"
+    />
+    <!-- 不缓存 -->
+    <!-- <meta http-equiv="Cache-Control" name="no-store" /> -->
+    <meta name="author" content="linjielinlin, 993353454@qq.com" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit|Blink|Trident" />
+    <meta name="browsermode" content="application" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="full-screen" content="true" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="x5-page-mode" content="app" />
+    <meta name="360-fullscreen" content="true" />
+    <meta name="msapplication-tap-highlight" content="no" />
     <title>
       <%= htmlWebpackPlugin.options.title %>
     </title>
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        document.documentElement.style.fontSize =
-          document.documentElement.clientWidth / 20 + 'px'
-      })
+      // document.addEventListener('DOMContentLoaded', function () {
+      //   document.documentElement.style.fontSize =
+      //     document.documentElement.clientWidth / 20 + 'px'
+      // })
       var coverSupport =
         'CSS' in window &&
         typeof CSS.supports === 'function' &&

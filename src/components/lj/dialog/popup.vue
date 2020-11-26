@@ -1,12 +1,12 @@
 <template>
   <view v-if="showPopup"
     class="uni-popup">
-    <uni-transition :mode-class="['fade']"
+    <lj-transition :mode-class="['fade']"
       :styles="maskClass"
       :duration="duration"
       :show="showTrans"
       @click="onTap" />
-    <uni-transition :mode-class="ani"
+    <lj-transition :mode-class="ani"
       :styles="transClass"
       :duration="duration"
       :show="showTrans"
@@ -15,12 +15,11 @@
         @click.stop="clear">
         <slot />
       </view>
-    </uni-transition>
+    </lj-transition>
   </view>
 </template>
 
 <script>
-import { uniTransition } from '@dcloudio/uni-ui'
 /**
  * PopUp 弹出层
  * @description 弹出层组件，为了解决遮罩弹层的问题
@@ -35,9 +34,8 @@ import { uniTransition } from '@dcloudio/uni-ui'
  */
 
 export default {
-  name: 'UniPopup',
+  name: 'LjPopup',
   components: {
-    uniTransition
   },
   props: {
     show: {

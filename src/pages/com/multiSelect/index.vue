@@ -11,12 +11,11 @@
         @click="selectShow">
         打开多选
       </button>
-      <uni-section title="已选择"
-        type="line"></uni-section>
+      <div class="b fs-18 pd-tb8">已选择</div>
       <div class="flex-row-between flex-wrap">
         <lj-item-key @click.native="keysClick(item)"
           class="mg-t10"
-          is-select
+          show-select
           :item="item"
           v-for="(item, index) in list"
           :key="index"></lj-item-key>

@@ -73,11 +73,18 @@ changeFn: '改变时回调函数',
                 @click.stop="cancel()">
                 {{ c.cancelText || '取消' }}
               </view>
-              <view class="m-btn"
-                v-if="!c.hideConfirm"
-                @click.stop="confirm()">
-                {{ c.confirmText || '确定' }}
-              </view>
+              <block v-if="!c.hideConfirm">
+                <view class="m-btn"
+                  v-if="!c.getUserInfo"
+                  @click.stop="confirm()">
+                  {{ c.confirmText || '确定' }}
+                </view>
+                <!-- #ifdef MP-WEIXIN -->
+                <lj-user-info v-else
+                  class="m-btn"
+                  @click="confirm()"></lj-user-info>
+                <!-- #endif -->
+              </block>
             </view>
           </slot>
         </view>
@@ -113,12 +120,15 @@ export default {
       }
     },
     change(argData) {
+      let isH5
       // #ifndef MP
-      this.c.show = argData.show
+      isH5 = true
       // #endif
-      // #ifdef MP
-      this.$emit('mixinChange', { key: this.c.key + '.show', data: argData.show })
-      // #endif
+      if (isH5) {
+        this.c.show = argData.show
+      } else {
+        this.$emit('mixinChange', { key: this.c.key + '.show', data: argData.show })
+      }
     },
     cancel(argData) {
       if (!this.c.cancelNoHide) {
@@ -127,11 +137,11 @@ export default {
       console.log(1)
       this.$emit('mixinChange', { fn: this.c.cancelFn })
     },
-    confirm() {
+    confirm(argData) {
       if (!this.c.confirmNoHide) {
         this.change({ show: false })
       }
-      this.$emit('mixinChange', { fn: this.c.confirmFn })
+      this.$emit('mixinChange', { fn: this.c.confirmFn, data: argData })
     },
   },
 }

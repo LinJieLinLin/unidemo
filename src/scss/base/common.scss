@@ -140,6 +140,20 @@ body {
 .ta-r {
   text-align: right;
 }
+// 禁用状态
+.disabled {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(184, 190, 196, 0.2);
+    color: #fff;
+  }
+}
 
 // 圆
 .round {

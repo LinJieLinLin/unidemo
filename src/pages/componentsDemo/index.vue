@@ -25,14 +25,20 @@
       </swiper>
     </view>
     <view class="uni-hello-text mg-t10">
-      <uni-list>
+      <div v-for="(item,index) in lists"
+        :key="index">
+        <lj-item-list :item="item"
+          :c="listC"
+          @click="toComponents(item)"></lj-item-list>
+      </div>
+      <!-- <uni-list>
         <uni-list-item v-for="(item,index) in lists"
           :key="index"
           :title="item.name"
           :disabled="item.disabled"
           :show-arrow="true"
           @click.native="toComponents(item)" />
-      </uni-list>
+      </uni-list> -->
     </view>
   </view>
 </template>
@@ -44,6 +50,9 @@ export default {
   },
   data() {
     return {
+      listC: {
+
+      },
       swiperC: {
         autoplay: true,
         interval: 3000,
@@ -81,6 +90,10 @@ export default {
       {
         name: 'poster',
         url: 'com/poster'
+      },
+      {
+        name: 'indexed',
+        url: 'com/indexed'
       },
       {
         name: '实验室',

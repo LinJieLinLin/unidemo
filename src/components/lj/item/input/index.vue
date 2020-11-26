@@ -112,7 +112,6 @@ export default {
       this.showPwd = !this.showPwd
     },
     inputBlur(argData) {
-      console.warn(argData)
       // #ifdef  H5
       if (getSystemInfo().isAppleMobile) {
         window.scrollTo(0, 0)

@@ -1,4 +1,15 @@
 /* eslint-disable */
+<!-- #ifdef H5 -->
+<!--
+<template>
+  <view>
+    <transition :name="$pageAni">
+      <router-view />
+    </transition>
+  </view>
+</template>
+-->
+<!-- #endif -->
 <script>
 import { setStorage } from './utils/microApi'
 export default {

@@ -10,25 +10,25 @@
         <swiper-item>
           <image class="image"
             mode="aspectFill"
-            src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png" />
+            src="https://img.lj4.top/test/1.jpg" />
         </swiper-item>
         <swiper-item>
           <image class="image"
             mode="aspectFill"
-            src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png" />
+            src="https://img.lj4.top/test/2.jpg" />
         </swiper-item>
         <swiper-item>
           <image class="image"
             mode="aspectFill"
-            src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png" />
+            src="https://img.lj4.top/test/3.jpg" />
         </swiper-item>
       </swiper>
     </view>
-    <view class="example-body">
+    <!-- <view class="example-body">
       <uni-notice-bar :scrollable="true"
         :single="true"
         text="我的ui组件库!" />
-    </view>
+    </view> -->
     <!-- <div @click="$f.toPage('p1/demo')">to分包</div> -->
     <view class="pd-lr20">
       <button class="mg-t20"

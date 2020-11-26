@@ -24,7 +24,7 @@ confirmText: '确定文字', }, eg:
 <lj-multi-select :c="dialogC" @change="dialogChange" @cancel="dialogCancel" @confirm="dialogConfirm"></lj-multi-select>
 -->
 <template>
-  <uni-transition class="multi-select"
+  <lj-transition class="multi-select"
     v-if="c.show"
     :duration="300"
     :mode-class="['slide-bottom']"
@@ -60,7 +60,7 @@ confirmText: '确定文字', }, eg:
         </view>
       </view>
     </view>
-  </uni-transition>
+  </lj-transition>
 </template>
 
 <script>

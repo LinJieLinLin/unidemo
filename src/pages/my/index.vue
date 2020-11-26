@@ -5,7 +5,7 @@
       <!-- #ifdef MP-WEIXIN -->
       <uni-section title="小程序特有"
         type="line"></uni-section>
-      <uni-list>
+      <!-- <uni-list>
         <uni-list-item :show-extra-icon="true"
           :extra-icon="extraIcon1">
           <button class="btn-none"
@@ -20,24 +20,22 @@
             授权设置
           </button>
         </uni-list-item>
-      </uni-list>
+      </uni-list> -->
       <!-- #endif -->
-      <uni-list>
-        <!-- #ifndef H5 -->
+      <!-- <uni-list>
         <uni-list-item @click="scanCode"
           :show-extra-icon="true"
           :extra-icon="extraIcon1"
           title="扫码">
         </uni-list-item>
-        <!-- #endif -->
         <uni-list-item :show-arrow="false"
           title="列表文字"
           note="列表描述信息" />
         <uni-list-item :disabled="true"
           :show-arrow="false"
           title="列表禁用状态" />
-      </uni-list>
-      <uni-list>
+      </uni-list> -->
+      <!-- <uni-list>
         <uni-list-item title="列表右侧带箭头"
           right-text="右侧文字" />
         <uni-list-item :show-badge="true"
@@ -60,7 +58,7 @@
           :switch-checked="true"
           title="禁用状态"
           @switchChange="switchChange" />
-      </uni-list>
+      </uni-list> -->
     </view>
   </div>
 </template>

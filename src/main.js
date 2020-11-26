@@ -24,6 +24,9 @@ const throttle = new Throttle()
 const debounce = new Debounce()
 Vue.config.productionTip = false
 //  vuex
+// #ifdef H5
+Vue.prototype.$pageAni = 'fade'
+// #endif
 Vue.prototype.$store = store
 Vue.prototype.$f = {
   init: () => {

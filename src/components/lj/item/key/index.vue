@@ -2,11 +2,14 @@
  * @Author: linj
  * @Email: 993353454@qq.com
  * @Date: 2020-05-29 15:04:42
- * @Description:
+ * @Description: 关键字选择
+ showSelect:只显示已选择
+itemKey：要显示的字段，默认 name
+item: item obj
 -->
 <template>
   <div class="item-key flex-center pd-lr4 pd-tb4"
-    :class="{ active: item.isSelect,'hide':isSelect&&!item.isSelect }">
+    :class="{ active: item.isSelect,'hide':showSelect&&!item.isSelect }">
     {{ item[itemKey] }}
   </div>
 </template>
@@ -14,7 +17,7 @@
 <script>
 export default {
   props: {
-    'isSelect': {
+    'showSelect': {
       type: Boolean,
       default: false
     },

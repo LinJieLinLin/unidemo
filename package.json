@@ -40,6 +40,7 @@
     "@dcloudio/uni-mp-weixin": "^2.0.0-28320200727001",
     "@dcloudio/uni-stat": "^2.0.0-28320200727001",
     "@dcloudio/uni-ui": "^1.2.4",
+    "cnchar": "^2.2.7",
     "crypto-js": "^4.0.0",
     "dayjs": "^1.8.14",
     "flyio": "^0.6.2",

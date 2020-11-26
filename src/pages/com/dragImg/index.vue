@@ -6,16 +6,14 @@
 -->
 <template>
   <div class="drag pd-lr16">
-    <uni-section title="图片为普通数组"
-      type="line"></uni-section>
+    <div class="b fs-18 pd-tb8">图片为普通数组</div>
     <lj-drag-img class="pd-t20"
       :c="dragC"
       :list="list"
       :d="list"
       @mixinChange="ComChange">
     </lj-drag-img>
-    <uni-section title="图片obj数组，slot添加"
-      type="line"></uni-section>
+    <div class="b fs-18 pd-tb8">图片obj数组，slot添加</div>
     <lj-drag-img class="pd-t20"
       :ref="dragC1.id"
       :c="dragC1"
@@ -25,8 +23,7 @@
         自定义
       </template>
     </lj-drag-img>
-    <uni-section title="仅查看"
-      type="line"></uni-section>
+    <div class="b fs-18 pd-tb8">仅查看</div>
     <lj-drag-img class="pd-t20"
       :ref="dragC.id"
       :c="dragC2"

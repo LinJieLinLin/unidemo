@@ -49,7 +49,7 @@ this.dialogC.confirmFn = ''
 */
 -->
 <template>
-  <uni-transition class="dialog-full"
+  <lj-transition class="dialog-full"
     v-if="c.show"
     :duration="300"
     :mode-class="['slide-bottom']"
@@ -83,11 +83,10 @@ this.dialogC.confirmFn = ''
         </slot>
       </slot>
     </view>
-  </uni-transition>
+  </lj-transition>
 </template>
 
 <script>
-// import popup from '../dialog/popup'
 export default {
   props: {
     list: {
