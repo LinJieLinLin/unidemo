@@ -1,10 +1,25 @@
 /* eslint-disable no-case-declarations */
 import store from '../store'
 import { getRegexp, safeData, isJson, hideInfo, toFixed } from './j'
-import { toast, getStorageSync, setStorage, hideLoading } from './microApi'
+import {
+  init,
+  toast,
+  getStorageSync,
+  setStorage,
+  hideLoading,
+} from './microApi'
 import md5 from 'md5'
 import { enBase64, deBase64 } from './encrypt/base64'
+import Counter from './class/Counter'
+import { getObj } from './struct'
 
+const appConfig = getObj('config') || {}
+let ljCloud = ''
+if (typeof uniCloud !== 'undefined' && appConfig.uniCloud) {
+  ljCloud = uniCloud.init(appConfig.uniCloud)
+}
+console.error('引用project.js')
+init(appConfig)
 export const RegexpObj = getRegexp()
 /**
  * 数据变更时
@@ -276,6 +291,29 @@ export const formCheck = (argList, argToast) => {
   }
   return fail
 }
+
+/**
+ * 描述
+ * @function
+ * @description 设置CountNum 全局倒计时
+ * @param argData 倒计秒数
+ * @date 2019-09-26
+ * @returns {functions}
+ */
+const setCountNum = (argData) => {
+  store.commit('SetCountNum', argData)
+}
+/**
+ * 描述
+ * @function
+ * @description 获取全局倒计时对象
+ * @date 2019-09-26
+ * @returns {functions}
+ */
+export const GlobalCounter = new Counter(
+  +getStorageSync('CountNum') || 60,
+  setCountNum
+)
 
 // old----------------------------------------------
 // old----------------------------------------------

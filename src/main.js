@@ -8,12 +8,11 @@ import {
   ljLog,
   getStorageSync,
   setStorage,
-  GlobalCounter,
   getCurrentPage,
   P,
   toast,
 } from './utils/microApi'
-import { request, response, checkInput } from './utils/project'
+import { request, response, checkInput, GlobalCounter } from './utils/project'
 import { safeData, hideInfo, sleep, loadFile, remInit } from './utils/j'
 import comMixin from './utils/mixins/common'
 import Throttle from './utils/class/Throttle'

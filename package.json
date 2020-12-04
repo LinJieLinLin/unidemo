@@ -32,7 +32,7 @@
   "dependencies": {
     "@dcloudio/uni-app-plus": "^2.0.0-28320200727001",
     "@dcloudio/uni-h5": "^2.0.0-28320200727001",
-    "@dcloudio/uni-helper-json": "latest",
+    "@dcloudio/uni-helper-json": "^1.0.9",
     "@dcloudio/uni-mp-alipay": "^2.0.0-28320200727001",
     "@dcloudio/uni-mp-baidu": "^2.0.0-28320200727001",
     "@dcloudio/uni-mp-qq": "^2.0.0-28320200727001",

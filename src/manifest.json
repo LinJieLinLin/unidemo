@@ -104,10 +104,10 @@
   "quickapp": {},
   /* 快应用特有相关 */
   "h5": {
-    "publicPath": "/unidemo/",
+    "publicPath": "/unidemo",
     "router": {
       "mode": "hash",
-      "base": "/unidemo/"
+      "base": "/unidemo"
     },
     "uniStatistics": {
       "enable": true

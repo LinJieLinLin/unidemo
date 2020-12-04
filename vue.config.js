@@ -12,7 +12,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const publicPath = '/unidemo/'
+
 let plugins = [
   // 复制文件到根目录
   // new CopyWebpackPlugin([
@@ -29,7 +29,7 @@ if (process.env.UNI_PLATFORM === 'H5' && useCdn) {
       title: '',
       template: resolve('public/index.html'),
       cdn: cdnConfig,
-      baseUrl: publicPath,
+
       minify: {
         // 压缩 HTML 中出现的 CSS 代码
         minifyCSS: true,
@@ -64,8 +64,8 @@ if (process.env.NODE_ENV === 'production') {
 
 // console.log(cdnConfig)
 module.exports = {
-  // 基本路径（uni还需要改manifest.json）
-  publicPath: publicPath,
+
+
   // 输出文件目录(uni不支持)
   // outputDir: 'dist',
   // html生成别名
