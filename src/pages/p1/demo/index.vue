@@ -51,19 +51,7 @@
             @click="testHttp">
             测试超时
           </button>
-          <uni-badge text="1"></uni-badge>
-          <uni-badge text="2"
-            type="warning"
-            @click="bindClick"></uni-badge>
-          <uni-badge text="32"
-            type="primary"
-            :inverted="true"></uni-badge>
           <div class="c">12312312</div>
-          <uni-list>
-            <uni-list-item title="标题文字"
-              :show-extra-icon="true"
-              :extra-icon="{color: '#4cd964',size: '22',type: 'spinner'}"></uni-list-item>
-          </uni-list>
         </div>
       </section>
     </div>
@@ -71,7 +59,6 @@
 </template>
 <script>
 import { mapState, mapActions } from 'vuex'
-import { uniBadge, uniList, uniListItem } from '@dcloudio/uni-ui'
 // #ifdef  H5
 import wxSdk from 'weixin-js-sdk'
 // #endif
@@ -98,7 +85,6 @@ export default {
     }
   },
   components: {
-    uniBadge, uniList, uniListItem
   },
   onShareAppMessage(argData) {
     if (argData.from === 'button') {

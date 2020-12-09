@@ -54,7 +54,9 @@
 
 <script>
 /* eslint-disable */
+// #ifndef MP
 import html2canvas from "html2canvas";
+// #endif
 import { getSystemInfo, hideLoading, showLoading } from '@utils/microApi';
 export default {
   props: {
@@ -94,20 +96,29 @@ export default {
       if (posterBody.scrollHeight > getSystemInfo().windowHeight) {
         this.isTooHeight = true
       }
+      let isMp = true
+      // #ifndef MP
+      isMp = false
+      // #endif
+      let scrollTop = isMp ? 0 : document.documentElement.scrollTop || 0
       let option = {
         imageTimeout: this.c.imageTimeout || 30000,
         allowTaint: true,
         backgroundColor: this.c.backgroundColor || null,
         height: posterBody.scrollHeight,
         width: posterBody.scrollWidth,
-        y: document.documentElement.scrollTop || 0,
-        scrollY: document.documentElement.scrollTop || 0,
+        // todo
+        y: scrollTop,
+        scrollY: scrollTop,
         scale: scale,
         useCORS: true
       };
-      let canvas = await html2canvas(posterBody, option).catch(error => {
+      let canvas
+      // #ifndef MP
+      canvas = await html2canvas(posterBody, option).catch(error => {
         console.error(error);
       });
+      // #endif
       console.log(option);
 
       hideLoading()

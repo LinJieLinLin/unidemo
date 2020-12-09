@@ -9,7 +9,8 @@ item: item obj
 -->
 <template>
   <div class="item-key flex-center pd-lr4 pd-tb4"
-    :class="{ active: item.isSelect,'hide':showSelect&&!item.isSelect }">
+    v-if="!showSelect||item.isSelect"
+    :class="{ active: item.isSelect }">
     {{ item[itemKey] }}
   </div>
 </template>
@@ -40,6 +41,7 @@ export default {
   },
   methods: {
   }
+
 }
 </script>
 
@@ -54,6 +56,9 @@ export default {
   box-sizing: border-box;
   &.active {
     background-color: c(theme);
+    // #ifdef MP
+    background-color: $theme;
+    // #endif
     color: #fff;
   }
 }

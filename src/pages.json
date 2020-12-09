@@ -20,7 +20,7 @@
     {
       "path": "pages/componentsDemo/index",
       "style": {
-        "navigationBarTitleText": "组件demo",
+        "navigationBarTitleText": "我的组件",
         // 透明导航栏
         // #ifdef MP-ALIPAY || APP-PLUS || H5
         "transparentTitle": "auto",
@@ -50,39 +50,32 @@
   ],
   // 分包
   "subPackages": [
-    {
-      // 云小微智能客服接入
-      "root": "pages/testPackage",
-      // #ifdef MP-WEIXIN
-      "plugins": {
-        // 腾讯云小微
-        "customer-service": {
-          "version": "1.1.0", //此处请使用最新版本
-          "provider": "wx7b9e5f4b4fcbc9b5"
-        }
-      },
-      // #endif
-      "pages": [
-        {
-          "path": "customer/index",
-          "style": {
-            // #ifdef MP-WEIXIN
-            "usingComponents": {
-              "chat-flow": "plugin://customer-service/ChatFlow"
-              // "custom": "/wxcomponents/chatflow/chatflow"
-            },
-            // #endif
-            "navigationBarTitleText": "智能客服"
-          }
-        },
-        {
-          "path": "demo/index",
-          "style": {
-            "navigationBarTitleText": "demo"
-          }
-        }
-      ]
-    },
+    // {
+    //   // 云小微智能客服接入
+    //   "root": "pages/testPackage",
+    //   // #ifdef MP-WEIXIN
+    //   "plugins": {
+    //     // 腾讯云小微
+    //     "customer-service": {
+    //       "version": "1.1.0", //此处请使用最新版本
+    //       "provider": "wx7b9e5f4b4fcbc9b5"
+    //     }
+    //   },
+    //   // #endif
+    //   "pages": [
+    //     {
+    //       "path": "customer/index",
+    //       "style": {
+    //         // #ifdef MP-WEIXIN
+    //         "usingComponents": {
+    //           "chat-flow": "plugin://customer-service/ChatFlow"
+    //         },
+    //         // #endif
+    //         "navigationBarTitleText": "智能客服"
+    //       }
+    //     }
+    //   ]
+    // },
     {
       "root": "pages/p1",
       "pages": [
@@ -175,8 +168,8 @@
         "text": "组件"
       },
       {
-        "iconPath": "static/img/activity.png",
-        "selectedIconPath": "static/img/activity-a.png",
+        "iconPath": "static/img/mien.png",
+        "selectedIconPath": "static/img/mien-a.png",
         "pagePath": "pages/my/index",
         "text": "我的"
       }

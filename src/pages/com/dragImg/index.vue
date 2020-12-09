@@ -20,7 +20,12 @@
       :list="listObj"
       @mixinChange="ComChange">
       <template v-slot:add-item>
-        自定义
+        <div class="drag-item add-item flex-center"
+          v-show="listObj.length < dragC1.maxlength && !dragC1.isView"
+          @click.stop="addImg(dragC1.maxlength)">
+          <i class="i-add"></i>
+          自定义
+        </div>
       </template>
     </lj-drag-img>
     <div class="b fs-18 pd-tb8">仅查看</div>
@@ -41,6 +46,7 @@
 </template>
 
 <script>
+import { uploadImgs } from '../../../utils/microApi'
 export default {
   props: {
 
@@ -118,6 +124,14 @@ export default {
     },
     dragChange(argData) {
       console.log(argData)
+    },
+    async addImg() {
+      // todo
+      let res = await uploadImgs()
+      res.map(v => {
+        this.listObj.push({ url: v.tempFilePath })
+      })
+      // this.$emit('mixinChange', { key: this.c.listName, data: this.list })
     },
     async init() {
       console.log('init')

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import cnchar from 'cnchar'
+// import cnchar from 'cnchar'
 export default {
   props: {
 
@@ -271,7 +271,7 @@ export default {
       ]
       a.map((v, k) => {
         v.index = k
-        v.letter = cnchar.spell(v.name, 'first')[0]
+        // v.letter = cnchar.spell(v.name, 'first')[0]
         v.hide = false
         temObj[v.letter].items.push(v)
       })

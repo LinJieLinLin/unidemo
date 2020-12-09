@@ -1,5 +1,5 @@
 {
-  "name": "uni-demo",
+  "name": "lj-components",
   "appid": "__UNI__76A1BCF",
   "description": "",
   "versionName": "1.0.0",
@@ -121,7 +121,7 @@
   // }
   "mp-weixin": {
     /* 微信小程序特有相关 */
-    "appid": "wxe9325fc086c92cc5",
+    "appid": "wxeec0fd74e5e5d9af",
     "setting": {
       "urlCheck": false
     },

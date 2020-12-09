@@ -25,7 +25,7 @@ export default {
     }
   },
   computed: {},
-  async onLoad(argData) {
+  onLoad(argData) {
     data.showDone = false
     data.requestDone = false
     console.log('页面数据:', getCurrentPages())

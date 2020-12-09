@@ -8,8 +8,8 @@
  }
 -->
 <template>
-  <web-view :src="src"
-    v-if="src"
+  <web-view v-if="viewUrl"
+    :src="viewUrl"
     @message="message"
     @error="fail"
     @load="success"></web-view>
@@ -17,39 +17,38 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
-import { RegexpObj } from '@/utils/project.js'
-let temSrc = ''
+import { getRegexp } from '@/utils/j.js'
 export default {
   components: {},
   props: {},
   data() {
     return {
-      src: null,
     }
   },
-  computed: {},
+  computed: {
+    viewUrl() {
+      var url = ''
+      if (!this.Params.url) {
+        // this.$f.toast('url有误')
+        return ''
+      }
+      if (!getRegexp().http.test(this.Params.url)) {
+        url = 'https://' + this.Params.url
+      }
+      return url || this.Params.url
+    }
+  },
   onLoad(argOption) {
-    temSrc = decodeURIComponent(argOption.url) || ''
-    this.init()
   },
   onShow() {
     this.$f.init = this.init
   },
   onUnload(argData) {
-    console.error(argData)
     this.src = null
   },
   destroyed() { },
   methods: {
     init() {
-      if (!temSrc) {
-        this.$f.toast('url有误！')
-      }
-      console.error(temSrc)
-      if (!RegexpObj.http.test(temSrc)) {
-        temSrc = 'https://' + temSrc
-      }
-      this.src = temSrc
     },
     message(argData) {
       // console.log('get message', argData)

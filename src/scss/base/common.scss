@@ -17,6 +17,9 @@ html {
   /* prettier-ignore */
   font-size: 16PX;
 }
+pre {
+  white-space: pre-wrap;
+}
 // 点击背景
 body {
   -webkit-tap-highlight-color: transparent;
@@ -164,7 +167,6 @@ body {
 %w-b,
 .w-b {
   word-wrap: break-word;
-  word-break: break-all;
 }
 input,
 textarea {

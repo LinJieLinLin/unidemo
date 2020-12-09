@@ -5,17 +5,24 @@
  * @Description:
 -->
 <template>
-  <view class="item-list"
+  <div class="item-list flex"
     :class="{'disabled':item.disabled}"
     @click="itemClick()">
     <slot name="header">
-      <div>{{ item.name }}</div>
+      <div class="flex0">
+        <div>{{ item.name }}</div>
+      </div>
     </slot>
     <slot name="body">
+      <div class="flex1">
+      </div>
     </slot>
     <slot name="footer">
+      <lj-icon i="i-arrow-right"
+        v-if="!c.hideArrow"
+        class="fs-20 flex0"></lj-icon>
     </slot>
-  </view>
+  </div>
 </template>
 
 <script>
@@ -62,6 +69,7 @@ export default {
 .item-list {
   position: relative;
   padding-left: 16px;
+  padding-right: 16px;
   height: 44px;
   @include iFlex();
   @include iFlex(flex-middle);

@@ -51,7 +51,6 @@ export default {
   data() {
     return {
       listC: {
-
       },
       swiperC: {
         autoplay: true,
@@ -71,14 +70,18 @@ export default {
         name: '全屏弹窗',
         url: 'com/dialogFull'
       },
+      // #ifndef MP-TOUTIAO
       {
         name: 'drag 竖向列表拖拽',
         url: 'com/dragList'
       },
+      // #endif
+      // #ifdef APP-PLUS||H5||MP-WEIXIN
       {
         name: 'editor',
         url: 'com/editor'
       },
+      // #endif
       {
         name: 'multi-select',
         url: 'com/multiSelect'
@@ -88,17 +91,17 @@ export default {
         url: 'com/svgIcon'
       },
       {
+        name: '实验室',
+        url: '',
+        disabled: true
+      },
+      {
         name: 'poster',
         url: 'com/poster'
       },
       {
         name: 'indexed',
         url: 'com/indexed'
-      },
-      {
-        name: '实验室',
-        url: '',
-        disabled: true
       },
       {
         name: 'form',

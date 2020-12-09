@@ -39,9 +39,11 @@ export default {
       }
       console.log(userInfo)
       if (userInfo.iv) {
-        let res = await saveUserinfo(data).catch(err => {
-          console.log('登录失败:', err)
-        })
+        let res
+        // res = await saveUserinfo(data).catch(err => {
+        //   console.log('登录失败:', err)
+        // })
+        res = {}
         login(1)
         if (!res) {
           return

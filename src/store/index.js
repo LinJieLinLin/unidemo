@@ -51,9 +51,6 @@ const setStorage = async (argKey, argData) => {
     temData = encode(argData)
   }
   const res = await P('setStorage', { key: argKey, data: temData })
-  if (!res || !res.errMsg.match('ok')) {
-    console.error(['setStorage失败', res])
-  }
   return res.data || res || ''
 }
 const P = (argApi, argOptions) => {

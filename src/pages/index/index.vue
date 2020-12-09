@@ -33,17 +33,17 @@
     <view class="pd-lr20">
       <button class="mg-t20"
         @click="login">
-        登录
+        dialog
       </button>
       <button class="mg-t20"
         @click="toWebview">
         打开webview
       </button>
       <!-- #ifdef MP-WEIXIN -->
-      <button class="mg-t20"
+      <!-- <button class="mg-t20"
         @click="$f.toPage('testPackage/customer')">
         腾讯云小微
-      </button>
+      </button> -->
       <!-- #endif -->
       <button class="mg-t20"
         @click="$f.toPage('my','','switchTab')">
