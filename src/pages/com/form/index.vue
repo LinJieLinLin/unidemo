@@ -193,7 +193,6 @@ export default {
   data() {
     return {
       formC: {
-        changeFn: 'onChange',
         // hideLeft: true,
         fn: {
           formChange: 'formChange'
@@ -205,7 +204,6 @@ export default {
       },
       formViewC: {
         isView: true,
-        changeFn: 'onChange',
         titleStyle: {
           width: px2vw(60)
         },
