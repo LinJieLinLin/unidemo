@@ -1,12 +1,14 @@
 {
   //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
   "pages": [
+    // #ifdef APP-PLUS || H5
     {
       "path": "pages/hello/index",
       "style": {
         "navigationBarTitleText": "欢迎页"
       }
     },
+    // #endif
     {
       "path": "pages/index/index",
       "style": {
@@ -192,7 +194,7 @@
   "globalStyle": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "uni-demo",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
   },
   "easycom": {

@@ -1,3 +1,9 @@
+/**
+ * 公共函数
+ * @module
+ * @author linj
+ * @description 项目公共函数
+ */
 /* eslint-disable no-case-declarations */
 import store from '../store'
 import { getRegexp, safeData, isJson, hideInfo, toFixed } from './j'
@@ -23,6 +29,7 @@ init(appConfig)
 export const RegexpObj = getRegexp()
 /**
  * 数据变更时
+ * @function
  * @date 2019-10-16
  * @param {any} argItem 要编辑的item
  * @param {any} argData 获取到的值 item

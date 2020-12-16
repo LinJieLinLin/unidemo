@@ -130,7 +130,8 @@
     "requiredBackgroundModes": ["audio"],
     "uniStatistics": {
       "enable": true
-    }
+    },
+    "permission": {}
   },
   // 跳其它小程序页面 已弃用
   // "navigateToMiniProgramAppIdList": ["wxb1070eabc6f9107e"]

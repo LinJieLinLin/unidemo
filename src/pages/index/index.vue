@@ -32,8 +32,8 @@
     <!-- <div @click="$f.toPage('p1/demo')">to分包</div> -->
     <view class="pd-lr20">
       <button class="mg-t20"
-        @click="login">
-        dialog
+        @click="hiTip">
+        欢迎使用
       </button>
       <button class="mg-t20"
         @click="toWebview">
@@ -95,8 +95,8 @@ export default {
       })
     },
     // #endif
-    async login() {
-      this.DialogShow({ msg: 'test' })
+    async hiTip() {
+      this.DialogShow({ msg: '这里是linjielinlin的组件库！' })
     },
     async init() {
     }
