@@ -12,7 +12,6 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-
 let plugins = [
   // 复制文件到根目录
   // new CopyWebpackPlugin([
@@ -64,8 +63,6 @@ if (process.env.NODE_ENV === 'production') {
 
 // console.log(cdnConfig)
 module.exports = {
-
-
   // 输出文件目录(uni不支持)
   // outputDir: 'dist',
   // html生成别名
