@@ -17,7 +17,7 @@
             :key="index2">
             <lj-form :item="item2"
               :c="formC"
-              @formChange="formChange($event,'formList.'+index+'.range.'+index1+'.'+index2)"></lj-form>
+              @mixinChange="ComChange($event,'formList.'+index+'.range.'+index1+'.'+index2)"></lj-form>
           </div>
         </div>
       </block>
@@ -27,15 +27,15 @@
           @mixinChange="ComChange($event,'formList.'+index)"></lj-form>
       </block>
     </div>
-    <div class="b fs-18 pd-tb8">查看模式</div>
+    <div class="b fs-18 pd-tb8 pd-lr20">查看模式</div>
     <div v-for="(item,index) in formList"
-      :key="'view'+index">
+      :key="index">
       <block v-if="item.type==='itemList'">
-        <view class="">{{ item.name }}</view>
+        <view class="pd-lr20">{{ item.name }}</view>
         <div v-for="(item1,index1) in item.range"
-          :key="'view'+index1">
+          :key="getKey(index1)">
           <div v-for="(item2,index2) in item1"
-            :key="'view'+index2">
+            :key="getKey(index2)">
             <lj-form :item="item2"
               :c="formViewC"></lj-form>
           </div>
@@ -61,13 +61,13 @@ let formList = [{
   type: 'text',
   require: true,
   isHide: true,
-  tips: '请输入用户名，规则如下：',
+  tips: '请输入文字，规则如下：',
 }, {
-  name: '用户名',
+  name: '文字',
   key: 'username',
   type: 'text',
   require: true,
-  tips: '请输入用户名，规则如下：',
+  tips: '请输入文字，规则如下：',
 }, {
   name: '密码',
   key: 'password',
@@ -75,27 +75,27 @@ let formList = [{
   require: true,
   class: '',
 }, {
-  name: '年龄',
+  name: '数字',
   key: 'age',
   type: 'number',
   require: true,
   class: '',
 }, {
-  name: '身高',
+  name: '小数',
   key: 'height',
   type: 'digit',
   require: true,
-  placeholder: '请输入身高,单位cm',
+  placeholder: '请输入,单位cm',
   max: 300,
   min: 10,
   unit: 'cm'
 }, {
-  name: '身份证',
+  name: '证明',
   key: 'idcard',
   type: 'idcard',
   require: true,
 }, {
-  name: '银行卡号',
+  name: '数字文字',
   key: 'bank',
   type: 'text',
   maxlength: 20,
@@ -112,52 +112,61 @@ let formList = [{
   maxlength: 6,
   require: true,
 }, {
-  name: '手机号',
+  name: 'phone文字',
   key: 'phone',
   type: 'text',
   pattern: RegexpObj.phone,
   maxlength: 11,
   require: true,
 }, {
-  name: '成员',
+  name: '数组form',
   key: 'manList',
   type: 'itemList',
   class: 'mg-t10',
   range: [
     [
       {
-        name: '姓名',
+        name: '文字长5',
+        key: 'username',
+        type: 'text',
+        require: true,
+        maxlength: 5
+      },
+      {
+        name: '数字最小1',
+        key: 'age',
+        require: true,
+        type: 'number',
+        min: 1
+      },
+      {
+        name: '小数最大5',
+        key: 'height',
+        type: 'digit',
+        require: true,
+        max: 5,
+        placeholder: '请输入小数',
+        unit: 'cm'
+      },
+    ], [
+      {
+        name: '文字长5',
         key: 'username',
         type: 'text',
         maxlength: 5
       },
       {
-        name: '年龄',
+        name: '数字最小1',
         key: 'age',
         type: 'number',
+        min: 1
       },
       {
-        name: '身高',
+        name: '小数最大5',
         key: 'height',
         type: 'digit',
-        placeholder: '请输入身高,单位cm',
-        unit: 'cm'
-      },
-    ], [
-      {
-        name: '姓名',
-        key: 'username',
-        type: 'text',
-      },
-      {
-        name: '年龄',
-        key: 'age',
-        type: 'number',
-      },
-      {
-        name: '身高',
-        key: 'height',
-        type: 'digit',
+        max: 5,
+        placeholder: '请输入小数',
       },
     ],
   ],
@@ -213,6 +222,9 @@ export default {
     }
   },
   methods: {
+    getKey(argKey) {
+      return Date.now() + argKey
+    },
     formChange(argData, argKey) {
       let nowItem = this.$f.safeData(this, argKey)
       if (nowItem) {

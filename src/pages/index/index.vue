@@ -35,10 +35,12 @@
         @click="hiTip">
         欢迎使用
       </button>
+      <!-- #ifndef MP -->
       <button class="mg-t20"
         @click="toWebview">
-        打开webview
+        打开webview！
       </button>
+      <!-- #endif -->
       <!-- #ifdef MP-WEIXIN -->
       <!-- <button class="mg-t20"
         @click="$f.toPage('testPackage/customer')">
@@ -86,7 +88,7 @@ export default {
   computed: {},
   methods: {
     toWebview() {
-      this.$f.toPage('webview', { url: ('https://www.baidu.com') })
+      this.$f.toPage('webview', { url: ('http://unidemo.lj4.top/lj-utils/0.1.5/index.html') })
     },
     // #ifdef MP-WEIXIN
     jumpPlugin(argUrl) {
