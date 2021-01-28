@@ -19,7 +19,7 @@
       :c="dragC1"
       :list="listObj"
       @mixinChange="ComChange">
-      <template v-slot:add-item>
+      <template #add-item>
         <div class="drag-item add-item flex-center"
           v-show="listObj.length < dragC1.maxlength && !dragC1.isView"
           @click.stop="addImg(dragC1.maxlength)">

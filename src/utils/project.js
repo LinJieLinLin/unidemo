@@ -182,6 +182,7 @@ export const checkInput = (argItem, argData) => {
       case 'multiSelector':
         argItem.range.map((v, k) => {
           argItem.value[k] = argItem.value[k] === -1 ? 0 : argItem.value[k]
+          return v
         })
         break
       default:

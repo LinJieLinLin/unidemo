@@ -33,13 +33,13 @@
     </lj-dialog>
     <lj-dialog :c="dialogC"
       @mixinChange="ComChange">
-      <template v-slot:header>
+      <template #header>
         <h1>Here might be a page header</h1>
       </template>
-      <template v-slot:body>
+      <template #body>
         <h1>Here might be a page body</h1>
       </template>
-      <template v-slot:footer>
+      <template #footer>
         <h1 @click="ComChange({key:'dialogC.show',data:false})">Here might be a page footer</h1>
       </template>
     </lj-dialog>

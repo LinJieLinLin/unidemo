@@ -14,7 +14,7 @@
     </div>
     <lj-dialog-full :c="dialogC"
       @mixinChange="ComChange">
-      <template v-slot:body>
+      <template #body>
         <lj-drag-list :ref="dragListC.id"
           :list="list"
           :c="dragListC"

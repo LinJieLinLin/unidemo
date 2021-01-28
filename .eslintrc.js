@@ -54,11 +54,16 @@ module.exports = {
     'vue/html-closing-bracket-newline': 0,
     'vue/max-attributes-per-line': 0,
     'vue/singleline-html-element-content-newline': 0,
+    // 不允许修改prop值
+    'vue/no-mutating-props': 0,
     'no-dupe-keys': 0,
     'quote-props': 0,
     'no-unused-vars': 0,
     'no-case-declarations': 0,
     'lines-between-class-members': 0,
+    'array-callback-return': 0,
+    // 关 不允许使用var
+    'no-var': 0,
   },
   globals: {
     uniCloud: true,
