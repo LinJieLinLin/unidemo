@@ -144,7 +144,7 @@ export default {
 
 <style lang="scss">
 .drag {
-  /deep/.drag-item {
+  ::v-deep.drag-item {
     width: 103px;
     height: 103px;
     margin-bottom: 10px;
