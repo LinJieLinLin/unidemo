@@ -95,10 +95,18 @@ export default {
         url: '',
         disabled: true
       },
+      // #ifndef MP
       {
         name: 'poster',
         url: 'com/poster'
       },
+      // #endif
+      // #ifdef MP-WEIXIN
+      {
+        name: 'poster',
+        url: 'com/posterWx'
+      },
+      // #endif
       {
         name: 'indexed',
         url: 'com/indexed'

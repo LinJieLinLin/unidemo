@@ -13,6 +13,6 @@ const state = {
   // BaseUrl: 'http://sznswtt.gdtengnan.com',
   BaseUrl: 'https://sznswtt.gdtengnan.com',
   // 是否需要刷新页面（设置后记得取消）
-  Reload: false
+  Reload: false,
 }
 export default state

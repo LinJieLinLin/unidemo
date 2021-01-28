@@ -94,3 +94,16 @@ button[type='full-theme'] {
 .td-lt {
   text-decoration: line-through;
 }
+// uniui
+.uni-section__content {
+  display: flex;
+}
+// checkbox选中样式
+uni-checkbox:not([disabled]) .uni-checkbox-input:hover {
+  border-color: c(theme);
+}
+uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
+  color: c(theme);
+  border-color: c(theme);
+}
+// uniui end

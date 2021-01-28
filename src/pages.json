@@ -115,10 +115,18 @@
           "path": "svgIcon/index",
           "style": {}
         },
+        // #ifndef MP
         {
           "path": "poster/index",
           "style": {}
         },
+        // #endif
+        // #ifdef MP-WEIXIN
+        {
+          "path": "posterWx/index",
+          "style": {}
+        },
+        // #endif
         {
           "path": "form/index",
           "style": {}
