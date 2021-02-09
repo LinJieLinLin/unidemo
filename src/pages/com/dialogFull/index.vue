@@ -12,6 +12,24 @@
         打开弹窗
       </button>
     </div>
+    <div class="pd-f10">
+      选前数据：<br>
+      <div class="flex-wrap">
+        <div v-for="(item,index) in list"
+          :key="index">
+          <div class="pd-r10">{{ item.name }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="pd-f10">
+      选后数据：<br>
+      <div class="flex-wrap">
+        <div v-for="(item,index) in endList"
+          :key="index">
+          <div class="pd-r10">{{ item.name }}</div>
+        </div>
+      </div>
+    </div>
     <lj-dialog-full :c="dialogC"
       @mixinChange="ComChange">
       <template #body>
@@ -120,6 +138,7 @@ export default {
           name: 't'
         }
       ],
+      endList: [],
       dragListC: {
         id: 'dragList0',
         listKey: 'name',
@@ -130,12 +149,12 @@ export default {
         show: false,
         cancelFn: '',
         confirmFn: 'selectSu'
-      }
+      },
     }
   },
   methods: {
     onDragSortChange(argData) {
-      this.temList = argData
+      this.endList = argData
     },
     async selectShow() {
       this.dialogC.show = true
@@ -144,10 +163,11 @@ export default {
     },
     selectSu(argData) {
       let temArr = []
-      this.temList.map((v, k) => {
+      this.endList.map((v) => {
         temArr[v.index] = v
       })
-      console.log('更新后数据为：', temArr)
+      this.endList = temArr
+      console.log('更新后数据为：', argData, temArr)
     },
     init() {
 

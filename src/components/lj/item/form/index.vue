@@ -3,7 +3,21 @@
  * @Email: 993353454@qq.com
  * @Date: 2020-08-11 10:23:26
  * @Description:表单组件
- eg: <lj-form :list="data.list" :c="formC"></lj-form>
+  formC: {
+        // 隐藏左边
+        hideLeft: true,
+        // 预览模式
+        isView: false,
+        // 回调
+        fn: {
+          formChange: 'formChange'
+        },
+        titleStyle: {
+          width: px2vw(60),
+          height: 'auto'
+        },
+      },
+ eg: <lj-item-form :item="item" :c="formC"></lj-item-form>
 -->
 <template>
   <div class="lj-form"

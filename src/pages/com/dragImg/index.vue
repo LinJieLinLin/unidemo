@@ -13,6 +13,7 @@
       :d="list"
       @mixinChange="ComChange">
     </lj-drag-img>
+    <button @click="dragC.isView = !dragC.isView">编辑</button>
     <div class="b fs-18 pd-tb8">图片obj数组，slot添加</div>
     <lj-drag-img class="pd-t20"
       :ref="dragC1.id"
@@ -28,17 +29,14 @@
         </div>
       </template>
     </lj-drag-img>
-    <div class="b fs-18 pd-tb8">仅查看</div>
-    <lj-drag-img class="pd-t20"
+    <button @click="dragC1.isView = !dragC1.isView">编辑</button>
+    <!-- <div class="b fs-18 pd-tb8">仅查看</div> -->
+    <!-- <lj-drag-img class="pd-t20"
       :ref="dragC.id"
       :c="dragC2"
       :list="list"
       @mixinChange="ComChange">
-    </lj-drag-img>
-    <button class="mg-t10"
-      @click="DialogShow({msg:'调用了弹窗'})">
-      提示
-    </button>
+    </lj-drag-img> -->
     <lj-dialog :c="DialogC"
       @mixinChange="ComChange">
     </lj-dialog>
@@ -102,12 +100,14 @@ export default {
         id: 'drag0',
         maxlength: 9,
         listName: 'list',
+        isView: true,
       },
       dragC1: {
         id: 'drag0',
         listKey: 'url',
         maxlength: 9,
         listName: 'listObj',
+        isView: false,
       },
       dragC2: {
         id: 'drag2',
@@ -144,6 +144,7 @@ export default {
 
 <style lang="scss">
 .drag {
+  // /deep/
   ::v-deep.drag-item {
     width: 103px;
     height: 103px;

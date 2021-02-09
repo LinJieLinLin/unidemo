@@ -48,12 +48,12 @@ confirmText: '确定文字', }, eg:
       </view>
       <view class="flex0 m-footer"
         v-if="!c.hideFooter">
-        <view class="m-btn"
+        <view class="m-btn bg-w"
           v-if="!c.hideCancel"
           @click.stop="cancel()">
           {{ c.cancelText || '取消' }}
         </view>
-        <view class="m-btn"
+        <view class="m-btn bg-theme"
           v-if="!c.hideConfirm"
           @click.stop="confirm()">
           {{ c.confirmText || '确定' }}
@@ -160,8 +160,6 @@ export default {
     justify-content: center;
     align-content: center;
     align-items: center;
-    color: c(theme);
-    @include iBtnBgColor(#f1f1f1);
   }
   .item {
     width: 103px;

@@ -6,7 +6,7 @@
 -->
 
 <template>
-  <view class="lj-form">
+  <view class="lj-item-form">
     <div v-for="(item,index) in formList"
       :key="index">
       <block v-if="item.type==='itemList'">
@@ -15,16 +15,16 @@
           :key="index1">
           <div v-for="(item2,index2) in item1"
             :key="index2">
-            <lj-form :item="item2"
+            <lj-item-form :item="item2"
               :c="formC"
-              @mixinChange="ComChange($event,'formList.'+index+'.range.'+index1+'.'+index2)"></lj-form>
+              @mixinChange="ComChange($event,'formList.'+index+'.range.'+index1+'.'+index2)"></lj-item-form>
           </div>
         </div>
       </block>
       <block v-else>
-        <lj-form :item="item"
+        <lj-item-form :item="item"
           :c="formC"
-          @mixinChange="ComChange($event,'formList.'+index)"></lj-form>
+          @mixinChange="ComChange($event,'formList.'+index)"></lj-item-form>
       </block>
     </div>
     <div class="b fs-18 pd-tb8 pd-lr20">查看模式</div>
@@ -36,14 +36,14 @@
           :key="getKey(index1)">
           <div v-for="(item2,index2) in item1"
             :key="getKey(index2)">
-            <lj-form :item="item2"
-              :c="formViewC"></lj-form>
+            <lj-item-form :item="item2"
+              :c="formViewC"></lj-item-form>
           </div>
         </div>
       </block>
       <block v-else>
-        <lj-form :item="item"
-          :c="formViewC"></lj-form>
+        <lj-item-form :item="item"
+          :c="formViewC"></lj-item-form>
       </block>
     </div>
     <lj-dialog :c="DialogC"
@@ -265,6 +265,6 @@ export default {
 </script>
 
 <style lang="scss">
-.lj-form {
+.lj-item-form {
 }
 </style>

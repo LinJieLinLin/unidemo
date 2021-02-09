@@ -74,7 +74,7 @@ changeFn: '改变时回调函数',
                 {{ c.cancelText || '取消' }}
               </view>
               <block v-if="!c.hideConfirm">
-                <view class="m-btn"
+                <view class="m-btn bg-theme tap"
                   v-if="!c.getUserInfo"
                   @click.stop="confirm()">
                   {{ c.confirmText || '确定' }}
@@ -82,7 +82,7 @@ changeFn: '改变时回调函数',
                 <!-- #ifdef MP-WEIXIN -->
                 <lj-user-info v-else
                   class="m-btn"
-                  @click="confirm()"></lj-user-info>
+                  @click.native="confirm()"></lj-user-info>
                 <!-- #endif -->
               </block>
             </view>
@@ -134,7 +134,6 @@ export default {
       if (!this.c.cancelNoHide) {
         this.change({ show: false })
       }
-      console.log(1)
       this.$emit('mixinChange', { fn: this.c.cancelFn })
     },
     confirm(argData) {
@@ -150,7 +149,7 @@ export default {
 <style scoped lang="scss">
 .modal {
   width: 270px;
-  background-color: #f1f1f1;
+  background-color: #fff;
   border-radius: 12px;
   font-size: 16px;
 }
@@ -169,7 +168,7 @@ export default {
 .m-footer {
   height: 42px;
   display: flex;
-  border-top: 1px solid #dad7d7;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   overflow: hidden;
@@ -180,10 +179,5 @@ export default {
   justify-content: center;
   align-content: center;
   align-items: center;
-  // color: c(theme);
-  @include iBtnBgColor(#f1f1f1);
-  &:nth-child(2) {
-    border-left: 1px solid #dad7d7;
-  }
 }
 </style>

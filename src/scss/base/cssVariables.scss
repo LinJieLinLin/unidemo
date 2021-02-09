@@ -7,7 +7,7 @@
   --warn: #ff9900;
   --info: #909399;
 }
-// 颜色class
+// 文字颜色class
 .c-theme {
   color: c(theme);
 }
@@ -22,6 +22,27 @@
 }
 .c-info {
   color: c(info);
+}
+// 背景颜色class
+.bg-theme {
+  color: #fff;
+  background-color: c(theme);
+}
+.bg-success {
+  color: #fff;
+  background-color: c(success);
+}
+.bg-error {
+  color: #fff;
+  background-color: c(error);
+}
+.bg-warn {
+  color: #fff;
+  background-color: c(warn);
+}
+.bg-info {
+  color: #fff;
+  background-color: c(info);
 }
 
 // 常用颜色

@@ -23,62 +23,94 @@
     </lj-drag>
 -->
 <template>
-  <view @touchmove.stop.prevent="moveHandle">
-    <movable-area class="c-drag"
-      inertia
-      :ref="c.id||'dragBox'"
-      :id="c.id||'dragBox'">
-      <movable-view class="drag-item p-r"
-        v-for="(item, index) in list"
-        :key="index"
-        :id="'item-' + index"
-        :class="{'mg-r16':(index+1)%3}"
-        @touchstart="touchstart($event,index)"
-        @touchmove="touchmove"
-        @touchend="touchend">
-        <view class="img-item">
-          <block v-if="c.listKey">
-            <image :src="item[c.listKey]"
+  <view class="">
+    <block v-if="c.isView">
+      <view class="c-drag"
+        inertia
+        :ref="c.id||'dragBox'"
+        :id="c.id||'dragBox'">
+        <view class="drag-item p-r"
+          v-for="(item, index) in list"
+          :key="index"
+          :id="'item-' + index"
+          :class="{'mg-r16':(index+1)%3}">
+          <view class="img-item">
+            <block v-if="c.listKey">
+              <image :src="item[c.listKey]"
+                mode="aspectFill"
+                :class="(hoverImgIndex==='item-'+index)?'select':''"></image>
+            </block>
+            <block v-else>
+              <image :src="item"
+                mode="aspectFill"
+                :class="(hoverImgIndex==='item-'+index)?'select':''"></image>
+            </block>
+          </view>
+          <i class="i-del"
+            v-if="!c.isView"
+            @click.stop="deleteImg(index)"></i>
+        </view>
+        <slot name="add-item">
+          <!--  上传图片 -->
+          <div class="drag-item add-item flex-center"
+            v-show="list.length < c.maxlength && !c.isView"
+            @click.stop="addImg(c.maxlength)">
+            <i class="i-add"></i>
+          </div>
+        </slot>
+      </view>
+    </block>
+    <view v-else
+      @touchmove.stop.prevent="moveHandle">
+      <movable-area class="c-drag"
+        inertia
+        :ref="c.id||'dragBox'"
+        :id="c.id||'dragBox'">
+        <movable-view class="drag-item p-r"
+          v-for="(item, index) in list"
+          :key="index"
+          :id="'item-' + index"
+          :class="{'mg-r16':(index+1)%3}"
+          @touchstart="touchstart($event,index)"
+          @touchmove="touchmove"
+          @touchend="touchend">
+          <view class="img-item">
+            <image :src="item[c.listKey]||item"
               mode="aspectFill"
               :class="(hoverImgIndex==='item-'+index)?'select':''"></image>
-          </block>
-          <block v-else>
-            <image :src="item"
-              mode="aspectFill"
-              :class="(hoverImgIndex==='item-'+index)?'select':''"></image>
-          </block>
-        </view>
-        <i class="i-del"
-          v-if="!c.isView"
-          @click.stop="deleteImg(index)"></i>
-      </movable-view>
-      <slot name="add-item">
-        <!--  上传图片 -->
-        <div class="drag-item add-item flex-center"
-          v-show="list.length < c.maxlength && !c.isView"
-          @click.stop="addImg(c.maxlength)">
-          <i class="i-add"></i>
-        </div>
-      </slot>
-      <movable-view v-if="moveItem"
-        :animation="false"
-        class="move-item drag-item"
-        :x="x"
-        :y="y"
-        direction="all"
-        @change="onChange">
-        <view class="img-item">
-          <block v-if="c.listKey">
-            <image :src="moveItem[c.listKey]"
-              mode="aspectFill"></image>
-          </block>
-          <block v-else>
-            <image :src="moveItem"
-              mode="aspectFill"></image>
-          </block>
-        </view>
-      </movable-view>
-    </movable-area>
+          </view>
+          <i class="i-del"
+            v-if="!c.isView"
+            @click.stop="deleteImg(index)"></i>
+        </movable-view>
+        <slot name="add-item">
+          <!--  上传图片 -->
+          <div class="drag-item add-item flex-center"
+            v-show="list.length < c.maxlength && !c.isView"
+            @click.stop="addImg(c.maxlength)">
+            <i class="i-add"></i>
+          </div>
+        </slot>
+        <movable-view v-if="moveItem"
+          :animation="false"
+          class="move-item drag-item"
+          :x="x"
+          :y="y"
+          direction="all"
+          @change="onChange">
+          <view class="img-item">
+            <block v-if="c.listKey">
+              <image :src="moveItem[c.listKey]"
+                mode="aspectFill"></image>
+            </block>
+            <block v-else>
+              <image :src="moveItem"
+                mode="aspectFill"></image>
+            </block>
+          </view>
+        </movable-view>
+      </movable-area>
+    </view>
   </view>
 </template>
 

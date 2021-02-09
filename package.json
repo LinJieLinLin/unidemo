@@ -23,6 +23,7 @@
     "dev:mp-toutiao": "cross-env NODE_ENV=development UNI_PLATFORM=mp-toutiao vue-cli-service uni-build --watch",
     "dev:mp-weixin": "cross-env NODE_ENV=development UNI_PLATFORM=mp-weixin vue-cli-service uni-build --watch",
     "api": "node build-api.js",
+    "update": "yarn upgrade-interactive --latest",
     "bz": "Bandizip c -fmt:tgz ./dist/build/h5.%date:~0,4%-%date:~5,2%-%date:~8,2%.tar.gz ./dist/build/h5",
     "z": "echo '小改动' &&npm version patch",
     "y": "echo '特性更新' &&npm version minor",

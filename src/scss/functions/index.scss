@@ -1,4 +1,16 @@
 // 返回css颜色变量
 @function c($name) {
-  @return var(--#{$name});
+  @if ($name == 'theme') {
+    @return $theme;
+  } @else if ($name == 'success') {
+    @return $success;
+  } @else if ($name == 'error') {
+    @return $error;
+  } @else if ($name == 'warn') {
+    @return $warn;
+  } @else if ($name == 'info') {
+    @return $info;
+  }
+  // 纯h5变色使用这个 对应 cssVariables.scss
+  // @return var(--#{$name});
 }
