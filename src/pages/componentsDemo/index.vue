@@ -90,23 +90,25 @@ export default {
         name: 'svg-icon',
         url: 'com/svgIcon'
       },
-      {
-        name: '实验室',
-        url: '',
-        disabled: true
-      },
       // #ifndef MP
       {
         name: 'poster',
         url: 'com/poster'
       },
-      // #endif
-      // #ifdef MP-WEIXIN
       {
-        name: 'poster',
-        url: 'com/posterWx'
+        name: 'copyQrcode',
+        url: 'com/copyQrcode'
       },
       // #endif
+      {
+        name: '实验室',
+        url: '',
+        disabled: true
+      },
+      {
+        name: 'posterCanvas',
+        url: 'com/posterWx'
+      },
       {
         name: 'indexed',
         url: 'com/indexed'

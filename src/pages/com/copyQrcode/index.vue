@@ -1,18 +1,21 @@
+<!--
+ * @author: linj
+ * @email: 993353454@qq.com
+ * @Date: 2021-03-12 18:14:48
+ * @description:
+-->
 <template>
   <div>
-    <lj-dialog :c="DialogC"
-      @mixinChange="ComChange"></lj-dialog>
-    <div>fuck</div>
-    <div>123</div>
-    <div>{{ DialogC }}</div>
-    <button class="mg-t20"
-      @click="login">
-      登录
-    </button>
+    <div class="mg-t10 pd-lr20 pd-tb10 bg-w">
+      <input type="text"
+        placeholder="请输入url"
+        v-model="url">
+    </div>
   </div>
 </template>
 
 <script>
+import { setTitle } from '@/utils/microApi'
 export default {
   props: {
 
@@ -44,14 +47,13 @@ export default {
   },
   data() {
     return {
-
+      url: 'https://www.baidu.com',
     }
   },
   methods: {
-    async login() {
-      this.DialogShow({ msg: 'test' })
-      console.error(this)
-    },
+    init() {
+      setTitle('二维码生成')
+    }
   },
 }
 </script>
