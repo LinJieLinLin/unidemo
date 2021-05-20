@@ -21,7 +21,7 @@ if (process.env.UNI_PLATFORM.toLocaleLowerCase().match(/mp/)) {
       mediaQuery: false,
       replace: true,
       exclude: [],
-      landscape: true,
+      landscape: false,
       landscapeUnit: 'rpx',
       landscapeWidth: 100,
     })
