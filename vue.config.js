@@ -3,6 +3,7 @@
 const path = require('path')
 const TerserPlugin = require('terser-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const appInfo = require('./package.json')
 const cdnConfig = require('./cdnConfig')
 const useCdn = false
 // console.log(process.argv)
@@ -102,10 +103,16 @@ module.exports = {
     plugins: plugins,
   },
   chainWebpack: (config) => {
+    config.plugin('define').tap((args) => {
+      args[0]['APP' + '_' + 'VERSION'] = JSON.stringify(
+        appInfo.version + '@' + new Date().toLocaleString()
+      )
+      return args
+    })
     // 打包分析
     if (process.env.IS_ANALYZ) {
-      const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-        .BundleAnalyzerPlugin
+      const BundleAnalyzerPlugin =
+        require('webpack-bundle-analyzer').BundleAnalyzerPlugin
       config.plugin('webpack-report').use(BundleAnalyzerPlugin, [
         {
           analyzerMode: 'static',

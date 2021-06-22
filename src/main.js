@@ -81,3 +81,4 @@ const app = new Vue({
 // }
 ljLog()
 app.$mount()
+window.APP_VERSION = APP_VERSION

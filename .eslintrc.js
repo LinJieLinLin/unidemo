@@ -66,6 +66,7 @@ module.exports = {
     'no-var': 0,
   },
   globals: {
+    APP_VERSION: true,
     uniCloud: true,
     App: true,
     Page: true,

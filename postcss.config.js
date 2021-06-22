@@ -1,4 +1,3 @@
-const pkg = require('./package.json')
 let plugins = [
   require('postcss-import'),
   require('autoprefixer')({
