@@ -100,15 +100,18 @@ export default {
         url: 'com/copyQrcode'
       },
       // #endif
+      // #ifdef MP
+      {
+        name: 'posterCanvas',
+        url: 'com/posterWx'
+      },
+      // #endif
       {
         name: '实验室',
         url: '',
         disabled: true
       },
-      {
-        name: 'posterCanvas',
-        url: 'com/posterWx'
-      },
+
       {
         name: 'indexed',
         url: 'com/indexed'

@@ -3,8 +3,7 @@
     <lj-poster :ref="posterC.id"
       :c="posterC"
       @mixinChange="ComChange">
-      <div>
-        我是海报内容
+      <div class="pc ta-c">
         <h1>我是海报内容</h1>
         <h2>我是海报内容</h2>
         <h3>我是海报内容</h3>
@@ -100,5 +99,8 @@ export default {
 .wepay {
   width: 100px;
   height: 100px;
+}
+.pc {
+  background-color: #fff;
 }
 </style>
