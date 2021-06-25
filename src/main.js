@@ -19,6 +19,7 @@ import Throttle from './utils/class/Throttle'
 import Debounce from './utils/class/Debounce'
 import { getObj } from './utils/struct'
 import dialogMixin from './components/lj/dialog/mixin'
+
 const throttle = new Throttle()
 const debounce = new Debounce()
 Vue.config.productionTip = false

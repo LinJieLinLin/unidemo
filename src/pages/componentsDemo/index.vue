@@ -96,7 +96,7 @@ export default {
         url: 'com/poster'
       },
       {
-        name: 'copyQrcode',
+        name: 'copy&qrcode',
         url: 'com/copyQrcode'
       },
       // #endif

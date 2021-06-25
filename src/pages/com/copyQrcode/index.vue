@@ -6,22 +6,38 @@
 -->
 <template>
   <div>
-    <div class="mg-t10 pd-lr20 pd-tb10 bg-w">
+    <div class="mg-t10 pd-lr20 pd-tb20 bg-w">
       <input type="text"
         placeholder="请输入url"
         v-model="url">
+      <button class="mg-t20"
+        @click="copy">
+        复制
+      </button>
+      <div class="flex-center mg-t20">
+        <qr-code :text="url"
+          size="200"
+          color="#f1c40f"
+          bg-color="#3498db"></qr-code>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { setTitle } from '@/utils/microApi'
+import qrCode from 'vue-qrcode-component'
+// #ifdef H5
+import VueClipboard from 'vue-clipboard2'
+import Vue from 'vue'
+Vue.use(VueClipboard)
+// #endif
 export default {
   props: {
 
   },
   components: {
-
+    qrCode
   },
   onLoad(argData) {
 
@@ -51,9 +67,26 @@ export default {
     }
   },
   methods: {
+    async copy() {
+      let res
+      // #ifdef H5
+      res = await this.$copyText(this.url).catch(err => {
+        console.error(err)
+      })
+      // #endif
+      // #ifdef MP
+      res = await this.$f.P('setClipboardData', { data: this.url }).catch(err => {
+        console.error(err)
+      })
+      // #endif
+      if (!res) {
+        return
+      }
+      this.$f.toast('复制成功！')
+    },
     init() {
       setTitle('二维码生成')
-    }
+    },
   },
 }
 </script>
