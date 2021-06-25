@@ -1,30 +1,6 @@
 <template>
-  <view class="uni-container">
-    <view class="uni-margin-wrap">
-      <swiper class="swiper"
-        circular
-        indicator-dots
-        :autoplay="swiperC.autoplay"
-        :interval="swiperC.interval"
-        :duration="swiperC.duration">
-        <swiper-item>
-          <image class="image"
-            mode="aspectFill"
-            src="https://img.lj4.top/test/1.jpg" />
-        </swiper-item>
-        <swiper-item>
-          <image class="image"
-            mode="aspectFill"
-            src="https://img.lj4.top/test/2.jpg" />
-        </swiper-item>
-        <swiper-item>
-          <image class="image"
-            mode="aspectFill"
-            src="https://img.lj4.top/test/3.jpg" />
-        </swiper-item>
-      </swiper>
-    </view>
-    <view class="uni-hello-text mg-t10">
+  <view>
+    <view class="mg-t10">
       <div v-for="(item,index) in lists"
         :key="index">
         <lj-item-list :item="item"

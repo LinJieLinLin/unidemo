@@ -24,7 +24,7 @@ let ljCloud = ''
 if (typeof uniCloud !== 'undefined' && appConfig.uniCloud) {
   ljCloud = uniCloud.init(appConfig.uniCloud)
 }
-console.error('引用project.js')
+
 init(appConfig)
 export const RegexpObj = getRegexp()
 /**

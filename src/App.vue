@@ -40,7 +40,6 @@ export default {
     // #ifdef H5
     if (
       process.env.NODE_ENV === 'development' ||
-      window.location.host.match('gzgjjtest.gdtengnan.com') ||
       window.location.port === '8001'
     ) {
       var VConsole = require('vconsole')

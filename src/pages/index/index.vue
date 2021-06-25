@@ -40,6 +40,10 @@
         @click="toWebview">
         打开webview！
       </button>
+      <button class="mg-t20"
+        @click="toCase">
+        项目列表
+      </button>
       <!-- #endif -->
       <!-- #ifdef MP-WEIXIN -->
       <!-- <button class="mg-t20"
@@ -58,11 +62,6 @@
 </template>
 
 <script>
-import { login, setStorage } from '../../utils/microApi'
-import { wxLogin } from '../../api/common'
-import { getObj } from '../../utils/struct'
-import { getStorageSync } from '../../store'
-import { loadFile, sleep } from '../../utils/j'
 export default {
   components: {
   },
@@ -89,6 +88,9 @@ export default {
   methods: {
     toWebview() {
       this.$f.toPage('webview', { url: ('http://unidemo.lj4.top/lj-utils/0.1.5/index.html') })
+    },
+    toCase() {
+      this.$f.toPage('case/case')
     },
     // #ifdef MP-WEIXIN
     jumpPlugin(argUrl) {

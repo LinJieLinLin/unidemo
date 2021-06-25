@@ -16,8 +16,9 @@
         // #ifdef MP-ALIPAY || APP-PLUS || H5
         "transparentTitle": "auto",
         // #endif
+        "navigationBarTitleText": "首页",
         "navigationBarBackgroundColor": "#18905f",
-        "navigationBarTextStyle": "#fff"
+        "navigationBarTextStyle": "white"
       }
     },
     {
@@ -29,7 +30,7 @@
         "transparentTitle": "auto",
         // #endif
         "navigationBarBackgroundColor": "#18905f",
-        "navigationBarTextStyle": "#fff"
+        "navigationBarTextStyle": "white"
       }
     },
     {
@@ -41,7 +42,7 @@
     {
       "path": "pages/webview/index",
       "style": {
-        "navigationBarTitleText": "webview"
+        // "navigationBarTitleText": "webview"
       }
     },
     {
@@ -54,32 +55,16 @@
   ],
   // 分包
   "subPackages": [
-    // {
-    //   // 云小微智能客服接入
-    //   "root": "pages/testPackage",
-    //   // #ifdef MP-WEIXIN
-    //   "plugins": {
-    //     // 腾讯云小微
-    //     "customer-service": {
-    //       "version": "1.1.0", //此处请使用最新版本
-    //       "provider": "wx7b9e5f4b4fcbc9b5"
-    //     }
-    //   },
-    //   // #endif
-    //   "pages": [
-    //     {
-    //       "path": "customer/index",
-    //       "style": {
-    //         // #ifdef MP-WEIXIN
-    //         "usingComponents": {
-    //           "chat-flow": "plugin://customer-service/ChatFlow"
-    //         },
-    //         // #endif
-    //         "navigationBarTitleText": "智能客服"
-    //       }
-    //     }
-    //   ]
-    // },
+    // 案例分包
+    {
+      "root": "pages/case",
+      "pages": [
+        {
+          "path": "case/index",
+          "style": {}
+        }
+      ]
+    },
     {
       "root": "pages/p1",
       "pages": [

@@ -1,7 +1,7 @@
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const path = require('path')
-const TerserPlugin = require('terser-webpack-plugin')
+// const TerserPlugin = require('terser-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const appInfo = require('./package.json')
 const cdnConfig = require('./cdnConfig')
@@ -42,24 +42,22 @@ if (process.env.UNI_PLATFORM === 'H5' && useCdn) {
   )
 }
 if (process.env.NODE_ENV === 'production') {
-  plugins.push(
-    // 去除console
-    new TerserPlugin({
-      sourceMap: true,
-      cache: true,
-      parallel: true,
-      terserOptions: {
-        output: {
-          comments: false,
-        },
-        warnings: false,
-        compress: {
-          drop_debugger: true,
-          drop_console: false,
-        },
-      },
-    })
-  )
+  // plugins.push(
+  //   // 去除console
+  //   new TerserPlugin({
+  //     terserOptions: {
+  //       // parallel: true,
+  //       output: {
+  //         comments: false,
+  //       },
+  //       warnings: false,
+  //       compress: {
+  //         drop_debugger: true,
+  //         drop_console: false,
+  //       },
+  //     },
+  //   })
+  // )
 }
 
 // console.log(cdnConfig)
@@ -71,7 +69,7 @@ module.exports = {
   devServer: {
     open: false,
     host: '0.0.0.0',
-    port: 8001,
+    port: 8880,
     https: false,
     hotOnly: false,
     disableHostCheck: true,
