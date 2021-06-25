@@ -16,7 +16,8 @@
         // #ifdef MP-ALIPAY || APP-PLUS || H5
         "transparentTitle": "auto",
         // #endif
-        "navigationBarBackgroundColor": "#18905f"
+        "navigationBarBackgroundColor": "#18905f",
+        "navigationBarTextStyle": "#fff"
       }
     },
     {
@@ -27,7 +28,8 @@
         // #ifdef MP-ALIPAY || APP-PLUS || H5
         "transparentTitle": "auto",
         // #endif
-        "navigationBarBackgroundColor": "#18905f"
+        "navigationBarBackgroundColor": "#18905f",
+        "navigationBarTextStyle": "#fff"
       }
     },
     {
