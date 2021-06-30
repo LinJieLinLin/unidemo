@@ -525,6 +525,8 @@ export const response = (argData = { config: {} }) => {
     case 0:
       if (safeData(argData, 'data.data.token')) {
         setStorage('tk', argData.data.data.token)
+        setStorage('uni_id_token', argData.data.token)
+        setStorage('uni_id_token_expired', argData.data.tokenExpired)
       }
       return argData.data.data
     case 404:

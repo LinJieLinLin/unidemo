@@ -8,11 +8,11 @@ export const getObj = (argKey, argData = {}) => {
     config: {
       // 本地缓存加密
       localEncrypt: false,
-      // uniCloud: {
-      //   provider: 'aliyun',
-      //   spaceId: '5bd69b81-b875-4ce7-9b9a-9832134deda8',
-      //   clientSecret: 'Ac3DqITt8A18CHrdWpZ1XQ==',
-      // },
+      uniCloud: {
+        provider: 'aliyun',
+        spaceId: '52e7cdfc-4bd0-4b8a-b36d-c11515a194a4',
+        clientSecret: 'soCoLndgN0InAVLBEjVo+g==',
+      },
     },
     dialog: {
       su: {

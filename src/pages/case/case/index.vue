@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { setTitle } from '@/utils/microApi'
+import { getDb, getStorageSync, setStorage, setTitle } from '@/utils/microApi'
 export default {
   props: {
 
@@ -77,8 +77,22 @@ export default {
     toWebview(argData) {
       this.$f.toPage('webview', { url: argData.url })
     },
+    async getData() {
+      const dbCollectionName = 'lj-link'
+      let res = await getDb().collection(dbCollectionName).get().catch(err => {
+        console.error(err)
+        console.error(err.code, err.message)
+        if (err.message.match('30203')) {
+          console.error('relogin')
+        }
+      })
+      this.dataList = this.$f.safeData(res, 'result.data', [])
+      setStorage('caseList', this.dataList)
+    },
     init() {
+      this.dataList = getStorageSync('caseList') || []
       setTitle('项目列表')
+      this.getData()
     }
   },
 }
