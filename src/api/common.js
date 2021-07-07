@@ -1,11 +1,11 @@
-import { request } from '../utils/microApi'
+import { request } from 'lj-utils/microApi'
 // 通用
 export function wxLogin(params = {}, config = {}) {
   return request({
     url: '/api/custom/wechat/wechat/login',
     method: 'post',
     params,
-    config
+    config,
   })
 }
 export function saveUserinfo(params = {}, config = {}) {
@@ -13,6 +13,6 @@ export function saveUserinfo(params = {}, config = {}) {
     url: '/api/custom.wechat.wechat/saveUserinfo',
     method: 'post',
     params,
-    config
+    config,
   })
 }

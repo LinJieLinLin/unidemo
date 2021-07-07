@@ -35,7 +35,6 @@
         @click="hiTip">
         欢迎使用
       </button>
-      <!-- #ifndef MP -->
       <button class="mg-t20"
         @click="toWebview">
         打开webview！
@@ -44,13 +43,6 @@
         @click="toCase">
         项目列表
       </button>
-      <!-- #endif -->
-      <!-- #ifdef MP-WEIXIN -->
-      <!-- <button class="mg-t20"
-        @click="$f.toPage('testPackage/customer')">
-        腾讯云小微
-      </button> -->
-      <!-- #endif -->
       <button class="mg-t20"
         @click="$f.toPage('my','','switchTab')">
         我的

@@ -9,7 +9,7 @@
     :class="{'disabled':item.disabled}"
     @click="itemClick()">
     <slot name="header">
-      <div class="flex0">
+      <div class="flex0 text-l-1">
         <div>{{ item.name }}</div>
       </div>
     </slot>
@@ -19,7 +19,7 @@
     </slot>
     <slot name="footer">
       <lj-icon i="i-arrow-right"
-        v-if="!c.hideArrow"
+        v-if="!c.hideArrow&&!item.hideArrow"
         class="fs-20 flex0"></lj-icon>
     </slot>
   </div>

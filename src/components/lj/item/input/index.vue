@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import { getSystemInfo } from '../../../../utils/microApi'
+import { getSystemInfo } from 'lj-utils/microApi'
 export default {
   props: {
     item: {

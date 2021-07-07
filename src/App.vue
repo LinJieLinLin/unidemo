@@ -11,7 +11,7 @@
 -->
 <!-- #endif -->
 <script>
-import { setStorage } from './utils/microApi'
+import { setStorage } from 'lj-utils/microApi'
 export default {
   // 全局数据 eg:getApp().globalData.text
   globalData: {
@@ -22,17 +22,17 @@ export default {
     this.$f.log(err)
   },
   onLaunch(argData) {
-    console.warn('version:', this.$store.state.Version)
+    console.warn('version:', APP_VERSION || this.$store.state.Version)
     console.info('env:', process.env)
     console.log('params:', argData)
     // #ifdef  MP-WEIXIN
-    try {
-      wx.cloud.init({
-        traceUser: true
-      })
-    } catch (err) {
-      console.error(err)
-    }
+    // try {
+    //   wx.cloud.init({
+    //     traceUser: true
+    //   })
+    // } catch (err) {
+    //   console.error(err)
+    // }
     // #endif
     // 记录首次加载打开参数
     setStorage('openPage', argData.path)

@@ -6,17 +6,17 @@
  */
 /* eslint-disable no-case-declarations */
 import store from '../store'
-import { getRegexp, safeData, isJson, hideInfo, toFixed } from './j'
+import { getRegexp, safeData, isJson, hideInfo, toFixed } from 'lj-utils/j'
 import {
   init,
   toast,
   getStorageSync,
   setStorage,
   hideLoading,
-} from './microApi'
+} from 'lj-utils/microApi'
 import md5 from 'md5'
-import { enBase64, deBase64 } from './encrypt/base64'
-import Counter from './class/Counter'
+import { enBase64, deBase64 } from 'lj-utils/encrypt/base64'
+import Counter from 'lj-utils/class/Counter'
 import { getObj } from './struct'
 
 const appConfig = getObj('config') || {}

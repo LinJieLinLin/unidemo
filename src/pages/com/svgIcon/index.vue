@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { getRandomColor } from '../../../utils/j'
+import { getRandomColor } from 'lj-utils/j'
 export default {
   props: {
 

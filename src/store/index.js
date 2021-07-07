@@ -5,10 +5,10 @@ import getters from './getters'
 import actions from './actions'
 import mutations from './mutations'
 import createPersistedState from 'vuex-persistedstate'
-import { getObj } from '../utils/struct'
-// import { decode, encode } from '../utils/encrypt/crypto'
-import { decode, encode } from '../utils/encrypt/base64'
-import { isJson } from '../utils/j'
+import { getObj } from 'lj-utils/struct'
+// import { decode, encode } from 'lj-utils/encrypt/crypto'
+import { decode, encode } from 'lj-utils/encrypt/base64'
+import { isJson } from 'lj-utils/j'
 
 const appConfig = getObj('config') || {}
 let app = {}

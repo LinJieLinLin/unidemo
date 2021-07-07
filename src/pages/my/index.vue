@@ -2,9 +2,15 @@
   <div>
     <top :c="UserInfo"></top>
     <view class="m-list mg-lr10 of-h">
+      <div v-for="(item,index) in lists"
+        :key="index">
+        <lj-item-list :item="item"
+          :c="listC"
+          @click="itemClick(item)"></lj-item-list>
+      </div>
       <!-- #ifdef MP-WEIXIN -->
-      <uni-section title="小程序特有"
-        type="line"></uni-section>
+      <!-- <uni-section title="小程序特有"
+        type="line"></uni-section> -->
       <!-- <uni-list>
         <uni-list-item :show-extra-icon="true"
           :extra-icon="extraIcon1">
@@ -103,17 +109,14 @@ export default {
   },
   data() {
     return {
-      qrcodeInfo: '未有值',
-      extraIcon1: {
-        color: '#007aff',
-        size: '22',
-        type: 'gear-filled'
+      listC: {
+
       },
-      extraIcon2: {
-        color: '#4cd964',
-        size: '22',
-        type: 'image'
-      }
+      lists: [{
+        name: '系统设置',
+        url: 'myPkg/setting'
+      },
+      ]
     }
   },
   methods: {
@@ -125,6 +128,9 @@ export default {
         console.log(err)
       })
       this.qrcodeInfo = JSON.stringify(res)
+    },
+    itemClick(argItem) {
+      this.$f.toPage(argItem.url)
     },
     init() {
 

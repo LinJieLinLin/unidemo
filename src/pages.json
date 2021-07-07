@@ -74,6 +74,19 @@
         }
       ]
     },
+    {
+      "root": "pages/myPkg",
+      "pages": [
+        {
+          "path": "info/index",
+          "style": {}
+        },
+        {
+          "path": "setting/index",
+          "style": {}
+        }
+      ]
+    },
     // 组件分包
     {
       "root": "pages/com",
@@ -197,9 +210,9 @@
   "easycom": {
     "autoscan": true,
     "custom": {
-      "lj-item-(.*)": "@/components/lj/item/$1/index.vue",
       // "uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
-      "lj-(.*)": "@/components/lj/$1/index.vue"
+      "lj-item-(.*)": "lj-components/item/$1/index.vue",
+      "lj-(.*)": "lj-components/$1/index.vue"
     }
   }
 }

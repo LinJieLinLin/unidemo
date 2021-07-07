@@ -11,13 +11,13 @@ import {
   getCurrentPage,
   P,
   toast,
-} from './utils/microApi'
-import { request, response, checkInput, GlobalCounter } from './utils/project'
-import { safeData, hideInfo, sleep, loadFile, remInit } from './utils/j'
-import comMixin from './utils/mixins/common'
-import Throttle from './utils/class/Throttle'
-import Debounce from './utils/class/Debounce'
-import { getObj } from './utils/struct'
+} from 'lj-utils/microApi'
+import { request, response, checkInput, GlobalCounter } from 'lj-utils/project'
+import { safeData, hideInfo, sleep, loadFile, remInit } from 'lj-utils/j'
+import comMixin from 'lj-utils/mixins/common'
+import Throttle from 'lj-utils/class/Throttle'
+import Debounce from 'lj-utils/class/Debounce'
+import { getObj } from 'lj-utils/struct'
 import dialogMixin from './components/lj/dialog/mixin'
 
 const throttle = new Throttle()
@@ -82,4 +82,6 @@ const app = new Vue({
 // }
 ljLog()
 app.$mount()
+// #ifdef H5
 window.APP_VERSION = APP_VERSION
+// #endif

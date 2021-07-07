@@ -255,33 +255,33 @@ export default {
         temList.push(item)
         temObj[v] = item
       })
-      let a = [
-        {
-          name: '阿bb',
-        },
-        {
-          name: '人阿bb',
-        },
-        {
-          name: '我阿bb',
-        },
-        {
-          name: '去阿bb',
-        },
-      ]
-      a.map((v, k) => {
-        v.index = k
-        // v.letter = cnchar.spell(v.name, 'first')[0]
-        v.hide = false
-        temObj[v.letter].items.push(v)
-      })
-      a[0].index = 100
+      // let a = [
+      //   {
+      //     name: '阿bb',
+      //   },
+      //   {
+      //     name: '人阿bb',
+      //   },
+      //   {
+      //     name: '我阿bb',
+      //   },
+      //   {
+      //     name: '去阿bb',
+      //   },
+      // ]
+      // a.map((v, k) => {
+      //   v.index = k
+      //   // v.letter = cnchar.spell(v.name, 'first')[0]
+      //   v.hide = false
+      //   temObj[v.letter].items.push(v)
+      // })
+      // a[0].index = 100
       console.error(temList)
       // a.map(v => {
       //   console.error(cnchar.spell(v)[0])
       //   // return cnchar.spell(v, 'first')[0]
       // })
-      console.error(a)
+      // console.error(a)
       // console.log(cnchar.spell('汉字', 'array', 'low'))
     }
   },

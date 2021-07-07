@@ -19,7 +19,9 @@
     "x": "echo '大改动' &&npm version major",
     "push": "nrm use npm &npm login & npm publish & nrm use taobao"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lj-utils": "*"
+  },
   "devDependencies": {},
   "browserslist": [
     "> 1%",

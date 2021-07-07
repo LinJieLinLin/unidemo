@@ -115,7 +115,7 @@
 </template>
 
 <script>
-import { uploadImgs } from '../../../utils/microApi'
+import { uploadImgs } from 'lj-utils/microApi'
 export default {
   props: {
     list: {

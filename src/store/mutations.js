@@ -1,4 +1,4 @@
-import { setStorage, getCurrentPage } from '../utils/microApi'
+import { setStorage, getCurrentPage } from 'lj-utils/microApi'
 const matations = {
   /**
    * @description 获取用户信息

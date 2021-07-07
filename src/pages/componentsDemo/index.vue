@@ -7,14 +7,6 @@
           :c="listC"
           @click="toComponents(item)"></lj-item-list>
       </div>
-      <!-- <uni-list>
-        <uni-list-item v-for="(item,index) in lists"
-          :key="index"
-          :title="item.name"
-          :disabled="item.disabled"
-          :show-arrow="true"
-          @click.native="toComponents(item)" />
-      </uni-list> -->
     </view>
   </view>
 </template>
@@ -85,6 +77,7 @@ export default {
       {
         name: '实验室',
         url: '',
+        hideArrow: true,
         disabled: true
       },
 
