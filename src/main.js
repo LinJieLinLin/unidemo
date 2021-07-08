@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Vue from 'vue'
 import App from './App'
 import store from './store/index'
@@ -12,13 +13,13 @@ import {
   P,
   toast,
 } from 'lj-utils/microApi'
-import { request, response, checkInput, GlobalCounter } from 'lj-utils/project'
+import { request, response, checkInput, GlobalCounter } from '@/utils/project'
 import { safeData, hideInfo, sleep, loadFile, remInit } from 'lj-utils/j'
 import comMixin from 'lj-utils/mixins/common'
 import Throttle from 'lj-utils/class/Throttle'
 import Debounce from 'lj-utils/class/Debounce'
-import { getObj } from 'lj-utils/struct'
-import dialogMixin from './components/lj/dialog/mixin'
+import { getObj } from '@/utils/struct'
+import dialogMixin from 'lj-components/dialog/mixin'
 
 const throttle = new Throttle()
 const debounce = new Debounce()

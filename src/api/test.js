@@ -1,10 +1,10 @@
-import { request } from '@/utils/microApi'
+import { request } from 'lj-utils/microApi'
 export function TestGet(params = {}, config = {}) {
   return request({
     url: 'http://yapi.demo.qunar.com/mock/9343/api/test',
     method: 'get',
     params,
-    config
+    config,
   })
 }
 export function TestPost(params = {}, config = {}) {
@@ -12,6 +12,6 @@ export function TestPost(params = {}, config = {}) {
     url: 'http://baidu.comapi/test',
     method: 'post',
     params,
-    config
+    config,
   })
 }

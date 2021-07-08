@@ -1,20 +1,20 @@
 import { TestGet, TestPost } from '@/api/test'
-import { login } from '@/utils/microApi'
+import { login } from 'lj-utils/microApi'
 const actions = {
   async TestGet({ commit }, param = {}) {
-    const _result = await TestGet(param).catch(err => {
+    const _result = await TestGet(param).catch((err) => {
       return Promise.reject(err)
     })
     return _result
   },
   async TestPost({ commit }, param = {}) {
-    const _result = await TestPost(param).catch(err => {
+    const _result = await TestPost(param).catch((err) => {
       console.log(err)
     })
     return _result
   },
   async GetUserInfo({ commit }, rs) {
-    const _result = await login().catch(err => {
+    const _result = await login().catch((err) => {
       console.log(err)
     })
     if (rs) {
@@ -25,14 +25,14 @@ const actions = {
       }
       return rs.target
     } else {
-      const _res = await new Promise(function(resolve, reject) {
+      const _res = await new Promise(function (resolve, reject) {
         wx.getUserInfo({
-          success: res => {
+          success: (res) => {
             return resolve(res)
           },
-          fail: err => {
+          fail: (err) => {
             return reject(err)
-          }
+          },
         })
       })
       _res.code = _result.code
@@ -43,16 +43,16 @@ const actions = {
   GetUserInfo1(state, rs) {
     if (!rs) {
       return wx.login({
-        success: res => {
+        success: (res) => {
           // console.log(res)
           let code = res
           wx.getUserInfo({
-            success: res => {
+            success: (res) => {
               // console.log(res)
               state.UserInfo = res.userInfo
-            }
+            },
           })
-        }
+        },
       })
     } else {
       // console.log(this)
@@ -64,6 +64,6 @@ const actions = {
       state.UserInfo.encryptedData = rs.target.encryptedData
     }
     // 调用登录接口
-  }
+  },
 }
 export default actions

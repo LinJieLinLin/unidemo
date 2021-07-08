@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import { getDb, getStorageSync, P, setStorage, setTitle } from '@/utils/microApi'
-import { isJson } from '@/utils/j'
+import { getDb, getStorageSync, P, setStorage, setTitle } from 'lj-utils/microApi'
+import { isJson } from 'lj-utils/j'
 export default {
   props: {
 

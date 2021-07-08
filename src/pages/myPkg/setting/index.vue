@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { setTitle } from '@/utils/microApi'
+import { setTitle } from 'lj-utils/microApi'
 export default {
   props: {
 

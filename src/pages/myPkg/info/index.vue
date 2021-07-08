@@ -27,7 +27,7 @@
 
 <script>
 import config from '../../../../package.json'
-import { safeData } from '@/utils/j'
+import { safeData } from 'lj-utils/j'
 export default {
   props: {
 

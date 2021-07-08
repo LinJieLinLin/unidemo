@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { setTitle } from '@/utils/microApi'
+import { setTitle } from 'lj-utils/microApi'
 import qrCode from 'vue-qrcode-component'
 // #ifdef H5
 import VueClipboard from 'vue-clipboard2'
