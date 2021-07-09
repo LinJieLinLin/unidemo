@@ -211,8 +211,8 @@
     "autoscan": true,
     "custom": {
       // "uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
-      "lj-item-(.*)": "lj-components/item/$1/index.vue",
-      "lj-(.*)": "lj-components/$1/index.vue"
+      "lj-item-(.*)": "@/lj/lj-components/item/$1/index.vue",
+      "lj-(.*)": "@/lj/lj-components/$1/index.vue"
     }
   }
 }

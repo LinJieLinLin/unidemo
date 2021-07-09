@@ -16,6 +16,10 @@ const matations = {
   SetReload(state, argData = false) {
     state.Reload = argData
   },
+  // 记录打开场景
+  SetScene(state, argData = '') {
+    state.Scene = argData
+  },
   // 倒计时数字
   SetCountNum(state, argData = '') {
     // console.log(argData)

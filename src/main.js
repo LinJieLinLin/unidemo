@@ -12,6 +12,7 @@ import {
   getCurrentPage,
   P,
   toast,
+  setTitle,
 } from 'lj-utils/microApi'
 import { request, response, checkInput, GlobalCounter } from '@/utils/project'
 import { safeData, hideInfo, sleep, loadFile, remInit } from 'lj-utils/j'
@@ -43,6 +44,7 @@ Vue.prototype.$f = {
   // 云函数记录日志
   log,
   toast,
+  setTitle,
   safeData,
   hideInfo,
   sleep,

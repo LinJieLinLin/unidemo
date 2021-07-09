@@ -11,7 +11,6 @@
 
 <script>
 import { getStorage, setStorage, toPage, login } from 'lj-utils/microApi'
-import { wxLogin } from '../../api/common'
 const data = {
   showTime: 2000,
   showDone: false,

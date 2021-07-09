@@ -11,7 +11,9 @@
 -->
 <!-- #endif -->
 <script>
-import { setStorage } from 'lj-utils/microApi'
+import { login, setStorage } from 'lj-utils/microApi'
+import { mapActions } from 'vuex'
+import { checkToken } from './api/common'
 export default {
   // 全局数据 eg:getApp().globalData.text
   globalData: {
@@ -21,10 +23,11 @@ export default {
     console.log('捕捉错误：', err)
     this.$f.log(err)
   },
-  onLaunch(argData) {
+  async onLaunch(argData) {
     console.warn('version:', APP_VERSION || this.$store.state.Version)
     console.info('env:', process.env)
     console.log('params:', argData)
+    let res
     // #ifdef  MP-WEIXIN
     // try {
     //   wx.cloud.init({
@@ -33,10 +36,23 @@ export default {
     // } catch (err) {
     //   console.error(err)
     // }
+    this.$store.commit('SetScene', argData.scene)
     // #endif
     // 记录首次加载打开参数
     setStorage('openPage', argData.path)
     setStorage('openQuery', argData.query)
+    if (!this.$f.getStorageSync('tk')) {
+      // #ifdef MP
+      res = await login(1)
+      let data = {
+        code: res.code
+      }
+      res = await this.MpLogin(data)
+      // #endif
+    } else {
+      res = await checkToken()
+    }
+    console.log('登录信息', res)
     // #ifdef H5
     if (
       process.env.NODE_ENV === 'development' ||
@@ -55,7 +71,12 @@ export default {
   },
   onHide() {
     console.log('App Hide')
-  }
+  },
+  methods: {
+    // #ifdef  MP
+    ...mapActions(['MpLogin'])
+    // #endif
+  },
 }
 </script>
 

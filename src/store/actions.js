@@ -1,5 +1,5 @@
+import { setUserInfo, mpLogin } from '@/api/common'
 import { TestGet, TestPost } from '@/api/test'
-import { login } from 'lj-utils/microApi'
 const actions = {
   async TestGet({ commit }, param = {}) {
     const _result = await TestGet(param).catch((err) => {
@@ -13,57 +13,26 @@ const actions = {
     })
     return _result
   },
-  async GetUserInfo({ commit }, rs) {
-    const _result = await login().catch((err) => {
-      console.log(err)
+  // #ifdef MP
+  async MpLogin({ commit }, param = {}) {
+    const _res = await mpLogin(param).catch((err) => {
+      return Promise.reject(err)
     })
-    if (rs) {
-      // console.log('点按钮获取', rs.target)
-      if (rs.target) {
-        rs.target.code = _result.code
-        commit('SetUserInfo', rs.target)
-      }
-      return rs.target
-    } else {
-      const _res = await new Promise(function (resolve, reject) {
-        wx.getUserInfo({
-          success: (res) => {
-            return resolve(res)
-          },
-          fail: (err) => {
-            return reject(err)
-          },
-        })
-      })
-      _res.code = _result.code
-      commit('SetUserInfo', _res)
-      return _res
-    }
+    commit('SetUserInfo', _res)
+    return _res
   },
-  GetUserInfo1(state, rs) {
+  // #endif
+  async UpdateUser({ commit }, param = {}) {
+    commit('SetUserInfo', param || {})
+    let e
+    const rs = await setUserInfo(param).catch((err) => {
+      console.log(err)
+      e = err
+    })
     if (!rs) {
-      return wx.login({
-        success: (res) => {
-          // console.log(res)
-          let code = res
-          wx.getUserInfo({
-            success: (res) => {
-              // console.log(res)
-              state.UserInfo = res.userInfo
-            },
-          })
-        },
-      })
-    } else {
-      // console.log(this)
-      // console.log(rs)
-      state.UserInfo = rs.target.userInfo
-      state.UserInfo.encryptedData = rs.target.encryptedData
-      state.UserInfo.iv = rs.target.iv
-      state.UserInfo.signature = rs.target.signature
-      state.UserInfo.encryptedData = rs.target.encryptedData
+      return Promise.reject(e)
     }
-    // 调用登录接口
+    return rs
   },
 }
 export default actions
