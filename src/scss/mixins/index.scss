@@ -46,71 +46,72 @@
 
 /**
 * [oPdMgSet 默认设置5到60的各个padding margin]
-* @param  {[type]} $max:12   [基数]
+* @param  {[type]} $max:12   [循环次数，从0开始]
 * @param  {[type]} $mul:5  [倍数]
 * @param  {[type]} $unit:px [单位]
+* @param  {[type]} $d:px [基数]
 * @return {[type]}          [description]
 */
 
-@mixin oPdMgSet($max: 12, $mul: 5, $unit: px) {
-  @for $padding-size from 1 through $max {
-    .pd-x#{$padding-size*$mul} {
-      padding: 0 $padding-size * $mul + $unit;
+@mixin oPdMgSet($max: 12, $mul: 5, $d: 0, $unit: px) {
+  @for $size from 0 through $max {
+    .pd-x#{$d + $size*$mul} {
+      padding: 0 $d + $size * $mul + $unit;
     }
-    .pd-y#{$padding-size*$mul} {
-      padding: $padding-size * $mul + $unit 0;
+    .pd-y#{$d + $size*$mul} {
+      padding: $d + $size * $mul + $unit 0;
     }
-    .pd-f#{$padding-size*$mul} {
-      padding: $padding-size * $mul + $unit;
+    .pd-f#{$d + $size*$mul} {
+      padding: $d + $size * $mul + $unit;
     }
-    .pd-t#{$padding-size*$mul} {
-      padding-top: $padding-size * $mul + $unit;
+    .pd-t#{$d + $size*$mul} {
+      padding-top: $d + $size * $mul + $unit;
     }
-    .pd-r#{$padding-size*$mul} {
-      padding-right: $padding-size * $mul + $unit;
+    .pd-r#{$d + $size*$mul} {
+      padding-right: $d + $size * $mul + $unit;
     }
-    .pd-b#{$padding-size*$mul} {
-      padding-bottom: $padding-size * $mul + $unit;
+    .pd-b#{$d + $size*$mul} {
+      padding-bottom: $d + $size * $mul + $unit;
     }
-    .pd-l#{$padding-size*$mul} {
-      padding-left: $padding-size * $mul + $unit;
+    .pd-l#{$d + $size*$mul} {
+      padding-left: $d + $size * $mul + $unit;
     }
-    .pd-tb#{$padding-size*$mul} {
-      padding-top: $padding-size * $mul + $unit;
-      padding-bottom: $padding-size * $mul + $unit;
+    .pd-tb#{$d + $size*$mul} {
+      padding-top: $d + $size * $mul + $unit;
+      padding-bottom: $d + $size * $mul + $unit;
     }
-    .pd-lr#{$padding-size*$mul} {
-      padding-right: $padding-size * $mul + $unit;
-      padding-left: $padding-size * $mul + $unit;
+    .pd-lr#{$d + $size*$mul} {
+      padding-right: $d + $size * $mul + $unit;
+      padding-left: $d + $size * $mul + $unit;
     }
-    .mg-x#{$padding-size*$mul} {
-      margin: 0 $padding-size * $mul + $unit;
+    .mg-x#{$d + $size*$mul} {
+      margin: 0 $d + $size * $mul + $unit;
     }
-    .mg-y#{$padding-size*$mul} {
-      margin: $padding-size * $mul + $unit 0;
+    .mg-y#{$d + $size*$mul} {
+      margin: $d + $size * $mul + $unit 0;
     }
-    .mg-f#{$padding-size*$mul} {
-      margin: $padding-size * $mul + $unit;
+    .mg-f#{$d + $size*$mul} {
+      margin: $d + $size * $mul + $unit;
     }
-    .mg-t#{$padding-size*$mul} {
-      margin-top: $padding-size * $mul + $unit;
+    .mg-t#{$d + $size*$mul} {
+      margin-top: $d + $size * $mul + $unit;
     }
-    .mg-r#{$padding-size*$mul} {
-      margin-right: $padding-size * $mul + $unit;
+    .mg-r#{$d + $size*$mul} {
+      margin-right: $d + $size * $mul + $unit;
     }
-    .mg-l#{$padding-size*$mul} {
-      margin-left: $padding-size * $mul + $unit;
+    .mg-l#{$d + $size*$mul} {
+      margin-left: $d + $size * $mul + $unit;
     }
-    .mg-b#{$padding-size*$mul} {
-      margin-bottom: $padding-size * $mul + $unit;
+    .mg-b#{$d + $size*$mul} {
+      margin-bottom: $d + $size * $mul + $unit;
     }
-    .mg-lr#{$padding-size*$mul} {
-      margin-left: $padding-size * $mul + $unit;
-      margin-right: $padding-size * $mul + $unit;
+    .mg-lr#{$d + $size*$mul} {
+      margin-left: $d + $size * $mul + $unit;
+      margin-right: $d + $size * $mul + $unit;
     }
-    .mg-tb#{$padding-size*$mul} {
-      margin-top: $padding-size * $mul + $unit;
-      margin-bottom: $padding-size * $mul + $unit;
+    .mg-tb#{$d + $size*$mul} {
+      margin-top: $d + $size * $mul + $unit;
+      margin-bottom: $d + $size * $mul + $unit;
     }
   }
 }
@@ -672,7 +673,7 @@ eg: @include iIcon(close,16)
   $path: './assets/icon/',
   $suffix: '.png'
 ) {
-  background-image: url($path+$name+$suffix);
+  background-image: url($path + $name + $suffix);
   background-size: $sw + px $sh + px;
   background-repeat: no-repeat;
   background-position: center;

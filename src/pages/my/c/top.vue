@@ -1,13 +1,12 @@
 <template>
-  <div class="flex-column flex-y-center pd-y20 fs-20"
-    @click="login">
+  <div class="flex-column flex-y-center pd-y20 fs-20 full-w">
     <div class="round avatar mg-b10">
       <!--  #ifdef  MP-WEIXIN -->
       <open-data v-if="!c.avatar"
         type="userAvatarUrl"
         class=""></open-data>
       <!--  #endif -->
-      <!--  #ifdef  H5 -->
+      <!--  #ifdef  H5||MP-ALIPAY -->
       <img :src="c.avatar||img.avatar"
         alt="" />
       <!--  #endif -->
@@ -22,8 +21,10 @@
         lang="zh_CN"></open-data>
     </template>
     <!--  #endif -->
-    <!--  #ifdef  H5 -->
-    <text class="c-theme">{{ c.nickName || '登录' }}</text>
+    <!--  #ifdef  H5||MP-ALIPAY -->
+    <text class="c-theme">
+      {{ c.nickName || '登录' }}
+    </text>
     <!--  #endif -->
   </div>
 </template>

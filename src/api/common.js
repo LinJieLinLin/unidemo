@@ -2,22 +2,13 @@ import { requestCloud } from 'lj-utils/microApi'
 // 通用
 // 微信登录
 export function mpLogin(params = {}, config = {}) {
+  // console.error('mpLogin', params)
   let action = params.action
   delete params.action
   return requestCloud({
     name: 'uni-id-cf',
     params: {
       action,
-      params,
-    },
-    config,
-  })
-}
-export function aliLogin(params = {}, config = {}) {
-  return requestCloud({
-    name: 'uni-id-cf',
-    params: {
-      action: 'loginByAlipay',
       params,
     },
     config,

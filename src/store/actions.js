@@ -15,6 +15,14 @@ const actions = {
   },
   // #ifdef MP
   async MpLogin({ commit }, param = {}) {
+    let action = ''
+    // #ifdef MP-ALIPAY
+    action = 'loginByAlipay'
+    // #endif
+    // #ifdef MP-WEIXIN
+    action = 'loginByWeixin'
+    // #endif
+    param.action = action
     const _res = await mpLogin(param).catch((err) => {
       return Promise.reject(err)
     })

@@ -4,8 +4,12 @@
 // @include oReset();
 // fs 12 to 64px; eg: fs-12 fs-16
 @include oFsSet(26);
-@include oPdMgSet(12, 10);
-@include oPdMgSet(16, 4);
+// pd、mg 4-36 5-45 50-100
+@include oPdMgSet(9, 4);
+@include oPdMgSet(1, 5, 5);
+@include oPdMgSet(0, 5, 15);
+@include oPdMgSet(4, 5, 25);
+@include oPdMgSet(5, 10, 50);
 // rate:15 rotate 0 to 360 eg: rot-90
 @include oRotate();
 // flex相关

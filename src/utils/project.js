@@ -467,19 +467,11 @@ export const response = async (argData = { config: {} }) => {
  * @description 未登录处理
  */
 export const unLogin = async () => {
-  let action = ''
-  // #ifdef MP-ALIPAY
-  action = 'loginByAlipay'
-  // #endif
-  // #ifdef MP-WEIXIN
-  action = 'loginByWeixin'
-  // #endif
   // #ifdef MP
   // toast('登录信息失效，正在重新登录')
   let res = await login(1)
   let data = {
     code: res.code,
-    action,
   }
   // #endif
   store.dispatch('MpLogin', data)

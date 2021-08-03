@@ -104,7 +104,7 @@
     "postcss-px-to-viewport": "^1.1.1",
     "postcss-pxtorem": "^6.0.0",
     "prettier": "^2.3.0",
-    "regenerator-runtime": "^0.13.7",
+    "regenerator-runtime": "0.12.1",
     "sass": "^1.32.13",
     "sass-loader": "^8.0.2",
     "terser-webpack-plugin": "^5.1.2",
