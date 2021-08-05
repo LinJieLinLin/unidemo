@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@master
         with:
-          node-version: '14.15.3'
+          node-version: '14.x'
 
       - name: clone utils&components
         run: |
@@ -32,6 +32,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          folder: dist
+          folder: dist/build/h5
           commit-message: github actions auto commit
           branch: gh-pages
