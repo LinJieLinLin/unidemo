@@ -20,7 +20,7 @@ jobs:
 
       - name: build
         run: |
-          npm install && ./autoBuild.sh
+          npm install && git clone https://github.com/LinJieLinLin/utils.git ./src/lj/lj-utils && git clone https://github.com/LinJieLinLin/lj-components.git ./src/lj/lj-components && npm run build
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
