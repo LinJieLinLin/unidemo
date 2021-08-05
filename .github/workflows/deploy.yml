@@ -13,12 +13,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
-      - uses: borales/actions-yarn@v2.3.0
+      - name: Setup Node.js
+        uses: actions/setup-node@master
         with:
-          cmd: install
+          node-version: '14.15.3'
+
+      - name: clone utils&components
+        run: |
+          git clone https://github.com/LinJieLinLin/utils.git ./src/lj/lj-utils && git clone https://github.com/LinJieLinLin/lj-components.git ./src/lj/lj-components
+      - name: build
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install # will run `yarn install` command
       - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: build
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
