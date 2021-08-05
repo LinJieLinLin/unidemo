@@ -115,7 +115,7 @@ export default {
     },
     async getData() {
       const dbCollectionName = 'lj-link'
-      let res = await getDb().collection(dbCollectionName).get().catch(err => {
+      let res = await getDb().collection(dbCollectionName).orderBy('sort asc').get().catch(err => {
         console.error(err)
         console.error(err.code, err.message)
         if (err.message.match('30203')) {
