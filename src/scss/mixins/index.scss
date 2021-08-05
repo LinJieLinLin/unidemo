@@ -19,8 +19,8 @@
 /**
 * 旋转角度
 **/
-@mixin oRotate($rate: 15) {
-  @for $r from 0 through 360 / $rate {
+@mixin oRotate($rate: 15, $count: 24) {
+  @for $r from 0 through $count {
     .rot-#{$rate*$r} {
       transform: rotate($rate * $r + deg);
     }
