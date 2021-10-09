@@ -52,6 +52,7 @@
     "@dcloudio/uni-mp-alipay": "^2.0.0-31920210514002",
     "@dcloudio/uni-mp-baidu": "^2.0.0-31920210514002",
     "@dcloudio/uni-mp-qq": "^2.0.0-31920210514002",
+    "@dcloudio/uni-app-plus": "^2.0.0-31920210514002",
     "@dcloudio/uni-mp-toutiao": "^2.0.0-31920210514002",
     "@dcloudio/uni-mp-weixin": "^2.0.0-31920210514002",
     "@dcloudio/uni-stat": "^2.0.0-31920210514002",

@@ -74,6 +74,7 @@ import {
   setStorage,
   hideLoading,
   login,
+  P,
 } from 'lj-utils/microApi'
 import { enBase64, deBase64 } from 'lj-utils/encrypt/base64'
 import Counter from 'lj-utils/class/Counter'
@@ -412,6 +413,7 @@ export const request = (argData) => {
   // 设置header
   // argData.config.header = Object.assign(
   //   {
+  //      //'content-type':'multipart/form-data',
   //     'content-type': 'application/x-www-form-urlencoded',
   //   },
   //   argData.config.header || {}
@@ -475,4 +477,59 @@ export const unLogin = async () => {
   }
   // #endif
   store.dispatch('MpLogin', data)
+}
+
+export const uploadImg = async (argOption) => {
+  var error, filePath, file, res
+  var data = {
+    url: argOption.params.url,
+    filePath: '',
+    name: argOption.params.name || 'file',
+    formData: null,
+    header: {
+      // tk: getStorageSync('tk'),
+      // guid: getStorageSync('guid') || uuid(),
+    },
+  }
+  filePath = argOption.params.filePath
+  // file = argOption.params.file
+  const uploadOne = async (argPath) => {
+    data.filePath = argPath
+    let res = await P('uploadFile', data).catch((err) => {
+      error = err
+      console.error('uploadFile error', data, err)
+    })
+    // #ifdef  H5
+    URL.revokeObjectURL(argPath)
+    // #endif
+    if (res) {
+      res.data = JSON.parse(res.data)
+      return response(res)
+    } else {
+      return Promise.reject(error)
+    }
+  }
+
+  delete argOption.params.url
+  delete argOption.params.filePath
+  delete argOption.params.file
+  delete argOption.params.name
+
+  argOption = request(argOption)
+  data.formData = argOption.params
+  // data.header = argOption.config.header
+  // 单张上传
+  if (typeof filePath === 'string') {
+    return uploadOne(filePath)
+  } else {
+    const temUploadFn = filePath.map(uploadOne)
+    res = await Promise.all(temUploadFn).catch((err) => {
+      error = err
+    })
+    if (res) {
+      return res
+    } else {
+      return Promise.reject(error)
+    }
+  }
 }

@@ -16,10 +16,11 @@
       </button>
       <div class="flex-center mg-t20">
         <qr-code :text="url"
-          size="200"
+          :size="200"
           color="#f1c40f"
           bg-color="#3498db"></qr-code>
       </div>
+      <div class="flex-center pd-f20 fs-20">{{ countdown }}</div>
     </div>
   </div>
 </template>
@@ -30,6 +31,8 @@ import qrCode from 'vue-qrcode-component'
 // #ifdef H5
 import VueClipboard from 'vue-clipboard2'
 import Vue from 'vue'
+import { secondToTime } from '@/lj/lj-utils/j'
+import Counter from '@/lj/lj-utils/class/Counter'
 Vue.use(VueClipboard)
 // #endif
 export default {
@@ -64,6 +67,7 @@ export default {
   data() {
     return {
       url: 'https://www.baidu.com',
+      countdown: '倒计时',
     }
   },
   methods: {
@@ -86,6 +90,10 @@ export default {
     },
     init() {
       setTitle('二维码生成')
+      let count = new Counter(1 + 60 + 60 + 60 * 60 + 24 * 60 * 60 - 2)
+      count.start(t => {
+        this.countdown = secondToTime(t, 'd')
+      })
     },
   },
 }

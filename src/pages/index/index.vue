@@ -47,6 +47,10 @@
         @click="$f.toPage('my','','switchTab')">
         我的
       </button>
+      <button class="mg-t20"
+        @click="upload()">
+        上传
+      </button>
     </view>
     <lj-dialog :c="DialogC"
       @mixinChange="ComChange"></lj-dialog>
@@ -54,6 +58,8 @@
 </template>
 
 <script>
+import { P } from '@/lj/lj-utils/microApi'
+import { uploadImg } from '@/utils/project'
 export default {
   components: {
   },
@@ -93,6 +99,32 @@ export default {
     // #endif
     async hiTip() {
       this.DialogShow({ msg: '这里是linjielinlin的组件库！' })
+    },
+    async upload() {
+      let err
+      let res = await P('chooseImage', {
+        count: 1,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['album', 'camera'],
+      }).catch((error) => {
+        err = error
+      })
+      let data = {
+        // file: res.tempFiles[0]
+        params: {
+          url: 'http://kaide.gdtengnan.com/api/upload/uploadImage',
+          filePath: res.tempFilePaths[0],
+          file: res.tempFiles[0]
+        },
+        config: {}
+      }
+      console.error('chooseImage', res)
+      res = await uploadImg(data).catch(err => {
+        console.error(err)
+      })
+      if (!res) {
+        return false
+      }
     },
     async init() {
     }
