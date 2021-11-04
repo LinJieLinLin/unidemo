@@ -5,6 +5,7 @@ page {
   color: #333;
   line-height: 1.4;
 }
+// 按钮相关
 button[type='theme'] {
   color: #fff;
   @include iBtnBgColor($theme);
@@ -46,6 +47,7 @@ button[type='full-theme'] {
   align-items: center;
   @include iBtnBgColor($theme);
 }
+// 按钮相关 end
 .full-theme {
   border-radius: 0;
   width: 100%;

@@ -475,8 +475,8 @@ export const unLogin = async () => {
   let data = {
     code: res.code,
   }
-  // #endif
   store.dispatch('MpLogin', data)
+  // #endif
 }
 
 export const uploadImg = async (argOption) => {

@@ -50,7 +50,9 @@ export default {
       res = await this.MpLogin(data)
       // #endif
     } else {
-      res = await checkToken()
+      res = await checkToken().catch(err => {
+        console.error(err)
+      })
     }
     console.log('登录信息', res)
     // #ifdef H5

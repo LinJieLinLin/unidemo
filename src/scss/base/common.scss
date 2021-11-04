@@ -1,7 +1,7 @@
 // 公共css放这里
 // mixin 详见 ../mixins/index.scss
 // reset样式
-// @include oReset();
+@include oReset();
 // fs 12 to 64px; eg: fs-12 fs-16
 @include oFsSet(26);
 // pd、mg 4-36 5-45 50-100
@@ -16,20 +16,9 @@
 @include oFlex();
 // 超过n行后显示... eg:text-line-1 2 3
 @include oTextLine(3);
+// border eg: f-1px t b l r x y
 @include oBorder1px(#ececec);
-html {
-  /* prettier-ignore */
-  font-size: 16PX;
-}
-pre {
-  white-space: pre-wrap;
-}
-// 点击背景
-body {
-  -webkit-tap-highlight-color: transparent;
-  /* px-to-viewport-ignore-next */
-  font-size: 12px; /* px-to-viewport-ignore */
-}
+
 .f-l {
   float: left;
 }

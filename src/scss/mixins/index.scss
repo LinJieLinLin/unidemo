@@ -368,8 +368,11 @@
   }
 }
 @mixin oReset() {
-  /* http://meyerweb.com/eric/tools/css/reset/ */
-  /* v1.0 | 20080212 */
+  /* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
   html,
   body,
   div,
@@ -396,7 +399,6 @@
   del,
   dfn,
   em,
-  font,
   img,
   ins,
   kbd,
@@ -431,27 +433,52 @@
   thead,
   tr,
   th,
-  td {
+  td,
+  article,
+  aside,
+  canvas,
+  details,
+  embed,
+  figure,
+  figcaption,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  output,
+  ruby,
+  section,
+  summary,
+  time,
+  mark,
+  audio,
+  video {
     margin: 0;
     padding: 0;
     border: 0;
     outline: 0;
     font-size: 100%;
+    font: inherit;
     vertical-align: baseline;
-    background: transparent;
+  }
+  /* HTML5 display-role reset for older browsers */
+  article,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  section {
+    display: block;
   }
   body {
     line-height: 1;
-    font-size: 14px;
-    margin: 0;
     -webkit-tap-highlight-color: transparent;
-  }
-  input[type='button'] {
-    -webkit-appearance: none;
-    outline: none;
-  }
-  img {
-    max-width: 100%;
   }
   ol,
   ul {
@@ -468,6 +495,23 @@
     content: '';
     content: none;
   }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  // end
+  img {
+    display: inline-block;
+    max-width: 100%;
+  }
+  input[type='button'] {
+    -webkit-appearance: none;
+    outline: none;
+  }
+  html {
+    /* prettier-ignore */
+    font-size: 14PX;
+  }
   /* remember to define focus styles! */
   :focus {
     outline: 0;
@@ -478,11 +522,6 @@
   }
   del {
     text-decoration: line-through;
-  }
-  /* tables still need 'cellspacing="0"' in the markup */
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
   }
   // pre自动换行 for textarea
   pre {
@@ -496,7 +535,7 @@
 /* *
 * 移动端1px处理
 * */
-@mixin oBorder1pxTmp($c: #c7c7c7) {
+@mixin oBorder1pxMb($c: #c7c7c7) {
   .f-1px {
     border: 1px solid $c;
   }
@@ -615,6 +654,9 @@
     }
   }
 }
+/* *
+* border 1px
+* */
 @mixin oBorder1px($c: #c7c7c7) {
   .f-1px {
     border: 1px solid $c;
@@ -640,6 +682,11 @@
     border-bottom: 1px solid $c;
   }
 }
+/* *
+* 准备弃用 目前components有使用
+* class内设置border 1px,
+* eg: iBorder1px(#ccc,f)
+* */
 @mixin iBorder1px($c: #c7c7c7, $type: f) {
   @if $type==f {
     border: 1px solid $c;
@@ -657,6 +704,29 @@
   } @else if $type==y {
     border-top: 1px solid $c;
     border-bottom: 1px solid $c;
+  }
+}
+/* *
+* class内设置border,
+* eg: iBorder(f,1,solid,#ccc)
+* */
+@mixin iBorder($type: f, $size: 1, $style: solid, $c: #c7c7c7) {
+  @if $type==f {
+    border: $size + px solid $c;
+  } @else if $type==t {
+    border-top: $size + px solid $c;
+  } @else if $type==b {
+    border-bottom: $size + px solid $c;
+  } @else if $type==l {
+    border-left: $size + px solid $c;
+  } @else if $type==r {
+    border-right: $size + px solid $c;
+  } @else if $type==x {
+    border-left: $size + px solid $c;
+    border-right: $size + px solid $c;
+  } @else if $type==y {
+    border-top: $size + px solid $c;
+    border-bottom: $size + px solid $c;
   }
 }
 

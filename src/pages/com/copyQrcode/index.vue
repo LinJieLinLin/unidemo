@@ -21,6 +21,8 @@
           bg-color="#3498db"></qr-code>
       </div>
       <div class="flex-center pd-f20 fs-20">{{ countdown }}</div>
+      <div class="flex-center pd-f20 fs-20">{{ countdown1 }}</div>
+      <div class="flex-center pd-f20 fs-20">{{ countdown2 }}</div>
     </div>
   </div>
 </template>
@@ -68,6 +70,8 @@ export default {
     return {
       url: 'https://www.baidu.com',
       countdown: '倒计时',
+      countdown1: '倒计时',
+      countdown2: '',
     }
   },
   methods: {
@@ -92,7 +96,10 @@ export default {
       setTitle('二维码生成')
       let count = new Counter(1 + 60 + 60 + 60 * 60 + 24 * 60 * 60 - 2)
       count.start(t => {
-        this.countdown = secondToTime(t, 'd')
+        this.countdown = secondToTime(t, 'M')
+        this.countdown1 = secondToTime(t, 'd')
+        this.countdown2 = secondToTime(t, 'y')
+        // this.countdown2 = secondToTime(t, 'h')
       })
     },
   },

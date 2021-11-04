@@ -131,7 +131,6 @@ export default {
       setStorage('caseList', this.dataList)
     },
     close() {
-      console.error(123)
       this.dialogC.show = false
     },
     init() {

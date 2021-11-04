@@ -64,7 +64,7 @@ export default {
         url: 'com/poster'
       },
       {
-        name: 'copy&qrcode',
+        name: 'copy&qrcode&countdown',
         url: 'com/copyQrcode'
       },
       // #endif
