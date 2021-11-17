@@ -18,7 +18,10 @@
 @include oTextLine(3);
 // border eg: f-1px t b l r x y
 @include oBorder1px(#ececec);
-
+// html {
+//   /* prettier-ignore */
+//   font-size: 16PX;
+// }
 .f-l {
   float: left;
 }
