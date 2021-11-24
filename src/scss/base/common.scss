@@ -32,6 +32,15 @@
 .c-b {
   @include iCB();
 }
+.c-p {
+  cursor: pointer;
+}
+.c-d {
+  cursor: default;
+}
+.c-na {
+  cursor: not-allowed;
+}
 .show {
   display: block;
 }
