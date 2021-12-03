@@ -15,8 +15,8 @@
     </div>
     <view v-scroll-x
       id="a"
-      style="height:100px;width: 100px;background:grey;overflow: auto;">
-      <div style="height:250px;width: 200px;background:green">123</div>
+      style="height:100px;width: 100vw;background:grey;overflow: auto;">
+      <div style="height:100px;width: 200vw;background:grey">test text</div>
     </view>
   </div>
 </template>
@@ -24,9 +24,9 @@
 <script>
 import scrollX from 'lj-utils/directive/scrollX'
 export default {
-  // directives: {
-  //   scrollX: scrollX
-  // },
+  directives: {
+    scrollX: scrollX
+  },
   props: {
 
   },

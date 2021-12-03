@@ -21,7 +21,6 @@ import Throttle from 'lj-utils/class/Throttle'
 import Debounce from 'lj-utils/class/Debounce'
 import { getObj } from '@/utils/struct'
 import dialogMixin from 'lj-components/dialog/mixin'
-import scrollX from 'lj-utils/directive/scrollX'
 
 const throttle = new Throttle()
 const debounce = new Debounce()
@@ -71,7 +70,6 @@ loadFile('https://at.alicdn.com/t/font_2120237_w05xu490np.js')
 // 加载mixins
 Vue.mixin(comMixin.mixin)
 Vue.mixin(dialogMixin)
-Vue.directive('scroll-x', scrollX)
 // 初始化
 const app = new Vue({
   ...App,
