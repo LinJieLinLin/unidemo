@@ -67,6 +67,10 @@ export default {
         name: 'copy&qrcode&countdown',
         url: 'com/copyQrcode'
       },
+      {
+        name: 'scrollX directive for PC',
+        url: 'com/scrollX'
+      },
       // #endif
       // #ifdef MP
       {

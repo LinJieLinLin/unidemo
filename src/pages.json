@@ -115,6 +115,10 @@
           "path": "svgIcon/index",
           "style": {}
         },
+        {
+          "path": "scrollX/index",
+          "style": {}
+        },
         // #ifndef MP
         {
           "path": "poster/index",
