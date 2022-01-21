@@ -98,6 +98,7 @@ module.exports = {
         '@store': path.join(__dirname, 'src/store'),
       },
     },
+    devtool: 'source-map',
     // 要忽略打包的文件
     externals: cdnConfig.externals,
     plugins: plugins,
