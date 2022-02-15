@@ -44,15 +44,17 @@
     "z": "echo '小改动' &&npm version patch",
     "y": "echo '特性更新' &&npm version minor",
     "x": "echo '大改动' &&npm version major",
+    "preinstall": "echo 'before install hook node:' & node -v&&npx only-allow yarn",
+    "postinstall": "echo 'after install hook' & npx patch-package",
     "info": "node node_modules/@dcloudio/vue-cli-plugin-uni/commands/info.js"
   },
   "dependencies": {
+    "@dcloudio/uni-app-plus": "^2.0.0-31920210514002",
     "@dcloudio/uni-h5": "^2.0.0-31920210514002",
     "@dcloudio/uni-helper-json": "^1.0.13",
     "@dcloudio/uni-mp-alipay": "^2.0.0-31920210514002",
     "@dcloudio/uni-mp-baidu": "^2.0.0-31920210514002",
     "@dcloudio/uni-mp-qq": "^2.0.0-31920210514002",
-    "@dcloudio/uni-app-plus": "^2.0.0-31920210514002",
     "@dcloudio/uni-mp-toutiao": "^2.0.0-31920210514002",
     "@dcloudio/uni-mp-weixin": "^2.0.0-31920210514002",
     "@dcloudio/uni-stat": "^2.0.0-31920210514002",

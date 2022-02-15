@@ -1,27 +1,28 @@
 /* eslint-disable */
+import { checkInput, GlobalCounter, request, response } from '@/utils/project'
+import { getObj } from '@/utils/struct'
+import dialogMixin from 'lj-components/dialog/mixin'
+import Debounce from 'lj-utils/class/Debounce'
+import Throttle from 'lj-utils/class/Throttle'
+import * as j from 'lj-utils/j'
+import { hideInfo, loadFile, remInit, safeData, sleep } from 'lj-utils/j'
+import {
+  getCurrentPage,
+  getStorageSync,
+  ljLog,
+  log,
+  P,
+  setRequest,
+  setStorage,
+  setTitle,
+  toast,
+  toPage,
+} from 'lj-utils/microApi'
+import comMixin from 'lj-utils/mixins/common'
 import Vue from 'vue'
 import App from './App'
 import store from './store/index'
-import {
-  toPage,
-  log,
-  setRequest,
-  ljLog,
-  getStorageSync,
-  setStorage,
-  getCurrentPage,
-  P,
-  toast,
-  setTitle,
-} from 'lj-utils/microApi'
-import { request, response, checkInput, GlobalCounter } from '@/utils/project'
-import { safeData, hideInfo, sleep, loadFile, remInit } from 'lj-utils/j'
-import comMixin from 'lj-utils/mixins/common'
-import Throttle from 'lj-utils/class/Throttle'
-import Debounce from 'lj-utils/class/Debounce'
-import { getObj } from '@/utils/struct'
-import dialogMixin from 'lj-components/dialog/mixin'
-
+Object.assign(window, j)
 const throttle = new Throttle()
 const debounce = new Debounce()
 Vue.config.productionTip = false
