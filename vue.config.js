@@ -89,8 +89,8 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        'lj-utils': path.join(__dirname, 'src/lj/lj-utils'),
-        'lj-components': path.join(__dirname, 'src/lj/lj-components'),
+        // 'lj-utils': path.join(__dirname, 'src/lj/lj-utils'),
+        // 'lj-components': path.join(__dirname, 'src/lj/lj-components'),
         '@static': path.join(__dirname, 'src/static'),
         '@components': path.join(__dirname, 'src/components'),
         '@assets': path.join(__dirname, 'src/assets'),

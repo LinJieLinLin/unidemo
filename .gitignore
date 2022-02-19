@@ -26,8 +26,6 @@ yarn-error.log*
 !/src/utils/project.js
 !/src/utils/struct.js
 /yarn.lock
-/yarn.lock
-/yarn.lock
 /src/components/lj/icon/demo_index.html
 /src/components/lj/nul
 /src/components/lj

@@ -78,7 +78,4 @@ module.exports = {
     getCurrentPages: true,
     requirePlugin: true,
   },
-  parserOptions: {
-    parser: 'babel-eslint',
-  },
 }

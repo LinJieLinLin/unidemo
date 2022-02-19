@@ -16,7 +16,7 @@ import {
   setStorage,
   setTitle,
   toast,
-  toPage,
+  toPage
 } from 'lj-utils/microApi'
 import comMixin from 'lj-utils/mixins/common'
 import Vue from 'vue'

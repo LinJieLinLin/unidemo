@@ -3,8 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "lj-utils/*": ["./src/lj/lj-utils/*"],
-      "lj-components/*": ["./src/lj/lj-components/*"]
+      // "lj-utils/*": ["./src/lj/lj-utils/*"],
+      // "lj-components/*": ["./src/lj/lj-components/*"]
     },
     "module": "commonjs",
     "target": "es6"

@@ -58,10 +58,10 @@
 </template>
 
 <script>
-import { P } from '@/lj/lj-utils/microApi'
+import { P } from 'lj-utils/microApi'
 import { uploadImg } from '@/utils/project'
 export default {
-  components: {
+    components: {
   },
   props: {},
   onShow() { },
