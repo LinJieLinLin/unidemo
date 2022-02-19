@@ -60,8 +60,8 @@
     "z": "echo '小改动' &&npm version patch",
     "y": "echo '特性更新' &&npm version minor",
     "x": "echo '大改动' &&npm version major",
-    "preinstall": "echo 'before install hook node:' & node -v&&npx only-allow yarn",
-    "postinstall": "echo 'after install hook' & npx patch-package",
+    "preinstall": "echo 'before install hook npx only-allow yarn'",
+    "postinstall": "npx patch-package",
     "info": "node node_modules/@dcloudio/vue-cli-plugin-uni/commands/info.js"
   },
   "dependencies": {
@@ -90,8 +90,8 @@
     "html2canvas": "1.0.0-rc.7",
     "icon-rchy": "^1.0.0",
     "js-base64": "^3.4.1",
-    "lj-components": "https://gitee.com/uni-pro/lj-components.git",
-    "lj-utils": "https://gitee.com/uni-pro/utils.git",
+    "lj-components": "*",
+    "lj-utils": "*",
     "md5": "^2.2.1",
     "vconsole": "^3.5.2",
     "vue-clipboard2": "^0.3.1",
