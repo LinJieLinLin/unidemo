@@ -4,60 +4,6 @@
  * @Date: 2021-07-07 16:10:17
  * @description:
  */
-/*
- * @author: linj
- * @email: 993353454@qq.com
- * @Date: 2021-07-07 16:10:17
- * @description:
- */
-/*
- * @author: linj
- * @email: 993353454@qq.com
- * @Date: 2021-07-07 16:10:17
- * @description:
- */
-/*
- * @author: linj
- * @email: 993353454@qq.com
- * @Date: 2021-07-07 16:10:17
- * @description:
- */
-/*
- * @author: linj
- * @email: 993353454@qq.com
- * @Date: 2021-07-07 16:10:17
- * @description:
- */
-/*
- * @author: linj
- * @email: 993353454@qq.com
- * @Date: 2021-07-07 16:10:17
- * @description:
- */
-/*
- * @author: linj
- * @email: 993353454@qq.com
- * @Date: 2021-07-07 16:10:17
- * @description:
- */
-/*
- * @author: linj
- * @email: 993353454@qq.com
- * @Date: 2021-07-07 16:10:17
- * @description:
- */
-/*
- * @author: linj
- * @email: 993353454@qq.com
- * @Date: 2021-07-07 16:10:17
- * @description:
- */
-/*
- * @author: linj
- * @email: 993353454@qq.com
- * @Date: 2021-07-07 16:10:17
- * @description:
- */
 /**
  * 公共函数
  * @module
@@ -66,7 +12,7 @@
  */
 /* eslint-disable no-case-declarations */
 import store from '../store'
-import { getRegexp, safeData, isJson, hideInfo, toFixed } from 'lj-utils/j'
+import { getRegexp, safeData, isJson, hideInfo, toFixed } from 'lj-utils'
 import {
   init,
   toast,

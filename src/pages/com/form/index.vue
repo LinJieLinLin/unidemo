@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { px2vw } from 'lj-utils/j'
+import { px2vw } from 'lj-utils'
 import { RegexpObj } from '@/utils/project.js'
 let formList = [{
   name: '我是隐藏的',

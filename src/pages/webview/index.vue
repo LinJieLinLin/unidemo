@@ -17,7 +17,7 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
-import { getRegexp } from 'lj-utils/j.js'
+import { getRegexp } from 'lj-utils'
 export default {
   components: {},
   props: {},

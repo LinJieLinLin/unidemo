@@ -6,46 +6,36 @@
 -->
 <template>
   <view class="pd-tb10 case">
-    <div v-for="(item,index) in dataList"
-      :key="index">
-      <lj-item-list :item="item"
+    <div v-for="(item, index) in dataList" :key="index">
+      <lj-item-list
+        :item="item"
         :c="listC"
-        @click="toWebview(item)"></lj-item-list>
+        @click="toWebview(item)"
+      ></lj-item-list>
     </div>
-    <lj-dialog :c="dialogC"
-      @mixinChange="ComChange">
-      <image show-menu-by-longpress
-        class="d-img"
-        :src="dialogC.img"></image>
-      <lj-icon class="d-close"
-        @click.native="close"
-        i="i-close"></lj-icon>
+    <lj-dialog :c="dialogC" @mixinChange="ComChange">
+      <image show-menu-by-longpress class="d-img" :src="dialogC.img"></image>
+      <lj-icon class="d-close" @click.native="close" i="i-close"></lj-icon>
     </lj-dialog>
   </view>
 </template>
 
 <script>
-import { getDb, getStorageSync, P, setStorage, setTitle } from 'lj-utils/microApi'
-import { isJson } from 'lj-utils/j'
+import {
+  getDb,
+  getStorageSync,
+  P,
+  setStorage,
+  setTitle,
+} from 'lj-utils/microApi'
+import { isJson } from 'lj-utils'
 export default {
-  props: {
-
-  },
-  components: {
-
-  },
-  onLoad(argData) {
-
-  },
-  onShow() {
-
-  },
-  onReady() {
-
-  },
-  onUnload() {
-
-  },
+  props: {},
+  components: {},
+  onLoad(argData) {},
+  onShow() {},
+  onReady() {},
+  onUnload() {},
   async onPullDownRefresh() {
     // console.log('下拉')
     uni.stopPullDownRefresh()
@@ -53,9 +43,7 @@ export default {
   async onReachBottom() {
     // console.log('上拉')
   },
-  computed: {
-
-  },
+  computed: {},
   data() {
     return {
       dialogC: {
@@ -63,29 +51,29 @@ export default {
         show: false,
         img: '',
       },
-      listC: {
-      },
-      dataList: [{
-        name: 'lj-utils',
-        desc: '',
-        url: 'https://linjielinlin.github.io/utils/lj-utils/0.1.5/index.html'
-      },
-      {
-        name: '禁毒H5',
-        desc: '',
-        url: 'http://unidemo.lj4.top/jdh5/index.html'
-      },
-      {
-        name: '粤商通',
-        desc: '',
-        url: 'http://unidemo.lj4.top/yst/index.html'
-      },
-      {
-        name: 'unidemo',
-        desc: '',
-        url: 'http://unidemo.lj4.top/unidemo/index.html'
-      },
-      ]
+      listC: {},
+      dataList: [
+        {
+          name: 'lj-utils',
+          desc: '',
+          url: 'https://linjielinlin.github.io/utils/lj-utils/0.1.5/index.html',
+        },
+        {
+          name: '禁毒H5',
+          desc: '',
+          url: 'http://unidemo.lj4.top/jdh5/index.html',
+        },
+        {
+          name: '粤商通',
+          desc: '',
+          url: 'http://unidemo.lj4.top/yst/index.html',
+        },
+        {
+          name: 'unidemo',
+          desc: '',
+          url: 'http://unidemo.lj4.top/unidemo/index.html',
+        },
+      ],
     }
   },
   methods: {
@@ -97,7 +85,10 @@ export default {
             window.open(argData.url)
             return
           }
-          this.$f.toPage('webview', { url: argData.url, params: argData.params })
+          this.$f.toPage('webview', {
+            url: argData.url,
+            params: argData.params,
+          })
           break
         case 'mp':
           // #ifdef MP-WEIXIN
@@ -115,14 +106,18 @@ export default {
     },
     async getData() {
       const dbCollectionName = 'lj-link'
-      let res = await getDb().collection(dbCollectionName).orderBy('sort asc').get().catch(err => {
-        console.error(err)
-        console.error(err.code, err.message)
-        if (err.message.match('30203')) {
-          console.error('relogin')
-        }
-      })
-      this.dataList = this.$f.safeData(res, 'result.data', []).map(v => {
+      let res = await getDb()
+        .collection(dbCollectionName)
+        .orderBy('sort asc')
+        .get()
+        .catch((err) => {
+          console.error(err)
+          console.error(err.code, err.message)
+          if (err.message.match('30203')) {
+            console.error('relogin')
+          }
+        })
+      this.dataList = this.$f.safeData(res, 'result.data', []).map((v) => {
         if (isJson(v.params)) {
           v.params = JSON.parse(v.params)
         }
@@ -137,7 +132,7 @@ export default {
       this.dataList = getStorageSync('caseList') || []
       setTitle('项目列表')
       this.getData()
-    }
+    },
   },
 }
 </script>

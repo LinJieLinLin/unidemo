@@ -24,7 +24,7 @@
 
 <script>
 import { getSystemInfo, hideLoading, P, showLoading } from 'lj-utils/microApi'
-import { sleep } from 'lj-utils/j'
+import { sleep } from 'lj-utils'
 import CanvasClass from 'lj-utils/class/CanvasClass'
 export default {
   props: {

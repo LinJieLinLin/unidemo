@@ -1,5 +1,5 @@
 /* eslint-disable no-fallthrough */
-import { safeData, getRegexp } from 'lj-utils/j'
+import { safeData, getRegexp } from 'lj-utils'
 
 let RegexpObj = getRegexp()
 export const getObj = (argKey, argData = {}) => {

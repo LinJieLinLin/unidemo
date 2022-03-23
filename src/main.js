@@ -4,8 +4,8 @@ import { getObj } from '@/utils/struct'
 import dialogMixin from 'lj-components/dialog/mixin'
 import Debounce from 'lj-utils/class/Debounce'
 import Throttle from 'lj-utils/class/Throttle'
-import * as j from 'lj-utils/j'
-import { hideInfo, loadFile, remInit, safeData, sleep } from 'lj-utils/j'
+import * as j from 'lj-utils'
+import { hideInfo, loadFile, remInit, safeData, sleep } from 'lj-utils'
 import {
   getCurrentPage,
   getStorageSync,
@@ -16,7 +16,7 @@ import {
   setStorage,
   setTitle,
   toast,
-  toPage
+  toPage,
 } from 'lj-utils/microApi'
 import comMixin from 'lj-utils/mixins/common'
 import Vue from 'vue'

@@ -33,7 +33,7 @@ import qrCode from 'vue-qrcode-component'
 // #ifdef H5
 import VueClipboard from 'vue-clipboard2'
 import Vue from 'vue'
-import { secondToTime } from 'lj-utils/j'
+import { secondToTime } from 'lj-utils'
 import Counter from 'lj-utils/class/Counter'
 Vue.use(VueClipboard)
 // #endif
