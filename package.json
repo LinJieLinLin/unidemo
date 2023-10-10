@@ -129,7 +129,7 @@
     "html-webpack-plugin": "^5.5.0",
     "mini-types": "*",
     "miniprogram-api-typings": "*",
-    "postcss": "8.2.15",
+    "postcss": "8.4.31",
     "postcss-comment": "^2.0.0",
     "postcss-focus": "^5.0.1",
     "postcss-px-to-viewport": "^1.1.1",
